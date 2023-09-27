@@ -12,13 +12,13 @@
                             <span style="user-select: none;" v-if="activeSide != side.id" class="material-icons-outlined">expand_more</span>
                             <span v-else class="material-icons-outlined">expand_less</span>
                         </p>
-                        <router-link  class="hover:bg-secondary hover:text-white cursor-pointer flex justify-between items-center py-1.5 px-3" to="/" v-else>
+                        <router-link  :to="{name : side.path}"  class="hover:bg-secondary hover:text-white cursor-pointer flex justify-between items-center py-1.5 px-3" v-else>
                             <span class="select-none"><span style="font-size: 18px;margin: auto 7px; vertical-align: middle;" class="material-icons-outlined">{{ side.icon }}</span>{{ side.cap }}</span>
                         </router-link>
                         <Transition name="side">
                             <ul style="z-index: 0.1;" v-if="side.items && activeSide == side.id" class="px-4 py-2">
                                 <li v-for="item in side.items" :key="item.name">
-                                    <router-link class="hover:bg-secondary hover:text-white  block w-full px-2 py-1.5" to="/">{{ item.name }}</router-link>
+                                    <router-link :to="{name : item.path}" class="hover:bg-secondary hover:text-white  block w-full px-2 py-1.5">{{ item.name }}</router-link>
                                 </li>
                             </ul>
                         </Transition>
@@ -26,8 +26,8 @@
                 </ul>
             </aside>
         </Transition>
-        <div class="z-50 transition-all ease-in-out" :class="sidebar ? 'w-5/6' : 'w-full'">
-            <nav class="sticky top-0 flex justify-between p-2 bg-white shadow-md">
+        <div class="transition-all ease-in-out bg-white" :class="sidebar ? 'w-5/6' : 'w-full'">
+            <nav class="sticky top-0 z-50 flex justify-between p-2 bg-white shadow-md">
                 <span style="cursor: pointer;margin: auto 0px; font-size: 28px;" @click="sidebar = !sidebar" class="material-icons-outlined">menu</span>
                 <ul class="flex">
                     <li class="mx-2">
@@ -38,8 +38,8 @@
                     </li>
                 </ul>
             </nav>
-            <main class="h-[2000px] z-30 bg-white">
-                <router-view></router-view>
+            <main>
+                <router-view class="z-10 text-gray-1"></router-view>
             </main>
         </div>
     </div>
@@ -59,19 +59,23 @@
                         items : [
                             {
                                 name : 'Management',
+                                path : 'AdminDashboardPage'
                             },
                             {
                                 name : 'Analytics',
+                                path : 'AdminDashboardPage'
                             },
                             {
                                 name : 'Monitoring',
+                                path : 'AdminDashboardPage'
                             },
                         ]
                     },
                     {
                         cap : 'Gallery',
                         id : 2,
-                        icon : 'collections'
+                        icon : 'collections',
+                        path : 'AdminGalleryPage'
                     },
                     {
                         cap : 'Contents',
@@ -80,41 +84,49 @@
                         items : [
                             {
                                 name : 'Categories',
+                                path : 'AdminCategoriesPage'
                             },
                             {
                                 name : 'Contents',
+                                path : 'AdminDashboardPage'
                             },
                         ]
                     },
                     {
                         cap : 'Applications',
                         id : 4,
-                        icon : 'api'
+                        icon : 'api',
+                        path : 'AdminDashboardPage'
                     },
                     {
                         cap : 'Calendar',
                         id : 5,
-                        icon : 'calendar_month'
+                        icon : 'calendar_month',
+                        path : 'AdminDashboardPage'
                     },
                     {
                         cap : 'User Management',
                         id : 6,
-                        icon : 'groups'
+                        icon : 'groups',
+                        path : 'AdminDashboardPage'
                     },
                     {
                         cap : 'Employees',
                         id : 7,
-                        icon : 'people'
+                        icon : 'people',
+                        path : 'AdminDashboardPage'
                     },
                     {
                         cap : 'Logs',
                         id : 8,
-                        icon : 'work_history'
+                        icon : 'work_history',
+                        path : 'AdminDashboardPage'
                     },
                     {
                         cap : 'Backups',
                         id : 9,
-                        icon : 'backup'
+                        icon : 'backup',
+                        path : 'AdminDashboardPage'
                     },
                 ]
             }
