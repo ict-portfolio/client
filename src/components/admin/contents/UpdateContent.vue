@@ -2,8 +2,11 @@
     <div class="relative">
         <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal" class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
         <form @submit.prevent="updateContent" class="flex flex-wrap justify-around pb-6">
-            <div class="w-full">
+            <div class="w-full ml-4">
                 <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp" @click="$emit('reload')">arrow_back</span>
+            </div>
+            <div class="w-full">
+                <img class="w-1/2 mx-auto rounded" v-if="previewImage" :src="previewImage" alt="">
             </div>
             <BaseInput class="h-fit"  :error="errors.name" type="text" :label="'Name'" v-model="content.name" />
 
@@ -50,6 +53,7 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import ImagesModal from '../ImagesModal.vue';
 import ApiService from '@/services/ApiService';
+import filePath from '@/services/FilePath';
     export default {
         components : {
                 BaseInput , QuillEditor , ImagesModal
@@ -60,7 +64,8 @@ import ApiService from '@/services/ApiService';
                 viewModal : false,
                 errors : {},
                 categories : [],
-                content : {}
+                content : {},
+                previewImage : '',
             }
         },
         methods : {
@@ -69,6 +74,7 @@ import ApiService from '@/services/ApiService';
             },
             selectImage(image) {
                 this.content.image_id = image.id
+                this.previewImage = filePath.imagePath(image.image)
                 this.cancelModal()
             },
             updateContent () {
@@ -87,6 +93,7 @@ import ApiService from '@/services/ApiService';
             })
             ApiService.get(`admin/contents/${this.$props.id}`).then((res) => {
                 this.content = res.data.data
+                this.previewImage = filePath.imagePath(this.content.image.image)
             }).catch((res) => {
                 console.log(res);
             })

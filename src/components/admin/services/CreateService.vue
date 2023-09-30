@@ -1,14 +1,14 @@
 <template>
     <div class="relative">
         <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal" class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
-        <form @submit.prevent="createContent" class="flex flex-wrap justify-around pb-6">
+        <form @submit.prevent="createService" class="flex flex-wrap justify-around pb-6">
             <div class="w-full">
                 <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp" @click="$emit('reload')">arrow_back</span>
             </div>
             <div class="w-full">
                 <img class="w-1/2 mx-auto rounded" v-if="previewImage" :src="previewImage" alt="">
             </div>
-            <BaseInput class="h-fit"  :error="errors.name" type="text" :label="'Name'" v-model="content.name" />
+            <BaseInput class="h-fit"  :error="errors.name" type="text" :label="'Name'" v-model="service.name" />
 
             <div class="w-[48%] my-6">
                 <p @click="viewModal = true" class="flex items-center px-6 py-2 rounded-full shadow-lg cursor-pointer w-fit">
@@ -18,25 +18,9 @@
                 <p v-if="errors.image_id" class="w-full ml-2 font-semibold text-danger">{{ errors.image_id[0] }}</p>
             </div>
 
-            <select v-model="content.category_id" class="w-[48%] appearance-none px-2 my-6 bg-transparent border text-[14px] rounded-md outline-none border-primary">
-                <option disabled selected>Choose a category</option>
-                <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
-            </select>
-
-            <select v-model="content.status" class="w-[48%] appearance-none p-2 my-6 bg-transparent border text-[14px] rounded-md outline-none border-primary">
-                <option disabled selected>Status</option>
-                <option :value="Boolean(true)">Publish</option>
-                <option :value="Boolean(false)">Don't publish</option>
-            </select>
-
-            <div class="w-[98%] mb-32 mt-2 mx-auto">
-                <label for="description">Description</label>
-                <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="content.description" theme="snow" toolbar="full" contentType="html"></quill-editor>
-            </div>
-
             <div class="w-[98%] mx-auto mb-32">
                 <label for="description">Paragraph</label>
-                <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="content.paragraph" theme="snow" toolbar="full" contentType="html"></quill-editor>
+                <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="service.paragraph" theme="snow" toolbar="full" contentType="html"></quill-editor>
             </div>
 
             <div class="flex justify-end w-[96%]">
@@ -54,6 +38,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import ImagesModal from '../ImagesModal.vue';
 import ApiService from '@/services/ApiService';
 import filePath from '@/services/FilePath';
+
     export default {
         components : {
                 BaseInput , QuillEditor , ImagesModal
@@ -62,14 +47,10 @@ import filePath from '@/services/FilePath';
             return {
                 viewModal : false,
                 errors : {},
-                categories : [],
-                content : {
+                service : {
                     name : '',
-                    category_id : 1,
                     image_id : 1,
-                    description : '',
                     paragraph : '',
-                    status : true
                 },
                 previewImage : ''
             }
@@ -79,24 +60,17 @@ import filePath from '@/services/FilePath';
                 this.viewModal = false;
             },
             selectImage(image) {
-                this.content.image_id = image.id
+                this.service.image_id = image.id
                 this.previewImage = filePath.imagePath(image.image)
                 this.cancelModal()
             },
-            createContent () {
-                ApiService.post('admin/contents' , this.content).then(() => {
+            createService () {
+                ApiService.post('admin/services' , this.service).then(() => {
                     this.$emit('reload')
                 }).catch((res) => {
                     console.log(res);
                 })
             }
-        },
-        mounted() {
-            ApiService.get('admin/categories').then((res) => {
-                this.categories = res.data.data
-            }).catch((res) => {
-                console.log(res);
-            })
         }
     }
 </script>

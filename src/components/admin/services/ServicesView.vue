@@ -2,10 +2,10 @@
     <div>
         <vue-good-table
             :columns="columns"
-            :rows="contents"
+            :rows="services"
             :search-options="{
                 enabled: true,
-                placeholder: 'Search Contents',
+                placeholder: 'Search Services',
             }">
         
             <template #table-actions>
@@ -20,19 +20,14 @@
                 <span v-if="props.column.field == 'image'">
                     <img class="w-32" :src="filePath.imagePath(props.row.image.image)" alt="">
                 </span>
-                <span v-else-if="props.column.field == 'status'">
-                    <span class="text-danger" v-if="props.row.status == 0">Not Published</span>
-                    <span v-else class="text-tertiary">Published</span>
-                </span>
                 <span class="text-white" v-else-if="props.column.field == 'actions'">
                     <button @click="$emit('showEdit' , props.row.id)" title="Edit Category" class="p-2 pb-0.5 mx-3 rounded-full bg-tertiary">
                         <span class="material-icons-outlined">tune</span>
                     </button>
-                    <button @click="deleteContent(props.row.id)" title="Delete Category" class="p-2 hover:scale-105 mx-3 pb-0.5 rounded-full bg-danger">
+                    <button @click="deleteService(props.row.id)" title="Delete Category" class="p-2 hover:scale-105 mx-3 pb-0.5 rounded-full bg-danger">
                         <span class="material-icons-outlined">delete</span>
                     </button>
                 </span>
-                
                 <span v-else>
                 {{props.formattedRow[props.column.field]}}
                 </span>
@@ -53,7 +48,7 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
         },
         data() {
             return {
-                contents : [],
+                services : [],
                 filePath : filePath,
                 columns : [
                     {
@@ -72,14 +67,6 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
                         width : '25%'
                     },
                     {
-                        label : 'Category',
-                        field : 'category.name',
-                    },
-                    {
-                        label : 'Status',
-                        field : 'status',
-                    },
-                    {
                         label : 'Actions',
                         field : 'actions',
                         width : '20%'
@@ -88,23 +75,23 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
             }
         },
         methods : {
-            getContents() {
-                ApiService.get('admin/contents').then((res) => {
-                    this.contents = res.data.data
+            getServices() {
+                ApiService.get('admin/services').then((res) => {
+                    this.services = res.data.data
                 }).catch((res) => {
                     console.log(res);
                 })
             },
-            deleteContent(id) {
-                ApiService.delete(`admin/contents/${id}`).then(() => {
-                    this.getContents();
+            deleteService(id) {
+                ApiService.delete(`admin/services/${id}`).then(() => {
+                    this.getServices();
                 }).catch((res) => {
                     console.log(res);
                 })
             }
         },
         mounted(){
-            this.getContents();
+            this.getServices();
         }
 
     }

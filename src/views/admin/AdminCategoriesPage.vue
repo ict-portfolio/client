@@ -1,9 +1,9 @@
 <template>
     <div class="h-screen">
         <h1 class="p-4 text-2xl">Categories</h1>
-        <CreateCategory @reload="reloadPage" class="w-1/2 mx-auto mt-8" v-if="createForm" />
+        <CreateCategory @reload="reloadPage" v-if="createForm" />
         <CategoriesView @showUpdate="showUpdateForm" @showCreate="showCreateForm" v-if="indexTable" />
-        <UpdateCategory :id="idForEdit" @reload="reloadPage" v-if="updateForm" />
+        <UpdateCategory  :id="idForEdit" @reload="reloadPage" v-if="updateForm" />
     </div>
 </template>
 
