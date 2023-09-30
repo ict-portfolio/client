@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import axios from 'axios'
 import filePath from '@/services/FilePath'
+import ApiService from '@/services/ApiService';
     export default {
         data() {
             return {
@@ -29,7 +29,7 @@ import filePath from '@/services/FilePath'
         },
         methods : {
             getImages () {
-                axios.get(`admin/images?page=${this.page}`).then((res) => {
+                ApiService.get(`admin/images?page=${this.page}`).then((res) => {
                     this.images.push(...res.data.data.data);
                     this.last_page = res.data.data.last_page;
                 }).catch((res) => {

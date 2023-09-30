@@ -20,11 +20,13 @@
         </div>
 
         <div class="fixed w-1/2 top-1/2 left-1/2" style="transform: translate(-50% , -50%);" v-if="selectedImage.image">
-            <span  style="position: absolute;right: 5px;top: 5px;color: white;user-select: none;cursor: pointer;font-size: 32px;" class="material-icons-sharp">cancel</span>
+            <span @click="selectedImage = {}" style="position: absolute;right: 5px;top: 5px;color: white;user-select: none;cursor: pointer;font-size: 32px;" class="material-icons-sharp">cancel</span>
             <img class="w-full select-none" :src="filePath.imagePath(selectedImage.image)" alt="">
             <div class="absolute bottom-2 right-2">
-                <button class="flex items-center px-2 py-2 mb-2 rounded-full" title="Set as slider">
-                    <span style="color: white;" class="material-icons-sharp">view_carousel</span>
+                <button class="flex items-center px-2 py-2 rounded-full">
+                    <span title="Remove from slider" v-if="selectedImage.slider && selectedImage.slider.status" @click="updateSlider(selectedImage.slider.id , false)" style="color: white;" class="material-icons-sharp">cancel_presentation</span>
+                    <span title="Set as slider" v-else-if="selectedImage.slider && !selectedImage.slider.status" @click="updateSlider(selectedImage.id , true)" style="color: white;" class="material-icons-sharp">view_carousel</span>
+                    <span title="Set as slider" v-else @click="setAsSlider(selectedImage.id)" style="color: white;" class="material-icons-sharp">view_carousel</span>
                 </button>
                 <button class="flex items-center px-2 py-2 rounded-full" title="Remove image">
                     <span style="color: white;" class="material-icons-sharp">delete</span>
@@ -35,7 +37,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import ApiService from '@/services/ApiService';
 import filePath from '@/services/FilePath'
     export default {
         data() {
@@ -54,9 +56,10 @@ import filePath from '@/services/FilePath'
                 this.getImages();
             },
             getImages () {
-                axios.get(`admin/images?page=${this.page}`).then((res) => {
+                ApiService.get(`admin/images?page=${this.page}`).then((res) => {
                     this.images.push(...res.data.data.data);
                     this.last_page = res.data.data.last_page;
+                    console.log(res.data.data.data);
                 }).catch((res) => {
                     console.log(res);
                 })
@@ -68,12 +71,32 @@ import filePath from '@/services/FilePath'
                 if (e.target.files.length) {
                     let formData = new FormData();
                     formData.set('image' , e.target.files[0])
-                    axios.post('admin/images' , formData).then((res) => {
+                    ApiService.post('admin/images' , formData).then((res) => {
                         this.images.push(res.data.data)
                     }).catch((res) => {
                         console.log(res);
                     })
                 }
+            },
+            setAsSlider(id) {
+                let obj = {};
+                obj.image_id = id;
+                obj.status = true;
+                ApiService.post('admin/sliders' , obj).then((res) => {
+                    console.log(res);
+                }).catch((res) => {
+                    console.log(res);
+                })
+            },
+            updateSlider(id , sts) {
+                let obj = {};
+                obj.image_id = this.selectedImage.id;
+                obj.status = sts;
+                ApiService.patch(`admin/sliders/${id}` , obj).then((res) => {
+                    console.log(res);
+                }).catch((res) => {
+                    console.log(res);
+                })
             }
         },
 

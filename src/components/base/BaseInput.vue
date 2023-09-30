@@ -1,5 +1,5 @@
 <template>
-  <div inheritAttrs:false class="relative my-6 w-full min-w-[200px]">
+  <div inheritAttrs:false class="relative my-6 w-[48%] min-w-[200px]">
     <input
       class="peer w-full h-full rounded-[7px] border border-primary border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-gray-1 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-primary placeholder-shown:border-t-primary focus:border focus:border-primary focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-primary"
       placeholder=" "

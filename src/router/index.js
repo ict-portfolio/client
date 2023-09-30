@@ -6,8 +6,9 @@ import IndexView from '@/views/public/IndexView.vue'
 import AdminDashboardLayout from '@/layouts/AdminDashboardLayout.vue'
 import AdminDashboardPage from '@/views/admin/AdminDashboardPage.vue'
 
-import AdminCategoriesPage from '@/views/admin/AdminCategoriesPage.vue'
 import AdminGalleryPage from '@/views/admin/AdminGalleryPage.vue'
+import AdminCategoriesPage from '@/views/admin/AdminCategoriesPage.vue'
+import AdminContentsPage from '@/views/admin/AdminContentsPage.vue'
 
 const routes = [
   {
@@ -34,15 +35,21 @@ const routes = [
         component : AdminDashboardPage
       },
       {
+        path : 'gallery',
+        name : 'AdminGalleryPage',
+        component : AdminGalleryPage
+      },
+      {
         path : 'categories',
         name : 'AdminCategoriesPage',
         component : AdminCategoriesPage
       },
       {
-        path : 'gallery',
-        name : 'AdminGalleryPage',
-        component : AdminGalleryPage
+        path : 'contents',
+        name : 'AdminContentsPage',
+        component : AdminContentsPage
       },
+
     ]
   },
 ]

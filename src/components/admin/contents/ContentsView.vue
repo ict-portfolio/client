@@ -2,14 +2,14 @@
     <div>
         <vue-good-table
             :columns="columns"
-            :rows="categories"
+            :rows="contents"
             :search-options="{
                 enabled: true,
                 placeholder: 'Search categories',
             }">
         
             <template #table-actions>
-                <button @click="$emit('showCreate')" class="px-6 py-1 mx-4 text-white border rounded-sm bg-primary border-tertiary hover:bg-transparent hover:text-gray-1">Create</button>
+                <button @click="$emit('showCreate')" class="px-6 py-1 mx-4 text-white border rounded-sm bg-primary border-primary hover:bg-transparent hover:text-gray-1">Create</button>
             </template>
 
             <template #table-actions-bottom>
@@ -21,10 +21,10 @@
                     <img class="w-32" :src="filePath.imagePath(props.row.image.image)" alt="">
                 </span>
                 <span class="text-white" v-else-if="props.column.field == 'actions'">
-                    <button @click="$emit('showUpdate' , props.row.id)" title="Edit Category" class="p-2 pb-0.5 mx-3 rounded-full bg-tertiary">
+                    <button @click="$emit('showEdit' , props.row.id)" title="Edit Category" class="p-2 pb-0.5 mx-3 rounded-full bg-tertiary">
                         <span class="material-icons-outlined">tune</span>
                     </button>
-                    <button @click="deleteCategory(props.row.id)" title="Delete Category" class="p-2 hover:scale-105 mx-3 pb-0.5 rounded-full bg-danger">
+                    <button @click="deleteContent(props.row.id)" title="Delete Category" class="p-2 hover:scale-105 mx-3 pb-0.5 rounded-full bg-danger">
                         <span class="material-icons-outlined">delete</span>
                     </button>
                 </span>
@@ -46,23 +46,33 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
         components: {
             VueGoodTable,
         },
-        data(){
+        data() {
             return {
-                categories : [],
+                contents : [],
                 filePath : filePath,
                 columns : [
                     {
                         label : 'Id',
-                        field : 'id'
+                        field : 'id',
+                        width : '3%'
                     },
                     {
                         label : 'Image',
                         field : 'image',
-                        width : '25%'
+                        width : '20%'
                     },
                     {
                         label : 'Name',
                         field : 'name',
+                        width : '25%'
+                    },
+                    {
+                        label : 'Category',
+                        field : 'category.name',
+                    },
+                    {
+                        label : 'Status',
+                        field : 'status',
                     },
                     {
                         label : 'Actions',
@@ -73,24 +83,25 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
             }
         },
         methods : {
-            getCategories() {
-                ApiService.get('admin/categories').then((res) => {
-                    this.categories = res.data.data
+            getContents() {
+                ApiService.get('admin/contents').then((res) => {
+                    this.contents = res.data.data
                 }).catch((res) => {
                     console.log(res);
                 })
             },
-            deleteCategory(id) {
-                ApiService.delete(`admin/categories/${id}`).then(() => {
-                    this.getCategories();
+            deleteContent(id) {
+                ApiService.delete(`admin/contents/${id}`).then(() => {
+                    this.getContents();
                 }).catch((res) => {
                     console.log(res);
                 })
             }
         },
         mounted(){
-            this.getCategories();
+            this.getContents();
         }
+
     }
 </script>
 
