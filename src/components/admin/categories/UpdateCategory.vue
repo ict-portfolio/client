@@ -1,7 +1,7 @@
 <template>
     <div class="relative p-4 shadow-md">
         <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal" class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
-        <form @submit.prevent="createCategory">
+        <form @submit.prevent="updateCategory">
             <div class="flex justify-between">
                 <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp" @click="$emit('reload')">arrow_back</span>
                 <h1 class="text-2xl">Create Category</h1>
@@ -14,7 +14,7 @@
                     <span style="margin-right: 7px;" class="material-icons-sharp">photo_library</span>
                     Choose Photo
                 </p>
-                <button class="bg-secondary px-5 shadow text-white py-1.5 rounded-full">Create</button>
+                <button class="bg-secondary px-5 shadow text-white py-1.5 rounded-full">Update</button>
             </div>
         </form>
     </div>
@@ -29,14 +29,12 @@ import ApiService from '@/services/ApiService';
         components : {
             BaseInput , ImagesModal
         },
+        props : ["id"],
         data(){
             return {
                 viewModal : false,
                 previewImage : '',
-                category : {
-                    name : '',
-                    image_id : null
-                },
+                category : {},
                 errors : {}
             }
         },
@@ -49,16 +47,20 @@ import ApiService from '@/services/ApiService';
                 this.category.image_id = image.id
                 this.cancelModal()
             },
-            createCategory(){
-                ApiService.post('admin/categories' , this.category).then(() => {
+            updateCategory(){
+                ApiService.patch(`admin/categories/${this.$props.id}` , this.category).then(() => {
                     this.$emit('reload')
                 }).catch((res) => {
                     console.log(res);
-                    // setTimeout(() => {
-                    //     this.errors = {}
-                    // } , 5000) 
                 })
             }
+        },
+        mounted(){
+            ApiService.get(`admin/categories/${this.$props.id}`).then((res) => {
+                this.category = res.data.data
+            }).catch((res) => {
+                console.log(res);
+            })
         }
     }
 </script>

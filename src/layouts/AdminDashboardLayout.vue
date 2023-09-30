@@ -88,7 +88,7 @@
                             },
                             {
                                 name : 'Contents',
-                                path : 'AdminDashboardPage'
+                                path : 'AdminContentsPage'
                             },
                         ]
                     },
