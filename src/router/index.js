@@ -9,6 +9,7 @@ import AdminDashboardPage from '@/views/admin/AdminDashboardPage.vue'
 import AdminGalleryPage from '@/views/admin/AdminGalleryPage.vue'
 import AdminCategoriesPage from '@/views/admin/AdminCategoriesPage.vue'
 import AdminContentsPage from '@/views/admin/AdminContentsPage.vue'
+import AdminServicePage from '@/views/admin/AdminServicePage.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
         path : 'contents',
         name : 'AdminContentsPage',
         component : AdminContentsPage
+      },
+      {
+        path : 'services',
+        name : 'AdminServicePage',
+        component : AdminServicePage
       },
 
     ]

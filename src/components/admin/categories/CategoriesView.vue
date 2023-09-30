@@ -9,7 +9,7 @@
             }">
         
             <template #table-actions>
-                <button @click="$emit('showCreate')" class="px-6 py-1 mx-4 text-white border rounded-sm bg-primary border-tertiary hover:bg-transparent hover:text-gray-1">Create</button>
+                <button @click="$emit('showCreate')" class="px-6 py-1 mx-4 text-white border rounded-sm bg-primary border-primary hover:bg-transparent hover:text-gray-1">Create</button>
             </template>
 
             <template #table-actions-bottom>

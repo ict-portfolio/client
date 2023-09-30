@@ -1,11 +1,9 @@
 <template>
-    <div class="relative p-4 shadow-md">
+    <div class="relative p-4">
+        <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp" @click="$emit('reload')">arrow_back</span>
         <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal" class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
-        <form @submit.prevent="createCategory">
-            <div class="flex justify-between">
-                <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp" @click="$emit('reload')">arrow_back</span>
-                <h1 class="text-2xl">Create Category</h1>
-            </div>
+        <form class="w-1/2 p-4 mx-auto shadow-md" @submit.prevent="createCategory">
+            <h1 class="text-2xl">Create Category</h1>
             <img v-if="previewImage" class="w-2/3 mx-auto my-6 rounded-md" :src="previewImage" alt="">
             <BaseInput class="w-full" :error="errors.name" type="text" :label="'Name'" v-model="category.name" />
             <div class="flex flex-wrap justify-between">

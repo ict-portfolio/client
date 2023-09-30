@@ -1,10 +1,10 @@
 <template>
-    <div class="relative p-4 shadow-md">
+    <div class="relative p-4">
+        <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp" @click="$emit('reload')">arrow_back</span>
         <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal" class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
-        <form @submit.prevent="updateCategory">
+        <form class="w-1/2 p-4 mx-auto shadow-md" @submit.prevent="updateCategory">
             <div class="flex justify-between">
-                <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp" @click="$emit('reload')">arrow_back</span>
-                <h1 class="text-2xl">Create Category</h1>
+                <h1 class="text-2xl">Update Category</h1>
             </div>
             <img v-if="previewImage" class="w-2/3 mx-auto my-6 rounded-md" :src="previewImage" alt="">
             <BaseInput class="w-full" :error="errors.name" type="text" :label="'Name'" v-model="category.name" />
@@ -58,6 +58,7 @@ import ApiService from '@/services/ApiService';
         mounted(){
             ApiService.get(`admin/categories/${this.$props.id}`).then((res) => {
                 this.category = res.data.data
+                this.previewImage = filePath.imagePath(this.category.image.image)
             }).catch((res) => {
                 console.log(res);
             })

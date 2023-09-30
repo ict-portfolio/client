@@ -93,6 +93,12 @@
                         ]
                     },
                     {
+                        cap : 'Services',
+                        id : 4,
+                        icon : 'flare',
+                        path : 'AdminServicePage'
+                    },
+                    {
                         cap : 'Applications',
                         id : 4,
                         icon : 'api',
