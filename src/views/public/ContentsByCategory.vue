@@ -1,10 +1,11 @@
 <template>
     <div>
-        <div class="flex justify-center w-full pb-12 mb-6 pt-36 breadcamp">
-            <p class="flex items-center text-lg text-secondary">
+        <div class="w-full pb-12 mb-6 pt-36 breadcamp">
+            <h1 v-if="category" class="my-4 text-3xl text-center text-white sm:text-5xl">{{ category.name }}</h1>
+            <p class="flex items-center justify-center text-lg text-secondary">
                 <router-link to="/">Home</router-link>
                 <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
-                <span>Contents</span>
+                <router-link :to="{name : 'ContentsPage'}">Contents</router-link>
             </p>
         </div>
         <div  class="flex-wrap justify-around sm:flex" v-if="contents.length">
@@ -13,7 +14,7 @@
                     <img class="w-full shadow-lg sm:h-[180px] hover:scale-105 transition duration-500 md:h-[240px]" v-if="content.image" :src="filePath.imagePath(content.image.image)" alt="">
                     <div class="flex justify-between px-2 py-3 text-sm">
                         <span>{{ content.created_at }}</span>
-                        <span class="text-secondary">{{ content.category.name }}</span>
+                        <span class="text-secondary">{{ category.name }}</span>
                     </div>
                     <h1 class="px-2 text-2xl text-dense">{{ content.name }}</h1>
                     <p class="p-2 text-sm" v-html="content.description"></p>
@@ -40,7 +41,9 @@ import filePath from '@/services/FilePath';
         data() {
             return {
                 contents : [],
-                filePath : filePath
+                category : {},
+                filePath : filePath,
+                slug : this.$route.params.slug
             }
         },
         mounted() {
@@ -48,8 +51,10 @@ import filePath from '@/services/FilePath';
         },
         methods : {
             getContents() {
-                ApiService.get('get-contents').then((res) => {
-                    this.contents = res.data.data;
+                ApiService.get(`get-contents-by-category/${this.slug}`).then((res) => {
+                    this.contents = res.data.data.contents;
+                    console.log(res.data.data);
+                    this.category = res.data.data.category
                 }).catch((res) => {
                     console.log(res);
                 })

@@ -18,8 +18,8 @@
                 </div>
             </div>
 
-            <div class="justify-between my-12 sm:flex">
-                <div v-for="contact in contacts" :key="contact.title" class="sm:w-[30%] hover:shadow-lg flex flex-col items-center border rounded-lg border-[#d1d5db] p-4 my-4">
+            <div class="justify-between my-12 overflow-hidden sm:flex">
+                <div data-aos="slide-up" :data-aos-delay="index * 50" v-for="contact,index in contacts" :key="contact.title" class="sm:w-[30%] hover:shadow-lg flex flex-col items-center border rounded-lg border-[#d1d5db] p-4 my-4">
                     <span style="margin: 0px 8px;background-color: cornflowerblue;border-radius: 50%;padding: 12px;color: white;font-size: 28px;" class="material-icons-sharp">{{ contact.icon }}</span>
                     <h1 class="my-4 text-2xl text-dense">{{ contact.title }}</h1>
                     <p class="text-center">{{ contact.body }}</p>
@@ -33,7 +33,7 @@
                 <form @submit.prevent="contactFunction" class="md:w-[45%] md:mt-0 mt-12">
                     <BaseInput :error="errors.name" v-model="formData.name" class="w-full" type="text" :label="'Name'" />
                     <BaseInput :error="errors.email" v-model="formData.email" class="w-full" type="text" :label="'Email'" />
-                    <textarea v-model="formData.message" class="w-full p-2 bg-transparent border rounded-lg outline-none border-primary placeholder:text-gray-1 placeholder:text-sm" placeholder="Message" name="" id="" cols="30" rows="3"></textarea>
+                    <textarea v-model="formData.message" class="w-full p-2 bg-transparent border rounded outline-none border-primary placeholder:text-gray-1 placeholder:text-sm" placeholder="Message" name="" id="" cols="30" rows="3"></textarea>
                     <p class="mx-2 text-danger" v-if="errors.message">{{ errors.message[0] }}</p>
                     <div class="flex justify-end mt-4">
                         <button class="px-6 py-2 text-white transition duration-300 border rounded-full bg-primary hover:bg-white hover:text-primary border-primary">Send Message</button>

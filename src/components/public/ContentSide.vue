@@ -5,7 +5,7 @@
             <ul class="mt-6">
                 <li class="flex items-center py-1.5  my-2 border-[#d1d5db] border-b" v-for="category in categories" :key="category.id">
                     <span style="color: cornflowerblue;" class="material-icons-outlined">navigate_next</span>
-                    <router-link class="w-full hover:text-secondary" to="/">{{ category.name }}</router-link>
+                    <router-link class="w-full hover:text-secondary" :to="{name : 'ContentsByCategory' , params : {slug : category.slug}}">{{ category.name }}</router-link>
                 </li>
             </ul>
         </div>
@@ -51,7 +51,7 @@ import filePath from '@/services/FilePath';
                 })
             },
             getContents () {
-                ApiService.get('get-contents').then((res) => {
+                ApiService.get('get-limited-contents').then((res) => {
                     this.contents = res.data.data.slice(0 , 3)
                 }).catch((res) => {
                     console.log(res);

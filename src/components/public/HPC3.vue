@@ -8,7 +8,7 @@
             <p class="py-10 text-gray-2">
                 We are building business, banking products and services to support the next generation of entrepreneurs. The world as we know it is no longer the same, and changes now occur in days and months, not years. Get started!
             </p>
-            <router-link class="px-6 py-3 text-white transition duration-300 border rounded-full shadow-lg hover:text-primary border-primary hover:bg-white bg-primary" to="/">Contact For More</router-link>
+            <router-link :to="{name : 'ContactPage'}" class="px-6 py-3 text-white transition duration-300 border rounded-full shadow-lg hover:text-primary border-primary hover:bg-white bg-primary">Contact For More</router-link>
         </div>
     </div>
 </template>

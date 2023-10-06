@@ -7,26 +7,26 @@
                 </span>
             </div>
         </Teleport>
-        <div class="mb-12 bg-black">
-            <MainSwiper @loaded="sliderLoaded" class="z-10 w-screen h-screen opacity-80" />
+        <div class="mb-12" :class="noSlider ? 'fillSlider' : 'bg-black'">
+            <MainSwiper @empty="emptySlider" @loaded="sliderLoaded" class="z-10 w-screen h-screen opacity-80" />
         </div>
         <div class="absolute z-40 w-full p-2 text-white lg:w-1/2 left-1/2 top-1/2" style="transform: translate(-50% , -50%);">
             <h1 class="p-3 text-3xl font-extrabold tracking-wider text-center md:text-6xl">Helping Business Through Technology</h1>
             <p class="my-3 font-bold text-center md:text-lg">High-performing software solutions that drive your business forward. Accelerate your software development roadmap through custom engineering solutions.</p>
             <div class="flex justify-center mt-4">
-                <button class="px-6 py-2 mx-2 transition duration-300 rounded shadow-lg md:text-lg hover:bg-white hover:text-primary bg-primary">Contact Now</button>
+                <router-link :to="{name : 'ContactPage'}" class="px-6 py-2 mx-2 transition duration-300 rounded shadow-lg md:text-lg hover:bg-white hover:text-primary bg-primary">Contact Now</router-link>
             </div>
         </div>
         
         <HPC1 />
 
-        <HPServices />
+        <HPServices v-if="loadOthers" />
 
-        <HPC2 />
+        <HPC2 v-if="loadOthers" />
 
-        <HPContents />
+        <HPContents v-if="loadOthers" />
 
-        <HPC3 />
+        <HPC3 v-if="loadOthers" />
 
     </div>
 </template>
@@ -45,11 +45,22 @@ import AOS from 'aos';
         },
         data() {
             return {
-                loading : true
+                loading : true,
+                noSlider : true,
+                loadOthers : false
             }
         },
         methods : {
             sliderLoaded() {
+                setTimeout(() => {
+                    this.loading = false;
+                    this.noSlider = false;
+                    this.loadOthers = true;
+                    document.getElementById('app').classList.remove('hidden')
+                    AOS.refresh();
+                } , 1000)
+            },
+            emptySlider(){
                 setTimeout(() => {
                     this.loading = false;
                     document.getElementById('app').classList.remove('hidden')
@@ -64,6 +75,11 @@ import AOS from 'aos';
 </script>
 
 <style scoped>
+.fillSlider {
+    background-image: url('@/assets/img3.jpg');
+    background-size: cover;
+    background-position: center;
+}
 .loader {
     animation-name: spin;
     animation-duration: 3000ms;
