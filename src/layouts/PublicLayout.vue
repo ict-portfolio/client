@@ -13,12 +13,14 @@
                         <a href="https://www.google.com" target="_blank">+959123456789</a>
                     </li>
                     <li class="mx-3">
-                        <router-link class="hover:text-secondary" to="/">Sign In</router-link>
+                        <router-link class="hover:text-secondary" :to="{name : 'LoginPage'}">Sign In</router-link>
                     </li>
                 </ul>
             </div>
             <div class="flex justify-between w-full p-2 py-4 sm:px-8">
-                <h1 class="text-xl italic">FIRST ICT</h1>
+                <h1 class="text-xl italic">
+                    <router-link to="/">FIRST ICT</router-link>
+                </h1>
                 <button id="menuBtn" class="sm:hidden" @click="moblieView = !moblieView">
                     <span id="menuSpan" class="material-icons-outlined">menu</span>
                 </button>
@@ -39,7 +41,9 @@
                 <div class="flex justify-end">
                     <span @click="moblieView = false" style="margin: 20px 0px;font-size: 30px;" class="material-icons-sharp">cancel</span>
                 </div>
-                <h1 class="text-3xl italic">FIRST ICT</h1>
+                <h1 class="text-3xl italic">
+                    <router-link to="/">FIRST ICT</router-link>
+                </h1>
                 <ul class="mx-4 my-10 sm:m-0 ">
                     <li class="my-6 hover:text-tertiary" v-for="item in navItems" :key="item.name">
                         <router-link @click="moblieView = false" class="flex items-center w-full pb-1 border-b border-[#d1d5db]" :to="{name : item.path}">
@@ -112,7 +116,7 @@ import SocialPages from '../components/public/SocialPages.vue'
                         path : 'ServicesPage'
                     },
                     {
-                        name : 'Contents',
+                        name : 'Articles',
                         icon : 'content_copy',
                         path : 'ContentsPage'
                     },

@@ -50,11 +50,11 @@ export default {
                }
           }).catch((res) => {
                console.log(res);
-               emit('loaded')
+               emit('empty')
           });
      }
      const handleLoad = (index) => {
-          if (index == sliders.value.length -1) {
+          if (index == 1) {
                emit('loaded')
           }
      }

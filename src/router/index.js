@@ -43,6 +43,11 @@ const routes = [
         component : () => import('@/views/public/ContentView.vue')
       },
       {
+        path : 'categories/:slug',
+        name : 'ContentsByCategory',
+        component : () => import('@/views/public/ContentsByCategory.vue')
+      },
+      {
         path : 'about',
         name : 'AboutPage',
         component : () => import('@/views/public/AboutPage.vue')
@@ -59,6 +64,11 @@ const routes = [
     path : '/login',
     name : 'LoginPage',
     component : () => import('@/views/auth/LoginPage.vue')
+  },
+  {
+    path : '/register',
+    name : 'RegisterPage',
+    component : () => import('@/views/auth/RegisterPage.vue')
   },
 
   {
