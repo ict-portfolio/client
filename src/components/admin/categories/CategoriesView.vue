@@ -18,7 +18,7 @@
 
             <template #table-row="props">
                 <span v-if="props.column.field == 'image'">
-                    <img class="w-32" :src="filePath.imagePath(props.row.image.image)" alt="">
+                    <img v-if="props.row.image" class="w-32" :src="filePath.imagePath(props.row.image.image)" alt="">
                 </span>
                 <span class="text-white" v-else-if="props.column.field == 'actions'">
                     <button @click="$emit('showUpdate' , props.row.id)" title="Edit Category" class="p-2 pb-0.5 mx-3 rounded-full bg-tertiary">

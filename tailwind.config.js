@@ -9,9 +9,9 @@ module.exports = {
     colors: {
       "transparent" : "transparent",
       "white": '#f8fafc',
-      "black" : "#0f172a",
+      "black" : "#1f2937",
       "gray-1" : "#374151",
-      "gray-2" : "#e2e8f0",
+      "gray-2" : "#6b7280",
       "dense" : "#1b4965",
       "primary" : "#605DFF",
       "secondary" : "#5DA8FF",

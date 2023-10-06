@@ -7,6 +7,9 @@
             </button>
             <input @change="uploadImage" id="image" ref="fileInput" type="file" class="hidden">
         </div>
+        <div v-if="!images.length" class="flex justify-center mt-16">
+            <span class="text-xl text-danger">Loading . . .</span>
+        </div>
         <div v-if="images.length" :class="selectedImage.image ? 'blur-sm' : ''" class="p-4 image-gallery">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <!-- Loop through images -->
