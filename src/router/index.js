@@ -101,7 +101,11 @@ const routes = [
         name : 'AdminServicePage',
         component : () => import('@/views/admin/AdminServicePage.vue')
       },
-
+      {
+        path : 'contacts',
+        name : 'AdminContactsPage',
+        component : () => import('@/views/admin/AdminContactsPage.vue')
+      },
     ]
   },
 ]

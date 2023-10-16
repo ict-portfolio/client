@@ -1,8 +1,8 @@
 <template>
     <div class="items-center justify-around px-2 py-12 overflow-hidden md:flex">
-        <img  data-aos="fade-up" class="md:w-[40%]" src="@/assets/business-imgg.webp" alt="">
+        <img  data-aos="fade-up" class="md:w-[40%]" src="@/assets/business-img.png" alt="">
         <div  data-aos="fade-down" class="md:w-[45%] mt-8 md:mt-0">
-            <h1 class="text-3xl leading-tight text-primary sm:text-5xl">
+            <h1 class="text-3xl font-semibold leading-tight text-primary sm:text-5xl">
                 We’re building business for your digital economy
             </h1>
             <p class="py-10 text-gray-2">

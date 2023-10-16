@@ -1,0 +1,33 @@
+<template>
+    <!--  style="background-color: white;padding: 10px;border-radius: 50%;padding-left: 15px;" -->
+    <div  style="background: rgb(45,164,253);background: linear-gradient(0deg, rgba(45,164,253,1) 0%, rgba(114,45,253,1) 100%);" class="flex flex-col items-center w-full px-2 py-8 my-6 text-white shadow-lg rounded-xl">
+       <div class="flex-wrap w-full my-6 justify-evenly md:flex">
+           <div data-aos="slide-up" class="p-6 flex flex-col items-center my-3 rounded-lg md:w-[23%]">
+                <svg style="background-color: white;padding: 10px;border-radius: 50%;" width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16.4425 7.32787C16.7196 7.01999 17.1938 6.99503 17.5017 7.27213L19.2392 8.83587C19.9756 9.49853 20.5864 10.0482 21.0058 10.5468C21.4468 11.071 21.7603 11.6343 21.7603 12.3296C21.7603 13.0249 21.4468 13.5882 21.0058 14.1124C20.5864 14.611 19.9756 15.1607 19.2392 15.8233L17.5017 17.3871C17.1938 17.6642 16.7196 17.6392 16.4425 17.3313C16.1654 17.0234 16.1904 16.5492 16.4983 16.2721L18.1947 14.7453C18.9826 14.0362 19.5138 13.5558 19.8579 13.1468C20.1882 12.7542 20.2603 12.525 20.2603 12.3296C20.2603 12.1342 20.1882 11.905 19.8579 11.5124C19.5138 11.1034 18.9826 10.623 18.1947 9.91389L16.4983 8.38707C16.1904 8.10997 16.1654 7.63576 16.4425 7.32787Z" fill="#1C274C"></path> <path d="M7.50178 8.38707C7.80966 8.10997 7.83462 7.63576 7.55752 7.32787C7.28043 7.01999 6.80621 6.99503 6.49833 7.27213L4.76084 8.83587C4.0245 9.49853 3.41369 10.0482 2.99428 10.5468C2.55325 11.071 2.23975 11.6343 2.23975 12.3296C2.23975 13.0249 2.55325 13.5882 2.99428 14.1124C3.41369 14.611 4.02449 15.1607 4.76082 15.8233L6.49833 17.3871C6.80621 17.6642 7.28043 17.6392 7.55752 17.3313C7.83462 17.0234 7.80966 16.5492 7.50178 16.2721L5.80531 14.7453C5.01743 14.0362 4.48623 13.5558 4.14213 13.1468C3.81188 12.7542 3.73975 12.525 3.73975 12.3296C3.73975 12.1342 3.81188 11.905 4.14213 11.5124C4.48623 11.1034 5.01743 10.623 5.80531 9.91389L7.50178 8.38707Z" fill="#1C274C"></path> <path opacity="0.5" d="M14.1816 4.2755C14.5817 4.3827 14.8191 4.79396 14.7119 5.19406L10.7383 20.0238C10.6311 20.4239 10.2198 20.6613 9.81974 20.5541C9.41964 20.4469 9.18221 20.0356 9.28941 19.6355L13.263 4.80583C13.3702 4.40573 13.7815 4.16829 14.1816 4.2755Z" fill="#1C274C"></path> </g></svg>               
+                <h1 class="my-2 text-lg font-semibold text-center">Web Development and Design</h1>
+           </div>
+           <div data-aos="slide-up" data-aos-delay="50" class="p-6 flex flex-col items-center  my-3 rounded-lg md:w-[23%]">
+                <svg style="background-color: white;padding: 10px;border-radius: 50%;" width="80px" height="80px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M832 384l8 1.6-1.6 8 1.6 3.2-4.8 3.2-44.8 161.6-16-4.8 40-147.2-260.8 144-158.4 284.8-11.2-6.4-6.4 6.4-176-176 11.2-11.2 163.2 163.2 147.2-265.6-294.4-297.6 11.2-11.2v-8h9.6l3.2-3.2 3.2 3.2L664 208l1.6 16-395.2 22.4 278.4 278.4 276.8-153.6 6.4 12.8z" fill="#050D42"></path><path d="M896 384c0 35.2-28.8 64-64 64s-64-28.8-64-64 28.8-64 64-64 64 28.8 64 64z m-656-32c-62.4 0-112-49.6-112-112s49.6-112 112-112 112 49.6 112 112-49.6 112-112 112z m304 336c-80 0-144-64-144-144s64-144 144-144 144 64 144 144-64 144-144 144z m-224 144c0-35.2 28.8-64 64-64s64 28.8 64 64-28.8 64-64 64-64-28.8-64-64z m-144-176c0-17.6 14.4-32 32-32s32 14.4 32 32-14.4 32-32 32-32-14.4-32-32z m448-440c0-22.4 17.6-40 40-40s40 17.6 40 40-17.6 40-40 40-40-17.6-40-40zM736 560c0-27.2 20.8-48 48-48s48 20.8 48 48-20.8 48-48 48-48-20.8-48-48z" fill="#2F4BFF"></path></g></svg>
+                <h1 class="my-2 text-lg font-semibold text-center">IT Consulting</h1>
+           </div>
+           <div data-aos="slide-up" data-aos-delay="100" class="p-6 flex flex-col items-center  my-3 rounded-lg md:w-[23%]">
+                <svg style="background-color: white;padding: 10px;border-radius: 50%;" width="80px" height="80px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <polyline id="Stroke-1" stroke="#4285F4" stroke-width="2" points="20 4 4 13 4 6.71740939"> </polyline> <polyline id="Stroke-3" stroke="#4285F4" stroke-width="2" points="4 21 20 12 20 18.2825906"> </polyline> </g> </g></svg>
+                <h1 class="my-2 text-lg font-semibold text-center">Networking and Infrastructure</h1>
+           </div>
+           <div data-aos="slide-up" data-aos-delay="150" class="p-6 flex flex-col items-center  my-3 rounded-lg md:w-[23%]">
+                <svg style="background-color: white;padding: 10px;border-radius: 50%;padding-left: 15px;" fill="#2b73bf" width="80px" height="80px" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" stroke="#2b73bf" stroke-width="15"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="10"></g><g id="SVGRepo_iconCarrier"><path d="M583 698q8-5 14-11 10-9 18-18 16-19 28-40 35-61 35-129 1-93-61-190-34-53-82-90-41-31-92-51-40-16-85-24-31-5-62-6l-25 1 17 2q20 4 43 12 31 11 60 28 37 22 70 51 39 34 70 78-8-3-17-6l-9-3q-12-3-26-5-18-2-38-2-24 0-47 4-28 5-54 15-29 13-56 32-30 22-55 53-28 34-51 78-46 88-39 187 4 71 35 141 15 35 29 56l-6-16q-7-20-11-43-6-32-6-66 0-43 9-86 10-51 33-100 1 9 3 18 4 20 12 38 4 9 8 17 32 64 91 102 82 54 206 48 62-2 119-26 47-19 90-53 33-27 62-62 21-25 37-51l12-21-11 12q-14 16-31 32-26 21-55 38-37 22-78 35-49 16-104 21zm-137-36q-39 0-71.5-19T323 591.5t-19-71 19-71.5 51.5-52 71-19 71 19 51.5 52 19 71.5-19 71-51.5 51.5-70.5 19z"></path></g></svg>
+                <h1 class="my-2 text-lg font-semibold text-center">Training and Support</h1>
+           </div>
+       </div>
+   </div>
+</template>
+
+<script>
+export default {
+   
+}
+</script>
+
+<style scoped>
+
+</style>

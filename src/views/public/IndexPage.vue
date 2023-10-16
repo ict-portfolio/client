@@ -12,9 +12,9 @@
         </div>
         <div class="absolute z-40 w-full p-2 text-white lg:w-1/2 left-1/2 top-1/2" style="transform: translate(-50% , -50%);">
             <h1 class="p-3 text-3xl font-extrabold tracking-wider text-center md:text-6xl">Helping Business Through Technology</h1>
-            <p class="my-3 font-bold text-center md:text-lg">High-performing software solutions that drive your business forward. Accelerate your software development roadmap through custom engineering solutions.</p>
+            <p class="my-3 font-bold text-center md:text-lg">Employing cutting-edge technologies, our team of seasoned experts orchestrates seamless integrations, ensuring optimal performance and scalability across diverse systems and platforms.</p>
             <div class="flex justify-center mt-4">
-                <router-link :to="{name : 'ContactPage'}" class="px-6 py-2 mx-2 transition duration-300 rounded shadow-lg md:text-lg hover:bg-white hover:text-primary bg-primary">Contact Now</router-link>
+                <router-link :to="{name : 'ContactPage'}" class="px-6 py-2 mx-2 font-semibold transition duration-300 rounded shadow-lg md:text-lg hover:bg-white hover:text-primary bg-primary">Contact Now</router-link>
             </div>
         </div>
         
@@ -63,6 +63,7 @@ import AOS from 'aos';
             emptySlider(){
                 setTimeout(() => {
                     this.loading = false;
+                    this.loadOthers = true;
                     document.getElementById('app').classList.remove('hidden')
                     AOS.refresh();
                 } , 1000)

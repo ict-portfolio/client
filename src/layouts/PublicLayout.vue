@@ -2,14 +2,14 @@
     <div class="bg-white text-gray-1">
 
         <!-- For Large Screen -->
-        <nav class="absolute z-50 w-full text-white">
+        <nav class="absolute z-50 w-full font-semibold text-white">
             <div class="sm:flex justify-between w-full sm:px-8 sm:py-4 py-2 border-b border-[#94a3b8] border-opacity-50">
                 <SocialPages />
                 <ul class="hidden sm:flex">
                     <li class="mx-3">
                         <a href="https://www.google.com" target="_blank">firstedu@gmail.com</a>
                     </li>
-                    <li class="mx-3">
+                    <li class="mx-3 font-sans">
                         <a href="https://www.google.com" target="_blank">+959123456789</a>
                     </li>
                     <li class="mx-3">
@@ -18,7 +18,7 @@
                 </ul>
             </div>
             <div class="flex justify-between w-full p-2 py-4 sm:px-8">
-                <h1 class="text-xl italic">
+                <h1 class="text-xl italic font-bold">
                     <router-link to="/">FIRST ICT</router-link>
                 </h1>
                 <button id="menuBtn" class="sm:hidden" @click="moblieView = !moblieView">
@@ -37,11 +37,11 @@
 
         <!-- For Small Screen -->
         <Transition name="side">
-            <nav v-if="moblieView" class="fixed top-0 left-0 z-50 w-2/3 h-screen p-4 text-white" style="background: rgb(45,164,253);background: linear-gradient(0deg, rgba(45,164,253,1) 0%, rgba(114,45,253,1) 100%);">
+            <nav v-if="moblieView" class="fixed top-0 left-0 z-50 w-2/3 h-screen p-4 font-semibold text-white" style="background: rgb(45,164,253);background: linear-gradient(0deg, rgba(45,164,253,1) 0%, rgba(114,45,253,1) 100%);">
                 <div class="flex justify-end">
                     <span @click="moblieView = false" style="margin: 20px 0px;font-size: 30px;" class="material-icons-sharp">cancel</span>
                 </div>
-                <h1 class="text-3xl italic">
+                <h1 class="px-4 text-3xl italic">
                     <router-link to="/">FIRST ICT</router-link>
                 </h1>
                 <ul class="mx-4 my-10 sm:m-0 ">
@@ -52,6 +52,8 @@
                         </router-link>
                     </li>
                 </ul>
+
+                <SocialPages />
             </nav>
         </Transition>
 
@@ -59,7 +61,7 @@
             <router-view></router-view>
         </main>
 
-        <footer class="flex-wrap px-2 py-8 mt-10 text-white sm:px-12 footer bg-primary sm:flex">
+        <footer class="flex-wrap px-2 py-8 mt-10 font-sans text-white sm:px-12 footer bg-primary sm:flex">
             <div class="sm:w-1/2">
                 <h1 class="mb-6 ml-1 text-3xl italic text-center sm:text-left">FIRST ICT</h1>
                 <p class="flex items-center my-4">
