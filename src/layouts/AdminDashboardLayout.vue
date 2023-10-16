@@ -99,10 +99,10 @@
                         path : 'AdminServicePage'
                     },
                     {
-                        cap : 'Applications',
+                        cap : 'Contacts',
                         id : 4,
-                        icon : 'api',
-                        path : 'AdminDashboardPage'
+                        icon : 'mail',
+                        path : 'AdminContactsPage'
                     },
                     {
                         cap : 'Calendar',

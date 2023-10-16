@@ -1,7 +1,7 @@
 <template>
     <div class="px-2 py-12 sm:px-12">
         <div class="flex flex-col items-center w-full">
-            <h1 class="p-2 text-3xl text-center sm:text-5xl text-primary">
+            <h1 class="p-2 text-3xl font-semibold text-center sm:text-5xl text-primary">
                 Our Latest Articles
             </h1>
             <p class="p-2 mb-10 text-sm text-center sm:w-1/2">
@@ -13,7 +13,7 @@
                 <router-link :to="{name : 'ContentView' , params : {slug : content.slug}}">
                     <img class="w-full shadow-lg sm:h-[180px] hover:scale-105 transition duration-500 md:h-[240px]" v-if="content.image" :src="filePath.imagePath(content.image.image)" alt="">
                     <div class="flex justify-between px-2 py-3 text-sm">
-                        <span>{{ content.created_at }}</span>
+                        <span class="font-sans">{{ content.created_at }}</span>
                         <span class="text-secondary">{{ content.category.name }}</span>
                     </div>
                     <h1 class="px-2 text-2xl text-dense">{{ content.name }}</h1>
