@@ -6,7 +6,6 @@ export const useAuthStore = defineStore('auth' , {
     state : () => {
         return {
             user : {},
-            roles : [],
             authenticated : !!TokenService.getToken(),
         }
     },
@@ -14,14 +13,13 @@ export const useAuthStore = defineStore('auth' , {
     actions : {
         async getUser() {
             return ApiService.get('user').then((res) => {
-                this.setAuth(res.data)
+                this.setAuth(res.data.data)
             }).catch((res) => {
                 console.log(res);
             })
         },
         setAuth(data)  {
-                this.user = data.user;
-                this.roles = data.user.roles;
+                this.user = data;
                 this.authenticated = true
         },
         destroyAuth(){

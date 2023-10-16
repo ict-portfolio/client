@@ -4,34 +4,32 @@ import TokenService from "./TokenService";
 class ApiService {
     static setConfig(){
         let token = TokenService.getToken();
-        return {
-            headers : {'Authorization' : `Bearer ${token}`}
-        };
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
 
     static get(url) {
-        let config =  this.setConfig();
-        return axios.get(url , config)
+        this.setConfig();
+        return axios.get(url)
     }
 
     static post(url , data) {
-        let config = this.setConfig()
-        return axios.post(url , data , config)
+        this.setConfig()
+        return axios.post(url , data)
     }
 
     static put(url , data) {
-        let config = this.setConfig()
-        return axios.put(url , data , config)
+        this.setConfig()
+        return axios.put(url , data)
     }
 
     static patch(url , data) {
-        let config = this.setConfig()
-        return axios.patch(url , data , config)
+        this.setConfig()
+        return axios.patch(url , data)
     }
 
     static delete(url) {
-        let config = this.setConfig()
-        return axios.delete(url , config)
+        this.setConfig()
+        return axios.delete(url)
     }
 }
 
