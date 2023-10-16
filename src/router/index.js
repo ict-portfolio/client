@@ -1,21 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import PublicLayout from '@/layouts/PublicLayout.vue'
-// import IndexPage from '@/views/public/IndexPage.vue'
-
-// import AdminDashboardLayout from '@/layouts/AdminDashboardLayout.vue'
-// import AdminDashboardPage from '@/views/admin/AdminDashboardPage.vue'
-
-// import AdminGalleryPage from '@/views/admin/AdminGalleryPage.vue'
-// import AdminCategoriesPage from '@/views/admin/AdminCategoriesPage.vue'
-// import AdminContentsPage from '@/views/admin/AdminContentsPage.vue'
-// import AdminServicePage from '@/views/admin/AdminServicePage.vue'
-
 const routes = [
   {
     path : '/',
     name : 'PublicLayout',
-    component : PublicLayout,
+    component : () => import('@/layouts/PublicLayout.vue'),
     children : [
       {
         path : '',
@@ -75,6 +64,9 @@ const routes = [
     path : '/admin',
     name : 'AdminDashboardLayout',
     component : () => import('@/layouts/AdminDashboardLayout.vue'),
+    meta : {
+      middleware : 'admin'
+    },
     children : [
       {
         path : '',
@@ -115,4 +107,26 @@ const router = createRouter({
   routes
 })
 
+import { useAuthStore } from '@/stores/auth'
+
+router.beforeEach(async (to , from , next) => {
+  if (to.meta.middleware == 'admin') {
+    let authStore = useAuthStore();
+    await authStore.getUser();
+    if (authStore.authenticated && authStore.user.email) {
+      let authorized = authStore.user.roles.find((role) => role.name == 'admin')
+      if (authorized && authorized.id) {
+        next();
+      } else {
+        authStore.destroyAuth()
+        next({name : 'LoginPage'})
+      }
+    } else {
+      authStore.destroyAuth()
+      next({name : 'LoginPage'});
+    }
+  } else {
+    next();
+  }
+})
 export default router

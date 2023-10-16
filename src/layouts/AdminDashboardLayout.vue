@@ -1,7 +1,7 @@
 <template>
-    <div class="flex">
+    <div class="flex justify-end">
         <Transition name="bar">
-            <aside v-if="sidebar" class="h-screen shadow-inner border-r border-[#e2e8f0] z-50 sticky top-0 bg-white w-1/5">
+            <aside v-if="sidebar" class="h-screen fixed left-0 top-0 shadow-inner border-r border-[#e2e8f0] z-50 bg-white w-1/6">
                 <h1 class="py-3 text-center">
                     <router-link to="/">FITST ICT</router-link>
                 </h1>
@@ -34,23 +34,30 @@
                         <span style="font-size: 28px;color: #374151; cursor: pointer;" class="material-icons-sharp">notifications</span>
                     </li>
                     <li class="mx-2">
-                        <span style="font-size: 28px;color: #374151; cursor: pointer;" class="material-icons-sharp">account_circle</span>
+                        <span @click="showProfile = !showProfile" style="font-size: 28px;color: #374151; cursor: pointer;" class="material-icons-sharp">account_circle</span>
                     </li>
                 </ul>
             </nav>
-            <main>
+            <main @click="showProfile = false">
                 <router-view class="z-10 text-gray-1"></router-view>
             </main>
         </div>
+
+        <UserModal v-if="showProfile" class="absolute w-1/5 shadow-lg top-12 right-12" />
     </div>
 </template>
 
 <script>
+import UserModal from '@/components/admin/UserModal.vue';
     export default {
+        components : {
+            UserModal
+        },
         data(){
             return {
                 sidebar : true,
                 activeSide : 0,
+                showProfile : false,
                 sideItems : [
                     {
                         cap : 'Dashboard',
@@ -105,15 +112,15 @@
                         path : 'AdminContactsPage'
                     },
                     {
-                        cap : 'Calendar',
+                        cap : 'User Management',
                         id : 5,
-                        icon : 'calendar_month',
+                        icon : 'groups',
                         path : 'AdminDashboardPage'
                     },
                     {
-                        cap : 'User Management',
+                        cap : 'Calendar',
                         id : 6,
-                        icon : 'groups',
+                        icon : 'calendar_month',
                         path : 'AdminDashboardPage'
                     },
                     {

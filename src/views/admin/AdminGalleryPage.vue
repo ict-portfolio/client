@@ -25,10 +25,10 @@
         <div class="fixed w-1/2 top-1/2 left-1/2" style="transform: translate(-50% , -50%);" v-if="selectedImage.image">
             <span @click="selectedImage = {}" style="position: absolute;right: 5px;top: 5px;color: white;user-select: none;cursor: pointer;font-size: 32px;" class="material-icons-sharp">cancel</span>
             <img class="w-full select-none" :src="filePath.imagePath(selectedImage.image)" alt="">
+            <p v-if="message" class="absolute px-4 text-white py-0.5 bottom-2 left-2 bg-tertiary rounded-md text-sm">{{ message }}</p>
             <div class="absolute bottom-2 right-2">
                 <button class="flex items-center px-2 py-2 rounded-full">
-                    <span title="Remove from slider" v-if="selectedImage.slider && selectedImage.slider.status" @click="updateSlider(selectedImage.slider.id , false)" style="color: white;" class="material-icons-sharp">cancel_presentation</span>
-                    <span title="Set as slider" v-else-if="selectedImage.slider && !selectedImage.slider.status" @click="updateSlider(selectedImage.id , true)" style="color: white;" class="material-icons-sharp">view_carousel</span>
+                    <span title="Remove from slider" v-if="selectedImage.slider && selectedImage.slider.status" @click="removeSlider(selectedImage.slider.id)" style="color: white;" class="material-icons-sharp">cancel_presentation</span>
                     <span title="Set as slider" v-else @click="setAsSlider(selectedImage.id)" style="color: white;" class="material-icons-sharp">view_carousel</span>
                 </button>
                 <button class="flex items-center px-2 py-2 rounded-full" title="Remove image">
@@ -49,7 +49,8 @@ import filePath from '@/services/FilePath'
                 page : 1,
                 last_page : 1,
                 images : [],
-                filePath : filePath
+                filePath : filePath,
+                message : ''
             }
         },
 
@@ -87,19 +88,37 @@ import filePath from '@/services/FilePath'
                 obj.status = true;
                 ApiService.post('admin/sliders' , obj).then((res) => {
                     console.log(res);
+                    this.uiUpdates(res.data.data , res.data.message)
                 }).catch((res) => {
                     console.log(res);
                 })
             },
-            updateSlider(id , sts) {
-                let obj = {};
-                obj.image_id = this.selectedImage.id;
-                obj.status = sts;
-                ApiService.patch(`admin/sliders/${id}` , obj).then((res) => {
+            removeSlider(id) {
+                ApiService.delete(`admin/sliders/${id}`).then((res) => {
                     console.log(res);
+                    this.uiUpdates(null , res.data.message)
+                    setTimeout(() => {
+                        this.message = '';
+                    } , 2500)
                 }).catch((res) => {
                     console.log(res);
                 })
+            },
+            uiUpdates(slider , msg){
+                this.message = msg
+                    this.images = this.images.map((img) => {
+                        if (slider) {
+                            if (slider.image_id == img.id) {
+                                img.slider = slider
+                            }
+                        } else {
+                            img.slider = null;
+                        }
+                        return img;
+                    })
+                    setTimeout(() => {
+                        this.message = '';
+                    } , 2500)
             }
         },
 

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1 class="p-4 text-2xl">Contacts</h1>
         <vue-good-table
             :columns="columns"
             :rows="contacts"
