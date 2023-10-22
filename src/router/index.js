@@ -98,7 +98,17 @@ const routes = [
         name : 'AdminContactsPage',
         component : () => import('@/views/admin/AdminContactsPage.vue')
       },
+      {
+        path : 'user-management',
+        name : 'UserManagement',
+        component : () => import('@/views/admin/UserManagement.vue')
+      },
     ]
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () => import("@/views/public/NotFound.vue"),
   },
 ]
 
@@ -128,5 +138,10 @@ router.beforeEach(async (to , from , next) => {
   } else {
     next();
   }
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 })
 export default router

@@ -16,7 +16,11 @@
                     <span class="mx-2 sm:mx-4">{{ content.created_at }}</span>
                     <router-link to="/" v-if="content.category" class="mx-2 underline sm:mx-4 text-secondary">{{ content.category.name }}</router-link>
                 </div>
-                <p class="my-6 leading-7 tracking-wider" v-html="content.paragraph"></p>
+                <p class="my-8 leading-7 tracking-wider" v-html="content.paragraph"></p>
+                <button title="Back" @click="$router.go(-1)" class="px-2 pt-2 pb-0.5 mt-4 text-gray-2 rounded-full border">
+                    <span class="material-icons-outlined">keyboard_double_arrow_left</span>
+                </button>
+                <router-link :to="{name : 'ContentsPage'}" class="px-4 py-1.5 mt-4 mr-4 text-white rounded bg-primary float-right">See More</router-link>
             </article>
 
             <ContentSide class="p-2 md:w-1/3 md:p-4" />
