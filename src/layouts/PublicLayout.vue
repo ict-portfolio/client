@@ -3,19 +3,22 @@
 
         <!-- For Large Screen -->
         <nav class="absolute z-50 w-full font-semibold text-white">
-            <div class="sm:flex justify-between w-full sm:px-8 sm:py-4 py-2 border-b border-[#94a3b8] border-opacity-50">
+            <div class="flex justify-between w-full sm:px-8 sm:py-4 py-2 border-b border-[#94a3b8] border-opacity-50">
                 <SocialPages />
                 <ul class="hidden sm:flex">
                     <li class="mx-3">
-                        <a href="https://www.google.com" target="_blank">firstedu@gmail.com</a>
-                    </li>
-                    <li class="mx-3 font-sans">
-                        <a href="https://www.google.com" target="_blank">+959123456789</a>
+                        <a :href="`https://mail.google.com/mail/?view=cm&fs=1&to=firstict@gmail.com`" target="_blank" title="Send Message">
+                            firstict@gmail.com
+                        </a>
                     </li>
                     <li class="mx-3">
-                        <router-link class="hover:text-secondary" :to="{name : 'LoginPage'}">Sign In</router-link>
+                        <span>+959123456789</span>
+                    </li>
+                    <li class="mx-3">
+                        <button @click="navigate" class="hover:text-secondary">Sign In</button>
                     </li>
                 </ul>
+                <button @click="navigate" class="inline mr-2 sm:hidden hover:text-secondary">sign in</button>
             </div>
             <div class="flex justify-between w-full p-2 py-4 sm:px-8">
                 <h1 class="text-xl italic font-bold">
@@ -25,9 +28,8 @@
                     <span id="menuSpan" class="material-icons-outlined">menu</span>
                 </button>
                 <ul class="hidden my-auto sm:flex">
-                    <li class="mx-4 hover:text-tertiary" v-for="item in navItems" :key="item.name">
+                    <li class="mx-4 hover:text-primary" v-for="item in navItems" :key="item.name">
                         <router-link class="flex items-center" :to="{name : item.path}">
-                            <!-- <span style="margin-right: 4px;margin-top: -2px;font-size: 20px;" class="material-icons-sharp">{{ item.icon }}</span> -->
                             {{ item.name }}
                         </router-link>
                     </li>
@@ -35,17 +37,17 @@
             </div>
         </nav>
 
-        <!-- For Small Screen -->
+        <!-- For Small Screen style="background: rgb(45,164,253);background: linear-gradient(0deg, rgba(45,164,253,1) 0%, rgba(114,45,253,1) 100%);" -->
         <Transition name="side">
-            <nav v-if="moblieView" class="fixed top-0 left-0 z-50 w-2/3 h-screen p-4 font-semibold text-white" style="background: rgb(45,164,253);background: linear-gradient(0deg, rgba(45,164,253,1) 0%, rgba(114,45,253,1) 100%);">
+            <nav v-if="moblieView" class="fixed top-0 left-0 z-50 w-2/3 h-screen p-4 font-semibold text-[#ffffff]   bg-[#262e3f]">
                 <div class="flex justify-end">
-                    <span @click="moblieView = false" style="margin: 20px 0px;font-size: 30px;" class="material-icons-sharp">cancel</span>
+                    <span @click="moblieView = false" style="margin: 20px 0px;font-size: 30px;cursor:pointer;" class="material-icons-sharp">cancel</span>
                 </div>
                 <h1 class="px-4 text-3xl italic">
                     <router-link to="/">FIRST ICT</router-link>
                 </h1>
                 <ul class="mx-4 my-10 sm:m-0 ">
-                    <li class="my-6 hover:text-tertiary" v-for="item in navItems" :key="item.name">
+                    <li class="my-6 hover:text-primary" v-for="item in navItems" :key="item.name">
                         <router-link @click="moblieView = false" class="flex items-center w-full pb-1 border-b border-[#d1d5db]" :to="{name : item.path}">
                             <span style="margin-right: 7px;font-size: 20px;" class="material-icons-sharp">{{ item.icon }}</span>
                             {{ item.name }}
@@ -61,7 +63,9 @@
             <router-view></router-view>
         </main>
 
-        <footer class="flex-wrap px-2 py-8 mt-10 font-sans text-white sm:px-12 footer bg-primary sm:flex">
+        <img src="@/assets/footer.png" style="height: 360px;width: 100%;" alt="">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150"><path fill="#333F55" fill-opacity="1" d="M0,64L80,80C160,96,320,128,480,117.3C640,107,800,53,960,26.7C1120,0,1280,0,1360,0L1440,0L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>                 -->
+        <footer class="flex-wrap px-2 py-8 text-white sm:px-12 footer bg-primary sm:flex">
             <div class="sm:w-1/2">
                 <h1 class="mb-6 ml-1 text-3xl italic text-center sm:text-left">FIRST ICT</h1>
                 <p class="flex items-center my-4">
@@ -79,18 +83,19 @@
             </div>
             <div class="justify-between text-sm sm:flex sm:w-1/2">
                 <ul class="m-10 sm:m-0 ">
-                    <h1 class="text-xl">Company</h1>
-                    <li class="my-3 hover:text-tertiary" v-for="item in navItems" :key="item.name">
-                        <router-link :to="{name : item.path}">{{ item.name }}</router-link>
+                    <h1 class="text-2xl">Company</h1>
+                    <li class="my-3 hover:text-primary" v-for="item in navItems" :key="item.name">
+                        <router-link class="flex items-center" :to="{name : item.path}">
+                            <span style="color: rgb(49, 93, 240);" class="material-icons-outlined">chevron_right</span>
+                        {{ item.name }}</router-link>
                     </li>
                 </ul>
-                <ul class="m-10 sm:m-0 ">
-                    <h1 class="text-xl">Company</h1>
-                    <li class="my-3 hover:text-tertiary" v-for="item in navItems" :key="item.name">
-                        <router-link :to="{name : item.path}">{{ item.name }}</router-link>
-                    </li>
-                </ul>
-                <SocialPages class="mx-6 sm:mx-0" />
+                <div class="w-1/2 mx-6 sm:mx-0">
+                    <SocialPages />
+                    <p class="mt-6">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut maiores obcaecati sequi ipsum cumque quibusdam consectetur repellat perferendis possimus ex porro dolores neque, reprehenderit aperiam, corrupti ut nesciunt error rem.
+                    </p>
+                </div>
             </div>
             <h1 class="w-full mt-10 text-center">© FirstICT | IT Solutions and Development. All Rights Reserved.</h1>
         </footer>
@@ -98,6 +103,7 @@
 </template>
 
 <script>
+import { useAuthStore } from '@/stores/auth';
 import SocialPages from '../components/public/SocialPages.vue'
     export default {
         components : {
@@ -106,6 +112,7 @@ import SocialPages from '../components/public/SocialPages.vue'
         data() {
             return {
                 moblieView : false,
+                authStore : useAuthStore(),
                 navItems : [
                     {
                         name : 'Home',
@@ -141,15 +148,27 @@ import SocialPages from '../components/public/SocialPages.vue'
                     this.moblieView = false;
                 }
             })
+        },
+        methods : {
+            navigate(){
+                this.authStore.getUser();
+                if (this.authStore.user && this.authStore.user.email) {
+                    this.$router.push({name : 'AdminDashboardPage'})
+                } else {
+                    this.$router.push({name : 'LoginPage'})
+                }
+            }
         }
     }
 </script>
 
 <style scoped>
 .footer {
-    background-image: url('@/assets/bg.jpg');
+    background: rgb(51,63,85);
+    background: radial-gradient(0deg, rgba(51,63,85,0.9444152661064426) 0%, rgba(34,42,59,1) 100%);
+    /* background-image: url('https://c4.wallpaperflare.com/wallpaper/417/673/89/black-texture-background-wallpaper-preview.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center; */
 }
 
 .side-enter-from , .side-leave-to {

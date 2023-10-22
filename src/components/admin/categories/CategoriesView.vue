@@ -12,10 +12,6 @@
                 <button @click="$emit('showCreate')" class="px-6 py-1 mx-4 text-white border rounded-sm bg-primary border-primary hover:bg-transparent hover:text-gray-1">Create</button>
             </template>
 
-            <template #table-actions-bottom>
-                <p class="p-1">You can add anything here</p>
-            </template>
-
             <template #table-row="props">
                 <span v-if="props.column.field == 'image'">
                     <img v-if="props.row.image" class="w-32" :src="filePath.imagePath(props.row.image.image)" alt="">

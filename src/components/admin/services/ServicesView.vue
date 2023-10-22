@@ -13,7 +13,9 @@
             </template>
 
             <template #table-actions-bottom>
-                <p class="p-1">You can add anything here</p>
+                <div class="flex justify-end">
+                    <MainPagination v-if="paginationData.current_page"  :paginationProp="paginationData" @next="paginate" @previous="paginate" @random="paginate" />
+                </div>
             </template>
 
             <template #table-row="props">
@@ -42,14 +44,16 @@ import ApiService from '@/services/ApiService';
 import filePath from '@/services/FilePath';
 import { VueGoodTable } from 'vue-good-table-next';
 import 'vue-good-table-next/dist/vue-good-table-next.css'
+import MainPagination from '@/components/base/MainPagination.vue'
     export default {
         components: {
-            VueGoodTable,
+            VueGoodTable, MainPagination
         },
         data() {
             return {
                 services : [],
                 filePath : filePath,
+                paginationData : {},
                 columns : [
                     {
                         label : 'Id',
@@ -75,23 +79,27 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
             }
         },
         methods : {
-            getServices() {
-                ApiService.get('admin/services').then((res) => {
-                    this.services = res.data.data
+            getServices(page) {
+                ApiService.get(`admin/services?page=${page}`).then((res) => {
+                    this.services = res.data.data.services;
+                    this.paginationData = res.data.data.pagination;
                 }).catch((res) => {
                     console.log(res);
                 })
             },
             deleteService(id) {
                 ApiService.delete(`admin/services/${id}`).then(() => {
-                    this.getServices();
+                    this.getServices(1);
                 }).catch((res) => {
                     console.log(res);
                 })
-            }
+            },
+            paginate(page){
+                this.getServices(page)
+            },
         },
         mounted(){
-            this.getServices();
+            this.getServices(1);
         }
 
     }

@@ -43,7 +43,7 @@
             </main>
         </div>
 
-        <UserModal v-if="showProfile" class="absolute w-1/5 shadow-lg top-12 right-12" />
+        <UserModal v-if="showProfile" class="absolute w-1/4 shadow-lg top-12 right-12" />
     </div>
 </template>
 
@@ -115,7 +115,7 @@ import UserModal from '@/components/admin/UserModal.vue';
                         cap : 'User Management',
                         id : 5,
                         icon : 'groups',
-                        path : 'AdminDashboardPage'
+                        path : 'UserManagement'
                     },
                     {
                         cap : 'Calendar',

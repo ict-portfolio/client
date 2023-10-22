@@ -7,8 +7,8 @@
                     delay: 5000,
                     disableOnInteraction: true
                }">
-               <swiper-slide v-for="slider,index in sliders" :key="slider.id">
-                    <img @load="handleLoad(index)" v-if="slider.image" :src="filePath.imagePath(slider.image.image)" alt="" class="object-cover w-screen h-full">
+               <swiper-slide v-for="slider in sliders" :key="slider.id">
+                    <img @load="handleLoad" v-if="slider.image" :src="filePath.imagePath(slider.image.image)" alt="" class="object-cover w-screen h-full">
                </swiper-slide>
           </swiper>
 </template>
@@ -45,18 +45,18 @@ export default {
      const getSliders = () => {
           ApiService.get('get-sliders').then(res => {
                sliders.value = res.data.data;
-               if(!sliders.value.length){
+               if(sliders.value.length){
                     emit('loaded')
+               } else {
+                    emit('empty')
                }
           }).catch((res) => {
                console.log(res);
                emit('empty')
           });
      }
-     const handleLoad = (index) => {
-          if (index == 1) {
+     const handleLoad = () => {
                emit('loaded')
-          }
      }
      return {
           modules: [Autoplay],

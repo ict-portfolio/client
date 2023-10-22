@@ -13,7 +13,9 @@
             </template>
 
             <template #table-actions-bottom>
-                <p class="p-1">You can add anything here</p>
+                <div class="flex justify-end">
+                    <MainPagination v-if="paginationData.current_page"  :paginationProp="paginationData" @next="paginate" @previous="paginate" @random="paginate" />
+                </div>
             </template>
 
             <template #table-row="props">
@@ -25,7 +27,10 @@
                     <span v-else class="text-tertiary">Published</span>
                 </span>
                 <span class="text-white" v-else-if="props.column.field == 'actions'">
-                    <button @click="$emit('showEdit' , props.row.id)" title="Edit Category" class="p-2 pb-0.5 mx-3 rounded-full bg-tertiary">
+                    <router-link :to="{name : 'ContentView' , params : {slug : props.row.slug}}" title="Delete Category" class="p-2 pt-4 pb-1 mx-3 rounded-full hover:scale-105 bg-secondary">
+                        <span class="material-icons-outlined">fullscreen</span>
+                    </router-link>
+                    <button @click="$emit('showEdit' , props.row.id)" title="Edit Category" class="p-2 pb-0.5 hover:scale-105 mx-3 rounded-full bg-tertiary">
                         <span class="material-icons-outlined">tune</span>
                     </button>
                     <button @click="deleteContent(props.row.id)" title="Delete Category" class="p-2 hover:scale-105 mx-3 pb-0.5 rounded-full bg-danger">
@@ -47,14 +52,16 @@ import ApiService from '@/services/ApiService';
 import filePath from '@/services/FilePath';
 import { VueGoodTable } from 'vue-good-table-next';
 import 'vue-good-table-next/dist/vue-good-table-next.css'
+import MainPagination from '@/components/base/MainPagination.vue'
     export default {
         components: {
-            VueGoodTable,
+            VueGoodTable, MainPagination
         },
         data() {
             return {
                 contents : [],
                 filePath : filePath,
+                paginationData : {},
                 columns : [
                     {
                         label : 'Id',
@@ -88,23 +95,27 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
             }
         },
         methods : {
-            getContents() {
-                ApiService.get('admin/contents').then((res) => {
-                    this.contents = res.data.data
+            getContents(page) {
+                ApiService.get(`admin/contents?page=${page}`).then((res) => {
+                    this.contents = res.data.data.contents
+                    this.paginationData = res.data.data.pagination
                 }).catch((res) => {
                     console.log(res);
                 })
             },
             deleteContent(id) {
                 ApiService.delete(`admin/contents/${id}`).then(() => {
-                    this.getContents();
+                    this.getContents(1);
                 }).catch((res) => {
                     console.log(res);
                 })
-            }
+            },
+            paginate(page){
+                this.getContents(page)
+            },
         },
         mounted(){
-            this.getContents();
+            this.getContents(1);
         }
 
     }
