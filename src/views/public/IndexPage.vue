@@ -26,6 +26,8 @@
 
         <HPContents v-if="loadOthers" />
 
+        <RoadMap v-if="loadOthers" />
+
         <HPC3 v-if="loadOthers" />
 
     </div>
@@ -38,10 +40,13 @@ import HPServices from '@/components/public/HPServices.vue';
 import HPC2 from '../../components/public/HPC2.vue';
 import HPContents from '@/components/public/HPContents.vue';
 import HPC3 from '../../components/public/HPC3.vue';
+import RoadMap from '@/components/public/RoadMap.vue';
+
 import AOS from 'aos';
+
     export default {
         components : {
-            MainSwiper , HPC1 , HPServices , HPC2 , HPContents , HPC3
+            MainSwiper , HPC1 , HPServices , HPC2 , HPContents , HPC3 , RoadMap
         },
         data() {
             return {
