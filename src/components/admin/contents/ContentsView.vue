@@ -27,13 +27,13 @@
                     <span v-else class="text-tertiary">Published</span>
                 </span>
                 <span class="text-white" v-else-if="props.column.field == 'actions'">
-                    <router-link :to="{name : 'ContentView' , params : {slug : props.row.slug}}" title="Delete Category" class="p-2 pt-4 pb-1 mx-3 rounded-full hover:scale-105 bg-secondary">
+                    <router-link :to="{name : 'ContentView' , params : {slug : props.row.slug}}" title="Delete Content" class="p-2 pt-4 pb-1 mx-3 rounded-full hover:scale-105 bg-secondary">
                         <span class="material-icons-outlined">fullscreen</span>
                     </router-link>
-                    <button @click="$emit('showEdit' , props.row.id)" title="Edit Category" class="p-2 pb-0.5 hover:scale-105 mx-3 rounded-full bg-tertiary">
+                    <button @click="$emit('showEdit' , props.row.id)" title="Edit Content" class="p-2 pb-0.5 hover:scale-105 mx-3 rounded-full bg-tertiary">
                         <span class="material-icons-outlined">tune</span>
                     </button>
-                    <button @click="deleteContent(props.row.id)" title="Delete Category" class="p-2 hover:scale-105 mx-3 pb-0.5 rounded-full bg-danger">
+                    <button @click="deleteContent(props.row.id)" title="Delete Content" class="p-2 hover:scale-105 mx-3 pb-0.5 rounded-full bg-danger">
                         <span class="material-icons-outlined">delete</span>
                     </button>
                 </span>

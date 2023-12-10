@@ -53,6 +53,7 @@
 <script>
 import AboutC1 from '../../components/public/AboutC1.vue'
 import AboutC2 from '../../components/public/AboutC2.vue'
+
     export default {
         components : {
             AboutC1 , AboutC2

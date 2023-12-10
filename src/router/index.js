@@ -99,6 +99,21 @@ const routes = [
         component : () => import('@/views/admin/AdminContactsPage.vue')
       },
       {
+        path : 'roadmap',
+        name : 'AdminRoadmapPage',
+        component : () => import('@/views/admin/roadmap/RoadmapView.vue')
+      },
+      {
+        path : 'roadmap/create',
+        name : 'CreateRoadmap',
+        component : () => import('@/views/admin/roadmap/CreateRoadmap.vue')
+      },
+      {
+        path : 'roadmap/:id',
+        name : 'EditRoadmap',
+        component : () => import('@/views/admin/roadmap/EditRoadmap.vue')
+      },
+      {
         path : 'user-management',
         name : 'UserManagement',
         component : () => import('@/views/admin/UserManagement.vue')

@@ -3,7 +3,7 @@
         <Transition name="bar">
             <aside v-if="sidebar" class="h-screen fixed left-0 top-0 shadow-inner border-r border-[#e2e8f0] z-50 bg-white w-1/6">
                 <h1 class="py-3 text-center">
-                    <router-link to="/">FITST ICT</router-link>
+                    <router-link to="/">FIRST ICT</router-link>
                 </h1>
                 <ul class="p-2">
                     <li class="py-1.5 overflow-hidden" v-for="side in sideItems" :key="side.id">
@@ -31,7 +31,9 @@
                 <span style="cursor: pointer;margin: auto 0px; font-size: 28px;" @click="sidebar = !sidebar" class="material-icons-outlined">menu</span>
                 <ul class="flex">
                     <li class="mx-2">
-                        <span style="font-size: 28px;color: #374151; cursor: pointer;" class="material-icons-sharp">notifications</span>
+                        <router-link :to="{name : 'AdminContactsPage'}">
+                            <span style="font-size: 28px;color: #374151; cursor: pointer;" class="material-icons-sharp">notifications</span>
+                        </router-link>
                     </li>
                     <li class="mx-2">
                         <span @click="showProfile = !showProfile" style="font-size: 28px;color: #374151; cursor: pointer;" class="material-icons-sharp">account_circle</span>
@@ -112,32 +114,38 @@ import UserModal from '@/components/admin/UserModal.vue';
                         path : 'AdminContactsPage'
                     },
                     {
-                        cap : 'User Management',
+                        cap : 'Roadmap',
                         id : 5,
+                        icon : 'trending_up',
+                        path : 'AdminRoadmapPage'
+                    },
+                    {
+                        cap : 'User Management',
+                        id : 6,
                         icon : 'groups',
                         path : 'UserManagement'
                     },
                     {
                         cap : 'Calendar',
-                        id : 6,
+                        id : 7,
                         icon : 'calendar_month',
                         path : 'AdminDashboardPage'
                     },
                     {
                         cap : 'Employees',
-                        id : 7,
+                        id : 8,
                         icon : 'people',
                         path : 'AdminDashboardPage'
                     },
                     {
                         cap : 'Logs',
-                        id : 8,
+                        id : 9,
                         icon : 'work_history',
                         path : 'AdminDashboardPage'
                     },
                     {
                         cap : 'Backups',
-                        id : 9,
+                        id : 10,
                         icon : 'backup',
                         path : 'AdminDashboardPage'
                     },
