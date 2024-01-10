@@ -3,7 +3,7 @@
             <div class="flex justify-end py-4">
                 <span @click="$emit('cancel')" style="cursor: pointer; font-size: 32px;" class="material-icons-sharp">cancel</span>
             </div>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div class="grid grid-cols-2 gap-4 overflow-auto sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 <div v-for="image in images" :key="image.id" class="grid">
                     <img  loading="lazy" @click="selectImage(image)"  :src="filePath.imagePath(image.image)" class="w-full h-auto cursor-pointer" />
                 </div>
