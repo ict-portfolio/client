@@ -18,7 +18,7 @@
                         <Transition name="side">
                             <ul style="z-index: 0.1;" v-if="side.items && activeSide == side.id" class="px-4 py-2">
                                 <li v-for="item in side.items" :key="item.name">
-                                    <router-link :to="{name : item.path}" class="hover:bg-secondary hover:text-white  block w-full px-2 py-1.5">{{ item.name }}</router-link>
+                                    <router-link :to="{name : item.path}" class="hover:bg-secondary text-gray-1 bg-black hover:text-white  block w-full px-2 py-1.5">{{ item.name }}</router-link>
                                 </li>
                             </ul>
                         </Transition>
@@ -100,6 +100,12 @@ import UserModal from '@/components/admin/UserModal.vue';
                                 path : 'AdminContentsPage'
                             },
                         ]
+                    },
+                    {
+                        cap : 'Products',
+                        id : "products",
+                        icon : 'inventory_2',
+                        path : 'AdminProducts'
                     },
                     {
                         cap : 'Services',

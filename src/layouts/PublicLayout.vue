@@ -2,8 +2,9 @@
     <div class="bg-white text-gray-1">
 
         <!-- For Large Screen -->
-        <nav class="absolute z-50 w-full font-semibold text-white">
-            <div class="flex justify-between w-full sm:px-8 sm:py-4 py-2 border-b border-[#94a3b8] border-opacity-50">
+        <nav class="sticky top-0 z-50 w-full font-semibold text-white">
+            <nav-bar></nav-bar>
+            <!-- <div class="flex justify-between w-full sm:px-8 py-2 border-b border-[#94a3b8] border-opacity-50">
                 <SocialPages />
                 <ul class="hidden sm:flex">
                     <li class="mx-3">
@@ -19,8 +20,8 @@
                     </li>
                 </ul>
                 <button @click="navigate" class="inline mr-2 sm:hidden hover:text-secondary">sign in</button>
-            </div>
-            <div class="flex justify-between w-full p-2 py-4 sm:px-8">
+            </div> -->
+            <!-- <div class="flex justify-between w-full p-2 py-4 bg-[#0a0a0a] sm:px-8">
                 <h1 class="text-xl italic font-bold">
                     <router-link to="/">FIRST ICT</router-link>
                 </h1>
@@ -34,7 +35,7 @@
                         </router-link>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </nav>
 
         <!-- For Small Screen style="background: rgb(45,164,253);background: linear-gradient(0deg, rgba(45,164,253,1) 0%, rgba(114,45,253,1) 100%);" -->
@@ -105,9 +106,10 @@
 <script>
 import { useAuthStore } from '@/stores/auth';
 import SocialPages from '../components/public/SocialPages.vue'
+import NavBar from './NavBar.vue';
     export default {
         components : {
-            SocialPages
+            SocialPages , NavBar
         },
         data() {
             return {
