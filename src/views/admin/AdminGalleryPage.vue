@@ -14,7 +14,7 @@
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <!-- Loop through images -->
                 <div v-for="image in images" :key="image.id" class="grid">
-                    <img  loading="lazy" @click="selectedImage = image"  :src="filePath.imagePath(image.image)" class="w-full h-auto cursor-pointer" />
+                    <img  loading="lazy" @click="selectedImage = image"  :src="image.url" class="w-full h-auto cursor-pointer" />
                 </div>
             </div>
             <div class="flex justify-center w-full m-8">
@@ -61,6 +61,7 @@ import filePath from '@/services/FilePath'
             },
             getImages () {
                 ApiService.get(`admin/images?page=${this.page}`).then((res) => {
+                    console.log(res.data.data.data);
                     this.images.push(...res.data.data.data);
                     this.last_page = res.data.data.last_page;
                     console.log(res.data.data.data);
@@ -74,7 +75,7 @@ import filePath from '@/services/FilePath'
             uploadImage(e){
                 if (e.target.files.length) {
                     let formData = new FormData();
-                    formData.set('image' , e.target.files[0])
+                    formData.set('url' , e.target.files[0])
                     ApiService.post('admin/images' , formData).then((res) => {
                         this.images.push(res.data.data)
                     }).catch((res) => {
