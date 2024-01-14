@@ -5,7 +5,7 @@
             </div>
             <div class="grid grid-cols-2 gap-4 overflow-auto sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 <div v-for="image in images" :key="image.id" class="grid">
-                    <img  loading="lazy" @click="selectImage(image)"  :src="filePath.imagePath(image.image)" class="w-full h-auto cursor-pointer" />
+                    <img  loading="lazy" @click="selectImage(image)"  :src="image.url" class="w-full h-auto cursor-pointer" />
                 </div>
             </div>
             <div class="flex justify-center w-full m-8">
@@ -30,6 +30,7 @@ import ApiService from '@/services/ApiService';
         methods : {
             getImages () {
                 ApiService.get(`admin/images?page=${this.page}`).then((res) => {
+                    console.log(res.data.data.data);
                     this.images.push(...res.data.data.data);
                     this.last_page = res.data.data.last_page;
                 }).catch((res) => {

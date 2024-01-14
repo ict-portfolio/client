@@ -99,6 +99,10 @@ import UserModal from '@/components/admin/UserModal.vue';
                                 name : 'Contents',
                                 path : 'AdminContentsPage'
                             },
+                            {
+                                name : 'Root_Category',
+                                path : 'AdminRootCategoriesPage'
+                            },
                         ]
                     },
                     {
