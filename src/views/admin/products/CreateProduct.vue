@@ -6,6 +6,14 @@
             <h1 class="text-2xl">Create Product</h1>
             <BaseInput class="w-full" :error="errors.name" type="text" :label="'Name'" v-model="product.name" />
             <div class="w-full mx-auto mt-2 mb-8">
+                <label for="icon" class="block w-full mb-1">Category</label>
+                <select v-model="product.category_id" class="w-full text-gray-700 bg-white appearance-none focus:outline-none select select-primary focus:ring-0" name="root_category_id" id="">
+                    <option disabled selected>Select Category</option>
+                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+                </select>
+                <p v-if="errors.category_id" class="w-full text-danger">{{ errors.category_id[0] }}</p>
+            </div>
+            <div class="w-full mx-auto mt-2 mb-8">
                 <label for="description">Description</label>
                 <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="product.description" theme="snow" toolbar="full" contentType="html"></quill-editor>
             </div>
@@ -50,8 +58,10 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
             return {
                 viewModal : false,
                 previewImage : [],
+                categories : [],
                 product : {
                     name : '',
+                    category_id : null,
                     description : '',
                     price : null,
                     discount : null,
@@ -60,6 +70,13 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
                 },
                 errors : {}
             }
+        },
+        mounted () {
+            ApiService.get('admin/categories').then((res) => {
+                this.categories = res.data.data
+            }).catch((res) => {
+                console.log(res);
+            })
         },
         methods : {
             cancelModal() {

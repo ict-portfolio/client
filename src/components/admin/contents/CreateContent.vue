@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="relative min-h-screen bg-white">
         <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal" class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
         <form @submit.prevent="createContent" class="flex flex-wrap justify-around pb-6">
             <div class="w-full">
@@ -53,7 +53,6 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import ImagesModal from '../ImagesModal.vue';
 import ApiService from '@/services/ApiService';
-import filePath from '@/services/FilePath';
     export default {
         components : {
                 BaseInput , QuillEditor , ImagesModal
@@ -80,7 +79,7 @@ import filePath from '@/services/FilePath';
             },
             selectImage(image) {
                 this.content.image_id = image.id
-                this.previewImage = filePath.imagePath(image.image)
+                this.previewImage = image.url
                 this.cancelModal()
             },
             createContent () {

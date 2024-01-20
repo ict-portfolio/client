@@ -20,6 +20,9 @@ module.exports = {
       "coal" : "#262e3f"
     }
   },
-  // plugins: [require("daisyui")],
+  plugins: [require("daisyui")],
+  // daisyui : {
+  //   theme : false
+  // }
 }
-
+// for customized color, override themes.js form node_modules/daisyui/src/theming
