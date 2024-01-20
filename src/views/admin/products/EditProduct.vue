@@ -52,6 +52,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
                 previewImage : [],
                 product : {
                     name : '',
+                    category_id : null,
                     description : '',
                     price : null,
                     discount : null,

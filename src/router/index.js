@@ -157,31 +157,31 @@ const router = createRouter({
   routes
 })
 
-// import { useAuthStore } from '@/stores/auth'
+import { useAuthStore } from '@/stores/auth'
 
-// router.beforeEach(async (to , from , next) => {
-//   if (to.meta.middleware == 'admin') {
-//     let authStore = useAuthStore();
-//     await authStore.getUser();
-//     if (authStore.authenticated && authStore.user.email) {
-//       let authorized = authStore.user.roles.find((role) => role.name == 'admin')
-//       if (authorized && authorized.id) {
-//         next();
-//       } else {
-//         authStore.destroyAuth()
-//         next({name : 'LoginPage'})
-//       }
-//     } else {
-//       authStore.destroyAuth()
-//       next({name : 'LoginPage'});
-//     }
-//   } else {
-//     next();
-//   }
-//   window.scrollTo({
-//     top: 0,
-//     left: 0,
-//     behavior: "smooth",
-//   });
-// })
+router.beforeEach(async (to , from , next) => {
+  if (to.meta.middleware == 'admin') {
+    let authStore = useAuthStore();
+    await authStore.getUser();
+    if (authStore.authenticated && authStore.user.email) {
+      let authorized = authStore.user.roles.find((role) => role.name == 'admin')
+      if (authorized && authorized.id) {
+        next();
+      } else {
+        authStore.destroyAuth()
+        next({name : 'LoginPage'})
+      }
+    } else {
+      authStore.destroyAuth()
+      next({name : 'LoginPage'});
+    }
+  } else {
+    next();
+  }
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+})
 export default router

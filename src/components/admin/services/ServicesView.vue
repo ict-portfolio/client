@@ -20,7 +20,7 @@
 
             <template #table-row="props">
                 <span v-if="props.column.field == 'image'">
-                    <img class="w-32" :src="filePath.imagePath(props.row.image.image)" alt="">
+                    <img class="w-32" :src="props.row.image.url" alt="">
                 </span>
                 <span class="text-white" v-else-if="props.column.field == 'actions'">
                     <button @click="$emit('showEdit' , props.row.id)" title="Edit Category" class="p-2 pb-0.5 mx-3 rounded-full bg-tertiary">
@@ -41,7 +41,6 @@
 
 <script>
 import ApiService from '@/services/ApiService';
-import filePath from '@/services/FilePath';
 import { VueGoodTable } from 'vue-good-table-next';
 import 'vue-good-table-next/dist/vue-good-table-next.css'
 import MainPagination from '@/components/base/MainPagination.vue'
@@ -52,7 +51,6 @@ import MainPagination from '@/components/base/MainPagination.vue'
         data() {
             return {
                 services : [],
-                filePath : filePath,
                 paginationData : {},
                 columns : [
                     {
@@ -68,6 +66,11 @@ import MainPagination from '@/components/base/MainPagination.vue'
                     {
                         label : 'Name',
                         field : 'name',
+                        width : '25%'
+                    },
+                    {
+                        label : 'Category',
+                        field : 'category.name',
                         width : '25%'
                     },
                     {

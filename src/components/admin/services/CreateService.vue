@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="relative min-h-screen bg-white">
         <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal" class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
         <form @submit.prevent="createService" class="flex flex-wrap justify-around pb-6">
             <div class="w-full">
@@ -9,6 +9,19 @@
                 <img class="w-1/2 mx-auto rounded" v-if="previewImage" :src="previewImage" alt="">
             </div>
             <BaseInput class="h-fit"  :error="errors.name" type="text" :label="'Name'" v-model="service.name" />
+            <div class="w-[48%] mx-auto">
+                <label for="icon" class="block w-full">Category</label>
+                <select v-model="service.category_id" class="w-full rounded px-2 py-1.5 text-gray-700 bg-white border appearance-none border-primary focus:outline-none focus:ring-0" name="root_category_id" id="">
+                    <option disabled selected>Select Category</option>
+                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+                </select>
+                <p v-if="errors.category_id" class="w-full text-danger">{{ errors.category_id[0] }}</p>
+            </div>
+
+            <div class="w-[98%] mx-auto mb-32">
+                <label for="description">Paragraph</label>
+                <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="service.paragraph" theme="snow" toolbar="full" contentType="html"></quill-editor>
+            </div>
 
             <div class="w-[48%] my-6">
                 <p @click="viewModal = true" class="flex items-center px-6 py-2 rounded-full shadow-lg cursor-pointer w-fit">
@@ -16,11 +29,6 @@
                     Choose Photo
                 </p>
                 <p v-if="errors.image_id" class="w-full ml-2 font-semibold text-danger">{{ errors.image_id[0] }}</p>
-            </div>
-
-            <div class="w-[98%] mx-auto mb-32">
-                <label for="description">Paragraph</label>
-                <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="service.paragraph" theme="snow" toolbar="full" contentType="html"></quill-editor>
             </div>
 
             <div class="flex justify-end w-[96%]">
@@ -37,7 +45,6 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import ImagesModal from '../ImagesModal.vue';
 import ApiService from '@/services/ApiService';
-import filePath from '@/services/FilePath';
 
     export default {
         components : {
@@ -46,14 +53,23 @@ import filePath from '@/services/FilePath';
         data() {
             return {
                 viewModal : false,
+                categories : [],
                 errors : {},
                 service : {
                     name : '',
                     image_id : 1,
                     paragraph : '',
+                    category_id : null
                 },
                 previewImage : ''
             }
+        },
+        mounted () {
+            ApiService.get('admin/categories').then((res) => {
+                this.categories = res.data.data
+            }).catch((res) => {
+                console.log(res);
+            })
         },
         methods : {
             cancelModal() {
@@ -61,7 +77,7 @@ import filePath from '@/services/FilePath';
             },
             selectImage(image) {
                 this.service.image_id = image.id
-                this.previewImage = filePath.imagePath(image.image)
+                this.previewImage = image.url
                 this.cancelModal()
             },
             createService () {

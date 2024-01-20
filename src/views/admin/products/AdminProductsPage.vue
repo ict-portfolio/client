@@ -19,9 +19,6 @@
                         <span class="material-icons-outlined">info</span>
                     </router-link>
                 </span>
-                <span v-else-if="props.column.field == 'description'">
-                    <p class="truncate line-clamp-2" v-html="props.row.description"></p>
-                </span>
                 <span v-else>
                 {{props.formattedRow[props.column.field]}}
                 </span>
@@ -54,17 +51,16 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
                         field : 'name',
                     },
                     {
+                        label : 'Category',
+                        field : 'category.name',
+                    },
+                    {
                         label : 'Price',
                         field : 'price',
                     },
                     {
                         label : 'Discount',
                         field : 'discount',
-                    },
-                    {
-                        label : 'Description',
-                        field : 'description',
-                        width : '20%'
                     },
                     {
                         label : 'Actions',

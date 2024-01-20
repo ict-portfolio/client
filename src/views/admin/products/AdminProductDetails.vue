@@ -5,15 +5,15 @@
         </div>
         <div class="md:w-[45%]" v-if="product.images?.length">
             <img class="w-full rounded" :src="defaultImage" alt="">
-            <div class="flex justify-between w-full mt-2">
-                <img @click="defaultImage = filePath.imagePath(image?.image?.image)" class="w-[24%] rounded cursor-pointer" onclick="" v-for="image in product?.images" :key="image.id" :src="filePath.imagePath(image?.image?.image)" alt="">
+            <div class="flex w-full mt-2">
+                <img @click="defaultImage = image?.image?.url" class="w-[24%] mx-1 rounded cursor-pointer" onclick="" v-for="image in product?.images" :key="image.id" :src="image?.image?.url" alt="">
             </div>
         </div>
         <div class="md:w-[45%] my-6 md:my-0 md:px-4">
             <h1 class="text-2xl">{{ product.name }}</h1>
             <h3 class="my-2 text-xl text-primary">Price - {{ product.price }}</h3>
             <h5 class="mb-4 text-xl">Current Discount - {{ product.discount }}%</h5>
-            <h6 class="text-xl">Description</h6>
+            <h6 class="mt-1 text-xl">Description</h6>
             <p v-html="product.description" class="mb-4"></p>
             <div class="flex mt-6">
                 <router-link :to="{name : 'EditProduct' , params : {id : product.id}}" class="flex items-center px-3 py-3 mr-4 text-white rounded-full bg-secondary">
@@ -43,7 +43,7 @@ import filePath from '@/services/FilePath';
                 ApiService.get(`admin/products/${this.$route.params.id}`).then((res) => {
                     console.log(res);
                     this.product = res.data.data
-                    this.defaultImage = this.filePath.imagePath(this.product?.images[0]?.image?.image);
+                    this.defaultImage = this.product?.images[0]?.image?.url;
                 }).catch((res) => {
                     console.log(res);
                 })

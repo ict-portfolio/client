@@ -11,19 +11,15 @@
 
             <template #table-row="props">
                 <span v-if="props.column.field == 'icon'">
-                    <img v-if="props.row.icon" class="w-20" :src="props.row.icon" alt="">
+                    <img v-if="props.row.icon" class="w-[24px]" :src="props.row.icon" alt="">
                 </span>
                 <span class="text-white" v-else-if="props.column.field == 'actions'">
-                    <button @click="$emit('showRootUpdate', props.row.id)" title="Edit Category"
-                        class="p-2 pb-0.5 mx-3 rounded-full bg-tertiary">
-                        <span class="material-icons-outlined">tune</span>
-                    </button>
                     <button @click="deleteRootCategory(props.row.id)" title="Delete Category"
                         class="p-2 hover:scale-105 mx-3 pb-0.5 rounded-full bg-danger">
                         <span class="material-icons-outlined">delete</span>
                     </button>
                 </span>
-                <span v-else>
+                <span class="font-semibold capitalize" v-else>
                     {{ props.formattedRow[props.column.field] }}
                 </span>
             </template>
@@ -48,12 +44,20 @@ export default {
             filePath: filePath,
             columns: [
                 {
-                    label: "Name",
-                    field: "name"
+                    label : 'Id',
+                    field : 'id'
                 },
                 {
                     label: "Icon",
                     field: "icon"
+                },
+                {
+                    label: "Name",
+                    field: "name"
+                },
+                {
+                    label: "Type",
+                    field: "type"
                 },
                 {
                     label : "Actions",
@@ -63,17 +67,20 @@ export default {
         }
     },
     mounted() {
-        ApiService.get('admin/root-categories').then((res) => {
-            this.rootCategories = res.data.data
-            console.log(res.data.data);
-        }).catch((err) => {
-            console.log(err);
-        })
+        this.getRootCategories();
     },
     methods : {
+        getRootCategories () {
+            ApiService.get('admin/root-categories').then((res) => {
+                this.rootCategories = res.data.data
+                console.log(res.data.data);
+            }).catch((err) => {
+                console.log(err);
+            })
+        },
         deleteRootCategory (id) {
-            ApiService.delete(`admin/root-categories/${id}`).then((res) => {
-                console.log(res)
+            ApiService.delete(`admin/root-categories/${id}`).then(() => {
+                this.getRootCategories()
             }).catch((err) => {
                 console.log(err);
             })

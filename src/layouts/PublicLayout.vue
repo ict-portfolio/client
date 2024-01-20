@@ -21,25 +21,10 @@
                 </ul>
                 <button @click="navigate" class="inline mr-2 sm:hidden hover:text-secondary">sign in</button>
             </div> -->
-            <!-- <div class="flex justify-between w-full p-2 py-4 bg-[#0a0a0a] sm:px-8">
-                <h1 class="text-xl italic font-bold">
-                    <router-link to="/">FIRST ICT</router-link>
-                </h1>
-                <button id="menuBtn" class="sm:hidden" @click="moblieView = !moblieView">
-                    <span id="menuSpan" class="material-icons-outlined">menu</span>
-                </button>
-                <ul class="hidden my-auto sm:flex">
-                    <li class="mx-4 hover:text-primary" v-for="item in navItems" :key="item.name">
-                        <router-link class="flex items-center" :to="{name : item.path}">
-                            {{ item.name }}
-                        </router-link>
-                    </li>
-                </ul>
-            </div> -->
         </nav>
 
         <!-- For Small Screen style="background: rgb(45,164,253);background: linear-gradient(0deg, rgba(45,164,253,1) 0%, rgba(114,45,253,1) 100%);" -->
-        <Transition name="side">
+        <!-- <Transition name="side">
             <nav v-if="moblieView" class="fixed top-0 left-0 z-50 w-2/3 h-screen p-4 font-semibold text-[#ffffff]   bg-[#262e3f]">
                 <div class="flex justify-end">
                     <span @click="moblieView = false" style="margin: 20px 0px;font-size: 30px;cursor:pointer;" class="material-icons-sharp">cancel</span>
@@ -58,7 +43,7 @@
 
                 <SocialPages />
             </nav>
-        </Transition>
+        </Transition> -->
 
         <main class="z-10 w-screen">
             <router-view></router-view>
@@ -113,7 +98,6 @@ import NavBar from './NavBar.vue';
         },
         data() {
             return {
-                moblieView : false,
                 authStore : useAuthStore(),
                 navItems : [
                     {
@@ -145,11 +129,7 @@ import NavBar from './NavBar.vue';
             }
         },
         mounted() {
-            document.addEventListener('click' , (e) => {
-                if (e.target.id != 'menuSpan') {
-                    this.moblieView = false;
-                }
-            })
+
         },
         methods : {
             navigate(){
@@ -168,19 +148,5 @@ import NavBar from './NavBar.vue';
 .footer {
     background: rgb(51,63,85);
     background: radial-gradient(0deg, rgba(51,63,85,0.9444152661064426) 0%, rgba(34,42,59,1) 100%);
-    /* background-image: url('https://c4.wallpaperflare.com/wallpaper/417/673/89/black-texture-background-wallpaper-preview.jpg');
-    background-size: cover;
-    background-position: center; */
-}
-
-.side-enter-from , .side-leave-to {
-    margin-left: -50%;
-    opacity: 0.5;
-}
-.side-enter-active , .side-leave-active {
-    transition: all 0.1s ease-in;
 }
 </style>
-
-<!-- :class="$router.currentRoute.value.path != '/' ? 'bg-black' : 'bg-white'" -->
-<!-- :class="$router.currentRoute.value.path == '/' ? 'absolute' : 'bg-primary'" -->

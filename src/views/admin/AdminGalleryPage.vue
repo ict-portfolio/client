@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="min-h-screen">
         <div class="flex justify-between p-4">
             <h1 class="text-2xl">Gallery</h1>
             <button @click="focusInput" class="flex items-center p-4 py-2 my-auto text-white rounded-full bg-primary">
@@ -22,9 +22,9 @@
             </div>
         </div>
 
-        <div class="fixed w-1/2 top-1/2 left-1/2" style="transform: translate(-50% , -50%);" v-if="selectedImage.image">
+        <div class="fixed z-50 w-1/2 top-1/2 left-1/2" style="transform: translate(-50% , -50%);" v-if="selectedImage.url">
             <span @click="selectedImage = {}" style="position: absolute;right: 5px;top: 5px;color: white;user-select: none;cursor: pointer;font-size: 32px;" class="material-icons-sharp">cancel</span>
-            <img class="w-full select-none" :src="filePath.imagePath(selectedImage.image)" alt="">
+            <img class="w-full select-none" :src="selectedImage.url" alt="">
             <p v-if="message" class="absolute px-4 text-white py-0.5 bottom-2 left-2 bg-tertiary rounded-md text-sm">{{ message }}</p>
             <div class="absolute bottom-2 right-2">
                 <button class="flex items-center px-2 py-2 rounded-full">

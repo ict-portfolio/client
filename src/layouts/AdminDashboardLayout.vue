@@ -1,13 +1,13 @@
 <template>
     <div class="flex justify-end">
         <Transition name="bar">
-            <aside v-if="sidebar" class="h-screen fixed left-0 top-0 shadow-inner border-r border-[#e2e8f0] z-50 bg-white w-1/6">
+            <aside v-if="sidebar" class="h-screen fixed left-0 top-0 text-gray-1 shadow-inner border-r border-[#e2e8f0] z-50 bg-white w-1/6">
                 <h1 class="py-3 text-center">
                     <router-link to="/">FIRST ICT</router-link>
                 </h1>
                 <ul class="p-2">
-                    <li class="py-1.5 overflow-hidden" v-for="side in sideItems" :key="side.id">
-                        <p v-if="side.items" :class="activeSide == side.id ? 'text-primary ' : ''" class="hover:bg-secondary hover:text-white cursor-pointer flex justify-between items-center py-1.5 px-3" @click="activateSide(side.id)">
+                    <li class="py-1.5 overflow-hidden text-gray-1" v-for="side in sideItems" :key="side.id">
+                        <p v-if="side.items" :class="activeSide == side.id ? 'text-primary ' : ''" class="hover:bg-secondary  hover:text-white cursor-pointer flex justify-between items-center py-1.5 px-3" @click="activateSide(side.id)">
                             <span class="select-none"><span style="font-size: 18px;margin: auto 7px; vertical-align: middle;z-index: 1;" class="material-icons-outlined">{{ side.icon }}</span>{{ side.cap }}</span>
                             <span style="user-select: none;" v-if="activeSide != side.id" class="material-icons-outlined">expand_more</span>
                             <span v-else class="material-icons-outlined">expand_less</span>
@@ -18,7 +18,7 @@
                         <Transition name="side">
                             <ul style="z-index: 0.1;" v-if="side.items && activeSide == side.id" class="px-4 py-2">
                                 <li v-for="item in side.items" :key="item.name">
-                                    <router-link :to="{name : item.path}" class="hover:bg-secondary text-gray-1 bg-black hover:text-white  block w-full px-2 py-1.5">{{ item.name }}</router-link>
+                                    <router-link :to="{name : item.path}" class="hover:bg-secondary text-gray-1 hover:text-white  block w-full px-2 py-1.5">{{ item.name }}</router-link>
                                 </li>
                             </ul>
                         </Transition>
@@ -26,16 +26,16 @@
                 </ul>
             </aside>
         </Transition>
-        <div class="transition-all ease-in-out bg-white" :class="sidebar ? 'w-5/6' : 'w-full'">
-            <nav class="sticky top-0 z-50 flex justify-between p-2 bg-white shadow-md">
+        <div class="transition-all ease-in-out bg-white text-gray-1" :class="sidebar ? 'w-5/6' : 'w-full'">
+            <nav class="sticky top-0 z-50 flex justify-between p-2 bg-white shadow-md text-gray-1">
                 <span style="cursor: pointer;margin: auto 0px; font-size: 28px;" @click="sidebar = !sidebar" class="material-icons-outlined">menu</span>
                 <ul class="flex">
-                    <li class="mx-2">
+                    <li class="mx-2 text-gray-1">
                         <router-link :to="{name : 'AdminContactsPage'}">
                             <span style="font-size: 28px;color: #374151; cursor: pointer;" class="material-icons-sharp">notifications</span>
                         </router-link>
                     </li>
-                    <li class="mx-2">
+                    <li class="mx-2 text-gray-1">
                         <span @click="showProfile = !showProfile" style="font-size: 28px;color: #374151; cursor: pointer;" class="material-icons-sharp">account_circle</span>
                     </li>
                 </ul>
@@ -45,7 +45,7 @@
             </main>
         </div>
 
-        <UserModal v-if="showProfile" class="absolute w-1/4 shadow-lg top-12 right-12" />
+        <UserModal v-if="showProfile" class="absolute w-1/4 shadow-lg text-gray-1 top-12 right-12" />
     </div>
 </template>
 
@@ -87,6 +87,12 @@ import UserModal from '@/components/admin/UserModal.vue';
                         path : 'AdminGalleryPage'
                     },
                     {
+                        cap : 'root-category',
+                        name : 'Root Categories',
+                        icon : 'reorder',
+                        path : 'AdminRootCategoriesPage'
+                    },
+                    {
                         cap : 'Contents',
                         id : 3,
                         icon : 'content_copy',
@@ -98,10 +104,6 @@ import UserModal from '@/components/admin/UserModal.vue';
                             {
                                 name : 'Contents',
                                 path : 'AdminContentsPage'
-                            },
-                            {
-                                name : 'Root_Category',
-                                path : 'AdminRootCategoriesPage'
                             },
                         ]
                     },
