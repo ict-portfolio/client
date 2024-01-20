@@ -24,22 +24,30 @@
                                 class="absolute z-50 w-screen max-w-lg mt-3 transform -translate-x-1/2 left-1/2 lg:max-w-2xl">
                                 <div class="z-50 flex justify-between overflow-hidden text-sm rounded shadow-lg bg-coal">
                                     <ul class="w-[45%] p-4">
-                                        <li v-for="solution in solutions" :key="solution.id"
+                                        <li
+                                            v-for="solution in solutions" :key="solution.id"
                                             @mouseenter="activeSolution = solution"
-                                            class="relative flex items-center px-2 py-1 my-1 rounded-md cursor-pointer hover:bg-gray-1"
-                                            :class="activeSolution.id == solution.id ? 'bg-dense' : ''
-                                                ">
-                                            <img class="w-[24px] h-[24px] mr-2" :src="solution.icon" alt="" />
-                                            <span>{{ solution.name }}</span>
-                                            <span style="position: absolute; right: 3px"
-                                                class="material-icons-outlined">chevron_right</span>
+                                            :class="activeSolution.id == solution.id ? 'bg-dense' : ''">
+                                            <router-link
+                                                class="relative flex items-center px-2 py-1 my-1 rounded-md cursor-pointer hover:bg-gray-1"    
+                                                :to="{name : 'RootCategoryPage' , params : {rootCategory : solution.slug}}">
+                                                <img class="w-[24px] h-[24px] mr-2" :src="solution.icon" alt="" />
+                                                <PopoverButton class="text-left">{{ solution.name }}</PopoverButton>
+                                                <span style="position: absolute; right: 3px" class="material-icons-outlined">chevron_right</span>
+                                            </router-link>
                                         </li>
                                     </ul>
                                     <ul class="w-[53%] bg p-4">
-                                        <li class="flex items-center px-2 py-1 my-1 rounded-md hover:bg-dense"
-                                            v-for="category in activeSolution.categories" :key="category.id">
-                                            <img class="w-[24px] h-[24px] mr-2" :src="category.icon" alt="" />
-                                            <router-link to="/">{{ category.name }}</router-link>
+                                        <li
+                                            v-for="category in activeSolution.categories"
+                                            :key="category.id"
+                                            class="flex items-center px-2 py-1 my-1 rounded-md hover:bg-dense">
+                                                <img class="w-[24px] h-[24px] mr-2" :src="category.icon" alt="" />
+                                                <router-link :to="{name : 'CategoryPage' , params : {rootCategory : activeSolution.slug , category : category.slug}}">
+                                                    <PopoverButton class="text-left">
+                                                        {{ category.name }}
+                                                    </PopoverButton>
+                                                </router-link>
                                         </li>
                                     </ul>
                                 </div>
@@ -66,19 +74,25 @@
                                     <ul class="w-[45%] p-4">
                                         <li v-for="product in products" :key="product.id"
                                             @mouseenter="activeProduct = product"
-                                            class="relative flex items-center px-2 py-1 my-1 rounded-md cursor-pointer hover:bg-gray-1"
                                             :class="activeProduct.id == product.id ? 'bg-dense' : ''">
-                                            <img class="w-[24px] h-[24px] mr-2" :src="product.icon" alt="" />
-                                            <span>{{ product.name }}</span>
-                                            <span style="position: absolute; right: 3px"
-                                                class="material-icons-outlined">chevron_right</span>
+                                            <router-link
+                                                class="relative flex items-center px-2 py-1 my-1 rounded-md cursor-pointer hover:bg-gray-1"    
+                                                :to="{name : 'RootCategoryPage' , params : {rootCategory : product.slug}}">
+                                                <img class="w-[24px] h-[24px] mr-2" :src="product.icon" alt="" />
+                                                <PopoverButton class="text-left">{{ product.name }}</PopoverButton>
+                                                <span style="position: absolute; right: 3px" class="material-icons-outlined">chevron_right</span>
+                                            </router-link>
                                         </li>
                                     </ul>
                                     <ul class="w-[53%] bg p-4">
                                         <li class="flex items-center px-2 py-1 my-1 rounded-md hover:bg-dense"
                                             v-for="category in activeProduct.categories" :key="category.id">
                                             <img class="w-[24px] h-[24px] mr-2" :src="category.icon" alt="" />
-                                            <router-link to="/">{{ category.name }}</router-link>
+                                            <router-link :to="{name : 'CategoryPage' , params : {rootCategory : activeProduct.slug , category : category.slug}}">
+                                                <PopoverButton class="text-left">
+                                                    {{ category.name }}
+                                                </PopoverButton>
+                                            </router-link>
                                         </li>
                                     </ul>
                                 </div>

@@ -12,6 +12,26 @@ const routes = [
         component : () => import('@/views/public/IndexPage.vue')
       },
       {
+        path : 'categories/:rootCategory',
+        name : 'RootCategoryPage',
+        component : () => import('@/views/public/categories/RootCategoryPage.vue')
+      },
+      {
+        path : 'categories/:rootCategory/:category',
+        name : 'CategoryPage',
+        component : () => import('@/views/public/categories/CategoryPage.vue')
+      },
+      {
+        path : 'products',
+        name : 'ProductsPage',
+        component : () => import('@/views/public/products/ProductsPage.vue')
+      },
+      {
+        path : 'products/:slug',
+        name : 'ProductDetails',
+        component : () => import('@/views/public/products/ProductDetails.vue')
+      },
+      {
         path : 'services',
         name : 'ServicesPage',
         component : () => import('@/views/public/ServicesPage.vue')
