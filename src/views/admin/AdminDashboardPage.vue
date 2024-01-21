@@ -1,5 +1,5 @@
 <template>
-    <div class="p-12">
+    <div class="min-h-screen p-12 bg-white">
         <div>
                 <button class="mx-4 px-5 py-1.5 bg-primary text-white">Submit</button>
                 <button class="mx-4 px-5 py-1.5 bg-secondary text-white">Submit</button>
