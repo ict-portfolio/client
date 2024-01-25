@@ -34,12 +34,12 @@ const routes = [
       {
         path : 'services',
         name : 'ServicesPage',
-        component : () => import('@/views/public/ServicesPage.vue')
+        component : () => import('@/views/public/services/ServicesPage.vue')
       },
       {
         path : 'services/:slug',
-        name : 'ServiceView',
-        component : () => import('@/views/public/ServiceView.vue')
+        name : 'ServiceDetails',
+        component : () => import('@/views/public/services/ServiceDetails.vue')
       },
       {
         path : 'contents',

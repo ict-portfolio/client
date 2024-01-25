@@ -5,7 +5,7 @@
             <p class="flex items-center justify-center text-lg text-secondary">
                 <router-link to="/">Home</router-link>
                 <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
-                <router-link :to="{name : 'RootCategoryPage' , params : {rootCategory : rootCategory}}">{{ rootCategory }}</router-link>
+                <router-link :to="{name : 'RootCategoryPage' , params : {rootCategory : rootSlug}}">{{ rootSlug }}</router-link>
                 <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
                 <span>{{ categorySlug }}</span>
             </p>
@@ -18,8 +18,14 @@
     export default {
         data () {
             return {
-                rootCategory : this.$route.params.rootCategory,
+                rootSlug : this.$route.params.rootCategory,
                 categorySlug : this.$route.params.category
+            }
+        },
+        watch : {
+            $route (to) {
+                this.rootSlug = to.params.rootCategory;
+                this.categorySlug = to.params.category;
             }
         }
     }
