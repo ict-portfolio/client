@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="w-full py-12 mb-6 breadcamp">
-            <h1 class="my-4 text-2xl text-center text-white sm:text-5xl">Latest Products</h1>
+            <h1 class="my-4 text-2xl text-center text-white sm:text-5xl">Products</h1>
             <p class="flex items-center justify-center text-lg text-secondary">
                 <router-link to="/">Home</router-link>
                 <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
-                <span :to="{name : 'ProductsPage'}">Latest Products</span>
+                <span :to="{name : 'ProductsPage'}">Products</span>
             </p>
         </div>
-        Sorted latest products
+        Sorted products
     </div>
 </template>
 
