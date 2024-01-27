@@ -4,9 +4,11 @@
             <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp" @click="$router.back()">arrow_back</span>
         </div>
         <div class="md:w-[45%]" v-if="product.images?.length">
-            <img class="w-full rounded" :src="defaultImage" alt="">
-            <div class="flex w-full mt-2">
-                <img @click="defaultImage = image?.image?.url" class="w-[24%] mx-1 rounded cursor-pointer" onclick="" v-for="image in product?.images" :key="image.id" :src="image?.image?.url" alt="">
+            <figure>
+                <img class="w-full mx-auto rounded" :src="defaultImage" alt="">
+            </figure>
+            <div class="flex w-full mt-4">
+                <img v-for="image in product?.images" :key="image.id" :src="image?.image?.url"  @click="defaultImage = image?.image?.url" class="w-[22%] mx-auto rounded cursor-pointer" alt="">
             </div>
         </div>
         <div class="md:w-[45%] my-6 md:my-0 md:px-4">
@@ -29,13 +31,11 @@
 
 <script>
 import ApiService from '@/services/ApiService';
-import filePath from '@/services/FilePath';
     export default {
         data () {
             return {
                 product : {},
                 defaultImage : '',
-                filePath : filePath
             }
         },
         methods : {

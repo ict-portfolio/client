@@ -51,34 +51,34 @@
 
         <img src="@/assets/footer.png" style="height: 360px;width: 100%;" alt="">
         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150"><path fill="#333F55" fill-opacity="1" d="M0,64L80,80C160,96,320,128,480,117.3C640,107,800,53,960,26.7C1120,0,1280,0,1360,0L1440,0L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>                 -->
-        <footer class="flex-wrap px-2 py-8 text-white sm:px-12 footer bg-primary sm:flex">
-            <div class="sm:w-1/2">
-                <h1 class="mb-6 ml-1 text-3xl italic text-center sm:text-left">FIRST ICT</h1>
-                <p class="flex items-center my-4">
+        <footer class="flex-wrap px-2 py-8 text-white md:px-12 footer md:flex">
+            <div class="md:w-[48%]">
+                <h1 class="mb-2 ml-1 text-3xl italic card-title">FIRST ICT</h1>
+                <p class="flex items-center my-2">
                     <span style="margin-right: 12px;" class="material-icons-sharp">location_on</span>
                     St.Kemacetan timur No.13 Block Q2 Jakarta - Hlaing Thar Yar
                 </p>
-                <p class="flex items-center my-4">
+                <p class="flex items-center my-2">
                     <span style="margin-right: 12px;" class="material-icons-sharp">call</span>
                     +959 123456789
                 </p>
-                <p class="flex items-center my-4">
+                <p class="flex items-center my-2">
                     <span style="margin-right: 12px;" class="material-icons-sharp">email</span>
                     firstedu@gmail.com
                 </p>
             </div>
-            <div class="justify-between text-sm sm:flex sm:w-1/2">
-                <ul class="m-10 sm:m-0 ">
-                    <h1 class="text-2xl">Company</h1>
+            <div class="justify-between text-sm sm:flex md:w-[48%]">
+                <ul class="m-10 md:m-0 ">
+                    <h1 class="text-2xl">Pages</h1>
                     <li class="my-3 hover:text-primary" v-for="item in navItems" :key="item.name">
                         <router-link class="flex items-center" :to="{name : item.path}">
                             <span style="color: rgb(49, 93, 240);" class="material-icons-outlined">chevron_right</span>
                         {{ item.name }}</router-link>
                     </li>
                 </ul>
-                <div class="w-1/2 mx-6 sm:mx-0">
-                    <SocialPages />
-                    <p class="mt-6">
+                <div class="mx-6 md:w-1/2 md:mx-0">
+                    <SocialPages class="mx-auto w-fit" />
+                    <p class="mt-6 text-center">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut maiores obcaecati sequi ipsum cumque quibusdam consectetur repellat perferendis possimus ex porro dolores neque, reprehenderit aperiam, corrupti ut nesciunt error rem.
                     </p>
                 </div>
@@ -145,8 +145,12 @@ import NavBar from './NavBar.vue';
 </script>
 
 <style scoped>
-.footer {
+/* .footer {
     background: rgb(51,63,85);
     background: radial-gradient(0deg, rgba(51,63,85,0.9444152661064426) 0%, rgba(34,42,59,1) 100%);
+} */
+.footer {
+    background-image: url('@/assets/buildings2.jpg');
+    background-size: cover;
 }
 </style>

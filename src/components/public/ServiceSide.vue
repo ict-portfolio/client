@@ -4,7 +4,7 @@
             <h1 class="text-2xl text-primary">Latest Services</h1>
             <ul class="my-4">
                 <li  v-for="service in services" :key="service.id" class="p-1 my-4">
-                    <router-link class="flex w-full text-dense hover:text-secondary" :to="{name : 'ServiceView' , params : {slug : service.slug}}">
+                    <router-link class="flex w-full text-dense hover:text-secondary" to="/routefixtoservicedetail">
                         <img class="w-20 rounded h-fit sm:w-28" v-if="service.image" :src="filePath.imagePath(service.image.image)" alt="">
                             <h1 class="mx-4 sm:text-lg">{{ service.name }}</h1>
                     </router-link>
