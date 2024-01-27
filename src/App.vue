@@ -29,13 +29,12 @@
   h1 , nav , footer {
     font-family: inter;
     }
-  /* .breadcamp {
-    background-image: url('@/assets/bg.jpg');
+  .breadcamp {
+    background-image: url('@/assets/bread.png');
     background-size: cover;
-} */
-.breadcamp {
-  background-color: #232B3C;
-  /* background: rgb(51,63,85);
-background: radial-gradient(circle, rgba(51,63,85,1) 0%, rgba(34,42,59,1) 100%); */
+    background-position: center;
 }
+/* .breadcamp {
+  background-color: #232B3C;
+} */
 </style>

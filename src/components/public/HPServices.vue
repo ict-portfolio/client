@@ -9,19 +9,12 @@
             </p>
         </div>
         
-        <div v-if="services.length" class="flex-wrap justify-around sm:flex">
-            <div data-aos="fade-up" :data-aos-delay="index * 100" class="sm:w-[48%] bg-[#ffffff] md:w-[30%] shadow-lg hover:shadow-xl p-4 overflow-hidden rounded my-6" v-for="service , index in services" :key="service.id">
-                <router-link :to="{name : 'ServiceView' , params : {slug : service.slug}}">
-                    <img class="w-full sm:h-[180px] rounded overflow-hidden md:h-[240px]" :src="filePath.imagePath(service.image.image)" alt="">
-                    <h3 class="mt-3 font-sans text-sm"> {{ service.created_at }}</h3>
-                    <h1 class="text-[1.2rem] text-dense">{{ service.name }}</h1>
-                    <button class="w-full py-1.5 text-white bg-secondary mt-4">Read More</button>
-                </router-link>
-            </div>
+        <div v-if="services.length" class="flex flex-wrap gap-1 p-1 sm:gap-2 sm:p-3">
+            <ServiceCard data-aos="fade-up" :data-aos-delay="index * 100" :service="service"  v-for="service , index in services" :key="service.id" />
         </div>
         <p v-else class="my-4 text-lg text-center text-danger">" Unable to show services due to maintenance break! "</p>
-        <div v-if="services.length" class="flex justify-center my-4">
-            <router-link class="px-6 py-2 text-white rounded-full animate-bounce bg-secondary" :to="{name : 'ServicesPage'}">
+        <div v-if="services.length" class="flex justify-center my-6">
+            <router-link class="px-6 py-2 text-white rounded-full bg-secondary" :to="{name : 'ServicesPage'}">
                 See More
             </router-link>
         </div>
@@ -31,8 +24,11 @@
 <script>
 import ApiService from '@/services/ApiService';
 import filePath from '@/services/FilePath';
-
+import ServiceCard from '@/components/public/services/ServiceCard.vue';
     export default {
+        components : {
+            ServiceCard
+        },
         data() {
             return {
                 services : [],
@@ -44,7 +40,7 @@ import filePath from '@/services/FilePath';
         },
         methods : {
             getServices() {
-                ApiService.get('get-limited-services').then((res) => {
+                ApiService.get('services').then((res) => {
                     this.services = res.data.data
                 }).catch((res) => {
                     console.log(res);

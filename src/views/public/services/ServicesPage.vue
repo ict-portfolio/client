@@ -9,7 +9,7 @@
         </div>
         <div v-if="services.length" class="flex-wrap justify-around sm:flex">
             <div data-aos="fade-up" :data-aos-delay="index * 100" class="sm:w-[48%] md:w-[30%] px-2 sm:px-0 overflow-hidden rounded-2xl my-10" v-for="service,index in services" :key="service.id">
-                <router-link :to="{name : 'ServiceView' , params : {slug : service.slug}}">
+                <router-link to="/routefixtoservicedetail">
                     <img class="w-full shadow-lg sm:h-[180px] rounded-2xl hover:scale-105 transition duration-500 md:h-[240px]" :src="service.image.url" alt="">
                     <h3 class="mt-3 text-sm"> {{ service.created_at }}</h3>
                     <h1 class="text-[1.4rem] text-dense">{{ service.name }}</h1>
