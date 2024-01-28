@@ -12,7 +12,7 @@
                     <option value="products">Products</option>
                     <option value="resources">Resources</option>
                 </select>
-                <p v-if="errors.icon" class="w-full text-danger">{{ errors.icon[0] }}</p>
+                <p v-if="errors.icon" class="w-full text-danger">{{ errors.type[0] }}</p>
             </div>
             <div class="mb-2">
                 <label for="icon" class="block w-full mb-1 text-primary">Icon</label>
