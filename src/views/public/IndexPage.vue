@@ -82,7 +82,7 @@ import AOS from 'aos';
 
 <style scoped>
 .fillSlider {
-    background-image: url('@/assets/img3.jpg');
+    background-image: url('@/assets/ds.jpg');
     background-size: cover;
     background-position: center;
 }
