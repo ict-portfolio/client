@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="relative">
         <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal"
             class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
@@ -101,4 +101,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped></style> -->
