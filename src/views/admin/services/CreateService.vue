@@ -1,13 +1,9 @@
 <template>
     <div class="relative min-h-screen bg-white">
         <span style="cursor: pointer;margin: 10px;" class="material-icons-sharp" @click="$router.back()">arrow_back</span>
-        <h1 class="text-2xl py-2 px-4">Create Service</h1>
-        <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal"
-            class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
-        <form @submit.prevent="createService" class="pb-6 flex flex-wrap justify-between px-3">
-            <div class="w-full">
-                <img class="w-1/2 mx-auto rounded" v-if="previewImage" :src="previewImage" alt="">
-            </div>
+        <h1 class="px-4 py-2 text-2xl">Create Service</h1>
+        <ImagesModal @closeModal="isOpen = false" @selectImage="selectImage" :isOpen="isOpen" />
+        <form @submit.prevent="createService" class="flex flex-wrap justify-between px-3 pb-6">
             <BaseInput class="h-fit" :error="errors.name" type="text" :label="'Name'" v-model="service.name" />
             <div class="w-[48%] mx-auto">
                 <label for="icon" class="block w-full">Category</label>
@@ -20,8 +16,7 @@
                 </select>
                 <p v-if="errors.category_id" class="w-full text-danger">{{ errors.category_id[0] }}</p>
             </div>
-            <BaseInput class="h-fit" :error="errors.name" type="text" :label="'Slug'" v-model="service.slug" />
-            <BaseInput class="h-fit mr-5" :error="errors.name" type="text" :label="'Image_Description'"
+            <BaseInput class="mr-5 h-fit" :error="errors.name" type="text" :label="'Image Description'"
                 v-model="service.image_description" />
             <div class="w-[98%] mx-auto mb-32">
                 <label for="description">Proposal</label>
@@ -40,18 +35,22 @@
             </div>
 
             <div class="w-[48%] my-6">
-                <p @click="viewModal = true"
+                <p @click="isOpen = true"
                     class="flex items-center px-6 py-2 rounded-full shadow-lg cursor-pointer w-fit">
                     <span style="margin-right: 7px;" class="material-icons-sharp">photo_library</span>
                     Choose Photo
                 </p>
                 <p v-if="errors.image_id" class="w-full ml-2 font-semibold text-danger">{{ errors.image_id[0] }}</p>
             </div>
-
             <div class="flex justify-end w-[96%]">
                 <button class="bg-secondary px-6 shadow text-white py-1.5 rounded">Create</button>
             </div>
-
+            <div class="flex flex-wrap w-full my-4">
+                <div class="w-[180px] rounded-md relative h-[120px] shadow m-2 p-2 border border-[#b6b4b4] overflow-hidden" v-for="image in selectedImages" :key="image.id" >
+                    <span @click="popImage(image.id)" style="cursor: pointer;position: absolute;top: 0px;right: 0px;background-color: white;border-radius: 50%;" class="material-icons-outlined">close</span>
+                    <img :src="image.url" class="rounded-md" alt="">
+                </div>
+            </div>
         </form>
     </div>
 </template>
@@ -69,20 +68,19 @@ export default {
     },
     data() {
         return {
-            viewModal: false,
+            isOpen: false,
             categories: [],
             errors: {},
             service: {
                 name: '',
-                slug: '',
-                image_id: 1,
+                image_description : '',
                 proposal: '',
                 terms: '',
                 features: '',
-                image: [],
-                // category_id: null
+                images: [],
+                category_id: null
             },
-            previewImage: ''
+            selectedImages : []
         }
     },
     mounted() {
@@ -93,17 +91,17 @@ export default {
         })
     },
     methods: {
-        cancelModal() {
-            this.viewModal = false;
-        },
         selectImage(image) {
-            this.service.image_id = image.id
-            this.previewImage = image.url
-            this.cancelModal()
+            this.service.images.push(image.id)
+            this.selectedImages.push(image)
+        },
+        popImage(id) {
+            this.service.images = this.service.images.filter((image) => image != id)
+            this.selectedImages = this.selectedImages.filter((image) => image.id != id)
         },
         createService() {
             ApiService.post('admin/services', this.service).then(() => {
-                this.$emit('reload')
+                this.$router.push({name : 'AdminServicePage'})
             }).catch((res) => {
                 console.log(res);
             })
