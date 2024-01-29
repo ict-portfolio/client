@@ -38,7 +38,7 @@
                 <p @click="isOpen = true"
                     class="flex items-center px-6 py-2 rounded-full shadow-lg cursor-pointer w-fit">
                     <span style="margin-right: 7px;" class="material-icons-sharp">photo_library</span>
-                    Choose Photo
+                    Add Photo
                 </p>
                 <p v-if="errors.image_id" class="w-full ml-2 font-semibold text-danger">{{ errors.image_id[0] }}</p>
             </div>
@@ -59,7 +59,7 @@
 import BaseInput from '@/components/base/BaseInput.vue';
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-import ImagesModal from '../../../components/admin/ImagesModal.vue';
+import ImagesModal from '@/components/admin/ImagesModal.vue';
 import ApiService from '@/services/ApiService';
 
 export default {
