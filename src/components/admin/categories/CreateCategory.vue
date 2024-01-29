@@ -13,8 +13,8 @@
                 <p v-if="errors.root_category_id" class="w-full text-danger">{{ errors.root_category_id[0] }}</p>
             </div>
             <div class="mb-2">
-                <label for="icon" class="block w-full mb-1 text-primary">Icon</label>
-                <input @change="selectIcon" name="icon" id="icon" type="file">
+                <label for="icon" class="block w-full mb-1">Icon</label>
+                <input @change="selectIcon" class="file:border-primary file:border file:bg-white" name="icon" id="icon" type="file">
                 <p v-if="errors.icon" class="w-full text-danger">{{ errors.icon[0] }}</p>
             </div>
             <div class="flex justify-end">

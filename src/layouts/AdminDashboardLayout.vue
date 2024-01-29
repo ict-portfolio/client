@@ -94,7 +94,7 @@ import UserModal from '@/components/admin/UserModal.vue';
                     },
                     {
                         name : 'Categories',
-                        icon : 'reorder',
+                        icon : 'category',
                         cap : 'category',
                         path : 'AdminCategoriesPage'
                     },

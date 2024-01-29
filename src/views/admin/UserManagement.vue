@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="min-h-screen">
+        <h1 class="p-4 text-2xl">Users</h1>
         <vue-good-table
             :columns="columns"
             :rows="users"
