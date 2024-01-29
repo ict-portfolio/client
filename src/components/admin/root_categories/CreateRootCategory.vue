@@ -5,8 +5,8 @@
             <img v-if="previewImage" class="w-[32px] mx-auto my-6 rounded-md" :src="previewImage" alt="">
             <BaseInput class="w-full" :error="errors.name" type="text" :label="'Name'" v-model="name" />
             <div class="mb-2">
-                <label for="type" class="block w-full mb-1 text-primary">Category Type</label>
-                <select v-model="type" class="w-full text-gray-700 bg-white appearance-none focus:outline-none select select-primary focus:ring-0" name="type" id="type">
+                <label for="type" class="block w-full mb-1">Category Type</label>
+                <select v-model="type" class="w-full p-1 text-gray-700 bg-white border rounded appearance-none border-primary focus:outline-none focus:ring-0" name="type" id="type">
                     <option disabled selected>Choose a category type</option>
                     <option value="solutions">Solutions</option>
                     <option value="products">Products</option>
@@ -20,7 +20,7 @@
                 <p v-if="errors.icon" class="w-full text-danger">{{ errors.icon[0] }}</p>
             </div>
             <div class="flex justify-end">
-                <button class="text-white border-0 btn bg-secondary">Create</button>
+                <button class="text-white bg-secondary px-4 py-1.5 rounded">Create</button>
             </div>   
         </form>
     </div>

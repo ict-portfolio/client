@@ -116,7 +116,22 @@ const routes = [
       {
         path : 'services',
         name : 'AdminServicePage',
-        component : () => import('@/views/admin/AdminServicePage.vue')
+        component : () => import('@/views/admin/services/AdminServicePage.vue')
+      },
+      {
+        path : 'services/:id',
+        name : 'AdminServiceDetails',
+        component : () => import('@/views/admin/services/AdminServiceDetails.vue')
+      },
+      {
+        path : 'services/create',
+        name : 'CreateService',
+        component : () => import('@/views/admin/services/CreateService.vue')
+      },
+      {
+        path : 'services/edit/:id',
+        name : 'EditService',
+        component : () => import('@/views/admin/services/EditService.vue')
       },
       {
         path : 'contacts',

@@ -1,11 +1,11 @@
 const getToken = () => {
-    return window.localStorage.getItem('id_token');
+    return window.localStorage.getItem("token");
 }
 const setToken = (token) => {
-    window.localStorage.setItem('id_token' , token);
+    window.localStorage.setItem("token", token);
 }
 const destroyToken = () => {
-    window.localStorage.removeItem('id_token');
+    window.localStorage.removeItem("token");
 }
 
 export default {getToken , setToken , destroyToken}

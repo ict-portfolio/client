@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div>
         <vue-good-table
             :columns="columns"
@@ -111,4 +111,4 @@ import MainPagination from '@/components/base/MainPagination.vue'
 
 <style scoped>
 
-</style>
+</style> -->

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="relative min-h-screen bg-white">
         <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal" class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
         <form @submit.prevent="createService" class="flex flex-wrap justify-around pb-6">
@@ -93,4 +93,4 @@ import ApiService from '@/services/ApiService';
 
 <style scoped>
 
-</style>
+</style> -->
