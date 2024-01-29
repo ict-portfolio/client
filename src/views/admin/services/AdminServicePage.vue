@@ -14,7 +14,7 @@
             </template>
 
              <template #table-row="props">
-                <span v-if="props.column.field == 'default_image'">
+                <span v-if="props.column.field == 'image'">
                     <img :src="props.row.default_image" alt="">
                 </span>
                 <span class="flex justify-center" v-else-if="props.column.field == 'actions'">
@@ -51,7 +51,8 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
                     },
                     {
                         label : 'Image',
-                        field : 'default_image'
+                        field : 'image',
+                        width : '10%'
                     },
                     {
                         label : 'Name',

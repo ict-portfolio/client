@@ -1,11 +1,11 @@
 <template>
     <div class="flex justify-end">
         <Transition name="bar">
-            <aside v-if="sidebar" class="h-screen fixed left-0 top-0 text-gray-1 shadow-inner border-r border-[#e2e8f0] z-50 bg-white w-1/6">
+            <aside v-if="sidebar" class="h-screen fixed left-0 top-0 overflow-scroll text-gray-1 shadow-inner border-r border-[#e2e8f0] z-50 bg-white w-1/6">
                 <h1 class="py-3 text-center">
                     <router-link to="/">FIRST ICT</router-link>
                 </h1>
-                <ul class="p-2">
+                <ul class="p-2 text-sm">
                     <li class="py-1.5 overflow-hidden text-gray-1" v-for="side in sideItems" :key="side.id">
                         <p v-if="side.items" :class="activeSide == side.id ? 'text-primary ' : ''" class="hover:bg-secondary  hover:text-white cursor-pointer flex justify-between items-center py-1.5 px-3" @click="activateSide(side.id)">
                             <span class="select-none"><span style="font-size: 18px;margin: auto 7px; vertical-align: middle;z-index: 1;" class="material-icons-outlined">{{ side.icon }}</span>{{ side.cap }}</span>
@@ -93,14 +93,16 @@ import UserModal from '@/components/admin/UserModal.vue';
                         path : 'AdminRootCategoriesPage'
                     },
                     {
+                        name : 'Categories',
+                        icon : 'reorder',
+                        cap : 'category',
+                        path : 'AdminCategoriesPage'
+                    },
+                    {
                         cap : 'Contents',
                         id : 3,
                         icon : 'content_copy',
                         items : [
-                            {
-                                name : 'Categories',
-                                path : 'AdminCategoriesPage'
-                            },
                             {
                                 name : 'Contents',
                                 path : 'AdminContentsPage'

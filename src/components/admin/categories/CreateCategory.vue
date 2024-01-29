@@ -5,8 +5,8 @@
             <img v-if="previewImage" class="w-[32px] mx-auto my-6 rounded-md" :src="previewImage" alt="">
             <BaseInput class="w-full" :error="errors.name" type="text" :label="'Name'" v-model="name" />
             <div>
-                <label for="icon" class="block w-full mb-1 text-primary">Root Category</label>
-                <select v-model="rootCategoryId" class="w-full text-gray-700 bg-white appearance-none focus:outline-none select select-primary focus:ring-0" name="root_category_id" id="">
+                <label for="icon" class="block w-full mb-1">Root Category</label>
+                <select v-model="rootCategoryId" class="w-full p-1 mb-3 text-gray-700 bg-white border rounded appearance-none focus:outline-none border-primary focus:ring-0" name="root_category_id" id="">
                     <option disabled selected>Select Root Category</option>
                     <option v-for="root in rootCategories" :key="root.id" :value="root.id">{{ root.name }}</option>
                 </select>
@@ -18,7 +18,7 @@
                 <p v-if="errors.icon" class="w-full text-danger">{{ errors.icon[0] }}</p>
             </div>
             <div class="flex justify-end">
-                <button class="text-white border-0 btn bg-secondary">Create</button>
+                <button class="text-white bg-secondary px-4 py-1.5 rounded">Create</button>
             </div>   
         </form>
     </div>

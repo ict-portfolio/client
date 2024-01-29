@@ -20,7 +20,7 @@ module.exports = {
       "coal" : "#262e3f"
     }
   },
-  plugins: [require("daisyui")],
+  // plugins: [require("daisyui")],
   // daisyui : {
   //   theme : false
   // }
