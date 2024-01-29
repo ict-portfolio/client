@@ -27,7 +27,6 @@
                 <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="product.description" theme="snow" toolbar="full" contentType="html"></quill-editor>
             </div>
             <div class="flex justify-between w-full px-2 mt-2">
-                <p v-if="errors.image_id" class="w-full font-semibold text-danger">{{ errors.image_id[0] }}</p>
                 <p @click="isOpen = true"
                     class="flex items-center px-6 py-2 rounded-full shadow-lg cursor-pointer w-fit">
                     <span style="margin-right: 7px;" class="material-icons-sharp">photo_library</span>
@@ -75,7 +74,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
             }
         },
         mounted () {
-            ApiService.get('admin/categories').then((res) => {
+            ApiService.get('categories-by-type/products').then((res) => {
                 this.categories = res.data.data
             }).catch((res) => {
                 console.log(res);

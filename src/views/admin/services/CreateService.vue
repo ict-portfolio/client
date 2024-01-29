@@ -34,16 +34,13 @@
                     toolbar="full" contentType="html"></quill-editor>
             </div>
 
-            <div class="w-[48%] my-6">
+            <div class="flex justify-between w-full px-2 mt-2">
                 <p @click="isOpen = true"
                     class="flex items-center px-6 py-2 rounded-full shadow-lg cursor-pointer w-fit">
                     <span style="margin-right: 7px;" class="material-icons-sharp">photo_library</span>
                     Add Photo
                 </p>
-                <p v-if="errors.image_id" class="w-full ml-2 font-semibold text-danger">{{ errors.image_id[0] }}</p>
-            </div>
-            <div class="flex justify-end w-[96%]">
-                <button class="bg-secondary px-6 shadow text-white py-1.5 rounded">Create</button>
+                <button class="bg-secondary px-8 shadow text-white py-1.5 rounded">Create</button>
             </div>
             <div class="flex flex-wrap w-full my-4">
                 <div class="w-[180px] rounded-md relative h-[120px] shadow m-2 p-2 border border-[#b6b4b4] overflow-hidden" v-for="image in selectedImages" :key="image.id" >
@@ -84,7 +81,7 @@ export default {
         }
     },
     mounted() {
-        ApiService.get('admin/categories').then((res) => {
+        ApiService.get('categories-by-type/solutions').then((res) => {
             this.categories = res.data.data
         }).catch((res) => {
             console.log(res);

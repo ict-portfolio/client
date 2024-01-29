@@ -1,5 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import AdminDashboardPage from '@/views/admin/AdminDashboardPage.vue'
+import AdminGalleryPage from '@/views/admin/AdminGalleryPage.vue'
+import AdminRootCategoriesPage from '@/views/admin/AdminRootCategoriesPage.vue'
+import AdminCategoriesPage from '@/views/admin/AdminCategoriesPage.vue'
+
+import AdminServicePage from '@/views/admin/services/AdminServicePage.vue'
+import AdminServiceDetails from '@/views/admin/services/AdminServiceDetails.vue'
+import CreateService from '@/views/admin/services/CreateService.vue'
+import EditService from '@/views/admin/services/EditService.vue'
+
+import AdminProductsPage from '@/views/admin/products/AdminProductsPage.vue'
+import CreateProduct from '@/views/admin/products/CreateProduct.vue'
+import AdminProductDetails from '@/views/admin/products/AdminProductDetails.vue'
+import EditProduct from '@/views/admin/products/EditProduct.vue'
+
+import AdminRoadmapPage from '@/views/admin/roadmap/RoadmapView.vue'
+import CreateRoadmap from '@/views/admin/roadmap/CreateRoadmap.vue'
+import EditRoadmap from '@/views/admin/roadmap/EditRoadmap.vue'
+
+import AdminContentsPage from '@/views/admin/resources/contents/AdminContentsPage.vue'
+
+import UserManagement from '@/views/admin/UserManagement.vue'
+import AdminContactsPage from '@/views/admin/AdminContactsPage.vue'
+
 const routes = [
   {
     path : '/',
@@ -91,92 +115,92 @@ const routes = [
       {
         path : '',
         name : 'AdminDashboardPage',
-        component : () => import('@/views/admin/AdminDashboardPage.vue')
+        component : AdminDashboardPage
       },
       {
         path : 'gallery',
         name : 'AdminGalleryPage',
-        component : () => import('@/views/admin/AdminGalleryPage.vue')
+        component : AdminGalleryPage
       },
       {
         path : 'root-categories',
         name : 'AdminRootCategoriesPage',
-        component : () => import('@/views/admin/AdminRootCategoriesPage.vue')
+        component : AdminRootCategoriesPage
       },
       {
         path : 'categories',
         name : 'AdminCategoriesPage',
-        component : () => import('@/views/admin/AdminCategoriesPage.vue')
+        component : AdminCategoriesPage
       },
       {
         path : 'contents',
         name : 'AdminContentsPage',
-        component : () => import('@/views/admin/AdminContentsPage.vue')
+        component : AdminContentsPage
       },
       {
         path : 'services',
         name : 'AdminServicePage',
-        component : () => import('@/views/admin/services/AdminServicePage.vue')
+        component : AdminServicePage
       },
       {
         path : 'services/:id',
         name : 'AdminServiceDetails',
-        component : () => import('@/views/admin/services/AdminServiceDetails.vue')
+        component : AdminServiceDetails
       },
       {
         path : 'services/create',
         name : 'CreateService',
-        component : () => import('@/views/admin/services/CreateService.vue')
+        component : CreateService
       },
       {
         path : 'services/edit/:id',
         name : 'EditService',
-        component : () => import('@/views/admin/services/EditService.vue')
+        component : EditService
       },
       {
         path : 'contacts',
         name : 'AdminContactsPage',
-        component : () => import('@/views/admin/AdminContactsPage.vue')
+        component : AdminContactsPage
       },
       {
         path : 'roadmap',
         name : 'AdminRoadmapPage',
-        component : () => import('@/views/admin/roadmap/RoadmapView.vue')
+        component : AdminRoadmapPage
       },
       {
         path : 'roadmap/create',
         name : 'CreateRoadmap',
-        component : () => import('@/views/admin/roadmap/CreateRoadmap.vue')
+        component : CreateRoadmap
       },
       {
         path : 'roadmap/:id',
         name : 'EditRoadmap',
-        component : () => import('@/views/admin/roadmap/EditRoadmap.vue')
+        component : EditRoadmap
       },
       {
         path : 'user-management',
         name : 'UserManagement',
-        component : () => import('@/views/admin/UserManagement.vue')
+        component : UserManagement
       },
       {
         path : 'products',
         name : 'AdminProducts',
-        component : () => import('@/views/admin/products/AdminProductsPage.vue')
+        component : AdminProductsPage
       },
       {
         path : 'products/create',
         name : 'CreateProduct',
-        component : () => import('@/views/admin/products/CreateProduct.vue')
+        component : CreateProduct
       },
       {
         path : 'products/:id',
         name : 'AdminProductDetails',
-        component : () => import('@/views/admin/products/AdminProductDetails.vue')
+        component : AdminProductDetails
       },
       {
         path : 'products/edit/:id',
         name : 'EditProduct',
-        component : () => import('@/views/admin/products/EditProduct.vue')
+        component : EditProduct
       },
     ]
   },
