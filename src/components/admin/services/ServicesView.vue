@@ -60,7 +60,7 @@ import MainPagination from '@/components/base/MainPagination.vue'
                     },
                     {
                         label : 'Image',
-                        field : 'image',
+                        field : 'image.image',
                         width : '20%'
                     },
                     {
@@ -86,6 +86,7 @@ import MainPagination from '@/components/base/MainPagination.vue'
                 ApiService.get(`admin/services?page=${page}`).then((res) => {
                     this.services = res.data.data.services;
                     this.paginationData = res.data.data.pagination;
+                    console.log(res.data.data.services);
                 }).catch((res) => {
                     console.log(res);
                 })

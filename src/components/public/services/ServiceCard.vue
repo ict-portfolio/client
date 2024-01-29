@@ -5,7 +5,7 @@
         </figure>
         <div class="px-0 pt-2 card-body">
             <h2 class="text-base card-title line-clamp-2">{{ service.name }}</h2>
-            <p class="text-[0.95rem] line-clamp-2">{{ service.paragraph }}</p>
+            <p class="text-[0.95rem] line-clamp-2">{{ service.proposal }}</p>
             <div class="justify-end mt-1 card-actions">
                 <button class="border-0 btn btn-primary btn-sm">Read more</button>
             </div>

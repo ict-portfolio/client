@@ -64,7 +64,6 @@ import filePath from '@/services/FilePath'
                     console.log(res.data.data.data);
                     this.images.push(...res.data.data.data);
                     this.last_page = res.data.data.last_page;
-                    console.log(res.data.data.data);
                 }).catch((res) => {
                     console.log(res);
                 })
