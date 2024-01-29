@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-end">
         <Transition name="bar">
-            <aside v-if="sidebar" class="h-screen fixed left-0 top-0 overflow-scroll text-gray-1 shadow-inner border-r border-[#e2e8f0] z-50 bg-white w-1/6">
+            <aside v-if="sidebar" class="h-screen fixed left-0 top-0 overflow-y-scroll sidebar text-gray-1 shadow-inner border-r border-[#e2e8f0] z-50 bg-white w-1/6">
                 <h1 class="py-3 text-center">
                     <router-link to="/">FIRST ICT</router-link>
                 </h1>
@@ -87,27 +87,16 @@ import UserModal from '@/components/admin/UserModal.vue';
                         path : 'AdminGalleryPage'
                     },
                     {
-                        cap : 'root-category',
-                        name : 'Root Categories',
+                        id : 'root-category',
+                        cap : 'Root Categories',
                         icon : 'reorder',
                         path : 'AdminRootCategoriesPage'
                     },
                     {
-                        name : 'Categories',
+                        cap : 'Categories',
                         icon : 'category',
-                        cap : 'category',
+                        id : 'category',
                         path : 'AdminCategoriesPage'
-                    },
-                    {
-                        cap : 'Contents',
-                        id : 3,
-                        icon : 'content_copy',
-                        items : [
-                            {
-                                name : 'Contents',
-                                path : 'AdminContentsPage'
-                            },
-                        ]
                     },
                     {
                         cap : 'Products',
@@ -120,6 +109,17 @@ import UserModal from '@/components/admin/UserModal.vue';
                         id : 4,
                         icon : 'flare',
                         path : 'AdminServicePage'
+                    },
+                    {
+                        cap : 'Resources',
+                        id : 3,
+                        icon : 'content_copy',
+                        items : [
+                            {
+                                name : 'Contents',
+                                path : 'AdminContentsPage'
+                            },
+                        ]
                     },
                     {
                         cap : 'Contacts',
@@ -139,30 +139,30 @@ import UserModal from '@/components/admin/UserModal.vue';
                         icon : 'groups',
                         path : 'UserManagement'
                     },
-                    {
-                        cap : 'Calendar',
-                        id : 7,
-                        icon : 'calendar_month',
-                        path : 'AdminDashboardPage'
-                    },
-                    {
-                        cap : 'Employees',
-                        id : 8,
-                        icon : 'people',
-                        path : 'AdminDashboardPage'
-                    },
-                    {
-                        cap : 'Logs',
-                        id : 9,
-                        icon : 'work_history',
-                        path : 'AdminDashboardPage'
-                    },
-                    {
-                        cap : 'Backups',
-                        id : 10,
-                        icon : 'backup',
-                        path : 'AdminDashboardPage'
-                    },
+                    // {
+                    //     cap : 'Calendar',
+                    //     id : 7,
+                    //     icon : 'calendar_month',
+                    //     path : 'AdminDashboardPage'
+                    // },
+                    // {
+                    //     cap : 'Employees',
+                    //     id : 8,
+                    //     icon : 'people',
+                    //     path : 'AdminDashboardPage'
+                    // },
+                    // {
+                    //     cap : 'Logs',
+                    //     id : 9,
+                    //     icon : 'work_history',
+                    //     path : 'AdminDashboardPage'
+                    // },
+                    // {
+                    //     cap : 'Backups',
+                    //     id : 10,
+                    //     icon : 'backup',
+                    //     path : 'AdminDashboardPage'
+                    // },
                 ]
             }
         },
@@ -179,6 +179,17 @@ import UserModal from '@/components/admin/UserModal.vue';
 </script>
 
 <style scoped>
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: gray; 
+  border-radius: 10px;
+}
 .side-enter-from , .side-leave-to {
     margin-top: -5%;
 }
