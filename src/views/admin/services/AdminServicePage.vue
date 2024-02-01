@@ -81,19 +81,6 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
                 console.log(res);
             })
         }
-        // methods : {
-        //     getServices() {
-        //         ApiService.get('admin/services').then((res) => {
-        //             this.services = res.data.data
-        //             console.log(res.data.data);
-        //         }).catch((res) => {
-        //             console.log(res);
-        //         })
-        //     }
-        // },
-        // mounted(){
-        //     this.getServices();
-        // }
     }
 </script>
 
