@@ -92,14 +92,14 @@ export default {
             this.selectedImages = this.selectedImages.filter((image) => image.id != id)
         },
         editService() {
-            ApiService.patch(`admin/services/${this.$props.id}`, this.service).then(() => {
-                this.$emit('reload')
+            ApiService.patch(`admin/services/${this.$route.params.id}`, this.service).then(() => {
+                this.$router.push({name : 'AdminServicePage'})
             }).catch((res) => {
                 console.log(res);
             })
         },
         getCategory() {
-            ApiService.get('admin/categories').then((res) => {
+            ApiService.get('categories-by-type/solutions').then((res) => {
                 this.categories = res.data.data
                 console.log(res.data.data);
             }).catch((err) => {
@@ -111,6 +111,15 @@ export default {
         this.getCategory()
         ApiService.get(`admin/services/${this.$route.params.id}`).then((res) => {
             this.service = res.data.data
+            this.service.images.forEach((img) => {
+                let i = {id : img.image.id , url : img.image.url}
+                this.selectedImages.push(i);
+            })
+            this.service.images = [];
+            this.selectedImages.forEach((i) => {
+                this.service.images.push(i.id)
+            })
+            console.log(this.service);
         }).catch((err) => {
             console.log(err);
         })
