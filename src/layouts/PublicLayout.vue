@@ -113,7 +113,7 @@ import NavBar from './NavBar.vue';
                     {
                         name : 'Articles',
                         icon : 'content_copy',
-                        path : 'ContentsPage'
+                        path : 'ServicesPage'
                     },
                     {
                         name : 'About Us',

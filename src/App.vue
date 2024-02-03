@@ -33,6 +33,9 @@
     background-image: url('@/assets/bread.png');
     background-size: cover;
     background-position: center;
+    text-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    color: white;
 }
 /* .breadcamp {
   background-color: #232B3C;

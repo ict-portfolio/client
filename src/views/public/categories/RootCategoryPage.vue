@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="w-full py-12 mb-6 breadcamp">
-            <h1 class="my-4 text-2xl text-center text-white sm:text-5xl">{{ rootSlug }}</h1>
-            <p class="flex items-center justify-center text-lg text-secondary">
+        <div class="w-full py-12 mb-6 text-white breadcamp">
+            <h1 class="my-4 text-2xl text-center sm:text-5xl">{{ rootSlug }}</h1>
+            <p class="flex items-center justify-center text-lg font-semibold">
                 <router-link to="/">Home</router-link>
                 <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
-                <span>{{ rootSlug }}</span>
+                <span class="text-secondary">{{ rootSlug }}</span>
             </p>
         </div>
         Root Categories list with sub categories and related fields

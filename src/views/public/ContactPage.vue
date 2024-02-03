@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="flex justify-center w-full pb-12 mb-6 pt-36 breadcamp">
-            <p class="flex items-center text-lg text-secondary">
+            <p class="flex items-center text-lg font-semibold text-white">
                 <router-link to="/">Home</router-link>
                 <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
-                <span>Contact Us</span>
+                <span class="text-secondary">Contact Us</span>
             </p>
         </div>
         <div class="px-2 my-8 md:px-20">

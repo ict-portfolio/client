@@ -2,10 +2,10 @@
     <div>
         <div class="w-full h-screen pb-12 mb-6 pt-36 landing">
             <h1 class="w-full my-6 text-[4rem] sm:text-[5rem] text-center text-white">About Us</h1>
-            <p class="flex items-center justify-center text-lg text-white">
+            <p class="flex items-center justify-center text-lg font-semibold text-white">
                 <router-link to="/">Home</router-link>
                 <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
-                <span>About Us</span>
+                <span class="text-secondary">About Us</span>
             </p>
         </div>
         <div class="flex flex-wrap justify-center p-2">
@@ -65,5 +65,6 @@ import AboutC2 from '../../components/public/AboutC2.vue'
 .landing {
     background-image: url('@/assets/buildings.jpg');
     background-size: cover;
+    text-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 </style>
