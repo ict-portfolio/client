@@ -1,5 +1,5 @@
 <template>
-    <ul class="flex">
+    <ul class="flex list-none">
         <li class="mx-2">
             <a target="_blank" href="https://www.google.com">
                 <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24">

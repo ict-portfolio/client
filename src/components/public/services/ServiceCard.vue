@@ -1,13 +1,13 @@
 <template>
-    <div class="w-[48%] relative card p-2 pb-0 md:w-[30%] lg:w-[23%] bg-[#ffffff] my-4" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px">
+    <div class="w-[48%] relative p-3 rounded md:w-[30%] lg:w-[23%] bg-[#ffffff] my-4" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px">
         <figure>
-            <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
+            <img class="rounded" :src="service.default_image" :alt="service.name" />
         </figure>
-        <div class="px-0 pt-2 card-body">
-            <h2 class="text-base card-title line-clamp-2">{{ service.name }}</h2>
-            <p class="text-[0.95rem] line-clamp-2">{{ service.proposal }}</p>
-            <div class="justify-end mt-1 card-actions">
-                <button class="border-0 btn btn-primary btn-sm">Read more</button>
+        <div class="px-0 pt-2">
+            <h2 class="mt-1 text-lg font-semibold line-clamp-2">{{ service.name }}</h2>
+            <p class="text-[0.95rem] my-2 line-clamp-3" v-html="service.proposal"></p>
+            <div class="flex justify-end">
+                <router-link :to="{name : 'ServiceDetails' , params : {slug : service.slug}}" class="px-3 py-1.5 rounded bg-primary text-white text-sm">Read more</router-link>
             </div>
         </div>
     </div>

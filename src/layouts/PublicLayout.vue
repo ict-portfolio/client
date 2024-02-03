@@ -49,7 +49,7 @@
             <router-view></router-view>
         </main>
 
-        <img src="@/assets/footer.png" style="height: 360px;width: 100%;" alt="">
+        <!-- <img src="@/assets/footer.png" style="height: 360px;width: 100%;" alt=""> -->
         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150"><path fill="#333F55" fill-opacity="1" d="M0,64L80,80C160,96,320,128,480,117.3C640,107,800,53,960,26.7C1120,0,1280,0,1360,0L1440,0L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>                 -->
         <footer class="flex-wrap px-2 py-8 text-white md:px-12 footer md:flex">
             <div class="md:w-[48%]">
@@ -68,9 +68,9 @@
                 </p>
             </div>
             <div class="justify-between text-sm sm:flex md:w-[48%]">
-                <ul class="m-10 md:m-0 ">
+                <ul class="m-10 list-none md:m-0">
                     <h1 class="text-2xl">Pages</h1>
-                    <li class="my-3 hover:text-primary" v-for="item in navItems" :key="item.name">
+                    <li class="my-3 hover:text-green" v-for="item in navItems" :key="item.name">
                         <router-link class="flex items-center" :to="{name : item.path}">
                             <span style="color: rgb(49, 93, 240);" class="material-icons-outlined">chevron_right</span>
                         {{ item.name }}</router-link>

@@ -1,56 +1,36 @@
 <template>
     <div>
-        <div class="w-full py-12 mb-6 breadcamp">
-            <h1 class="my-4 text-2xl text-center text-white sm:text-5xl">{{ slug }}</h1>
-            <p class="flex items-center justify-center text-lg text-secondary">
-                <router-link to="/">Home</router-link>
-                <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
-                <router-link :to="{name : 'AdminServicePage'}">Services</router-link>
-                <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
-                <span>{{ slug }}</span>
-            </p>
-        </div>
-        <h1 class="text-center text-[30px]">Service Details</h1>
-        <div class="flex flex-col items-center ">
-            <div class="mx-20 w-[80%] py-5 md:px-28">
-                <div class="flex items-center">
-                    <img style="width: 50px;height: 50px;" src="../../../assets/proposal.jpg" alt="">
-                    <span class="px-5 text-[24px]">Proposal</span>
-                </div>
-                <p class="my-4 text-[18px]">{{ service.proposal }}</p>
+        <h1 class="mt-6 text-3xl font-bold text-center">{{ service.name }}</h1>
+        <div class="mx-auto sm:w-[80%] py-5 px-1">
+            <div class="flex items-center">
+                <img class="sm:w-[50px] sm:h-[50px] w-[30px] h-[30px]" src="@/assets/proposal.jpg" alt="">
+                <h3 class="px-2 text-2xl font-semibold sm:px-5">Proposal</h3>
             </div>
-            <div class="mx-20 w-[80%] py-5 md:px-28">
-                <div class="flex items-center">
-                    <img style="width: 50px;height: 50px;" src="../../../assets/energy.jpg" alt="">
-                    <span class="px-5 text-[24px]">Features</span>
-                </div>
-                <p class="my-4 text-[18px]">{{ service.features }}</p>
-            </div> 
+            <p class="my-4" v-html="service.proposal"></p>
         </div>
-        <h1 class="text-center text-[30px]">Image Description</h1>
-        <div class="flex flex-col w-full mt-5  items-center">
-            <div class="sm:grid sm:grid-cols-3 sm:gap-4 block ">
-                <img class="w-[50%] mx-24 my-3" :src="service.default_image" alt="">
-                <img class="w-[50%] mx-24 my-3" :src="service.default_image" alt="">
-                <img class="w-[50%] mx-24 my-3" :src="service.default_image" alt="">
-                <img class="w-[50%] mx-24 my-3" :src="service.default_image" alt="">
-                <img class="w-[50%] mx-24 my-3" :src="service.default_image" alt="">
-                <img class="w-[50%] mx-24 my-3" :src="service.default_image" alt="">
-
+        <div class="mx-auto sm:w-[80%] py-5 px-1">
+            <div class="flex items-center">
+                <img class="sm:w-[50px] sm:h-[50px] w-[30px] h-[30px]" src="../../../assets/energy.jpg" alt="">
+                <h3 class="px-2 text-2xl font-semibold sm:px-5">Features</h3>
+            </div>
+            <p class="px-4 my-4" v-html="service.features"></p>
+        </div> 
+        <div class="mt-5">
+            <h1 class="mt-4 text-xl font-semibold text-center">{{service.image_description}}</h1>
+            <div class="flex flex-wrap justify-around">
+                <img v-for="img in service.images" :key="img.id" class="my-5 w-[30%] rounded" :src="img.image.url" alt="">
             </div>
         </div>
-        <div class="flex flex-col  items-center">
-            <div class="mx-20 w-[80%] py-10 md:px-28">
-                <div class="flex items-center">
-                    <img style="width: 50px;height: 50px;" src="../../../assets/energy.jpg" alt="">
-                    <span class="px-5 text-[24px]">Terms & Conditions</span>
-                </div>
-                    <p class="my-4 text-[18px]">{{ service.terms }}</p>
-            </div> 
-        </div>
-        <div class="flex justify-end px-24 text-white my-4">
-            <router-link class="bg-primary py-2 px-3" :to="{name : 'EditService'}"><span class="material-icons-outlined">edit</span></router-link>
-            <button @click="deleteService" class="bg-danger py-2 px-3"><span class="material-icons-outlined">delete</span></button>
+        <div class="mx-auto sm:w-[80%] py-5 px-1">
+            <div class="flex items-center">
+                <img class="sm:w-[50px] sm:h-[50px] w-[30px] h-[30px]" src="../../../assets/energy.jpg" alt="">
+                <h3 class="px-2 text-2xl font-semibold sm:px-5">Terms & Conditions</h3>
+            </div>
+                <p class="my-4" v-html="service.terms"></p>
+        </div> 
+        <div class="flex justify-end px-24 my-4 text-white">
+            <router-link title="Edit Service" class="flex items-center justify-center p-3 mr-6 rounded-full h-fit bg-primary" :to="{name : 'EditService'}"><span class="material-icons-outlined">edit</span></router-link>
+            <button title="Delete Service" @click="deleteService" class="flex items-center justify-center p-3 rounded-full h-fit bg-danger"><span class="material-icons-outlined">delete</span></button>
         </div>
     </div>
 </template>

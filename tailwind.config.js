@@ -17,7 +17,8 @@ module.exports = {
       "secondary" : "#5DA8FF",
       "tertiary" : "#1dd3b0",
       "danger" : "#E83845",
-      "coal" : "#262e3f"
+      "coal" : "#262e3f",
+      "green" : "#14b8a6"
     }
   },
   // plugins: [require("daisyui")],

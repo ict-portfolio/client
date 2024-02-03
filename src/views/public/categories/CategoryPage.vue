@@ -12,11 +12,9 @@
         </div>
         <main>
             <div class="flex flex-wrap gap-2 p-1 sm:p-3" v-if="category?.products?.length">
-                <!-- <h1 class="w-full text-2xl font-bold">Products</h1> -->
                 <ProductCard :product="product" v-for="product in category.products" :key="product.id"  />
             </div>
             <div class="flex flex-wrap gap-2 p-1 sm:p-3" v-else-if="category?.services?.length">
-                <!-- <h1 class="w-full text-2xl font-bold">Products</h1> -->
                 <ServiceCard :service="service" v-for="service in category.services" :key="service.id" />
             </div>
         </main>
