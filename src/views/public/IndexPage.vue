@@ -10,7 +10,7 @@
         <div class="mb-12" :class="noSlider ? 'fillSlider' : 'bg-black'">
             <MainSwiper @empty="emptySlider" @loaded="sliderLoaded" class="z-10 w-screen h-screen opacity-80" />
         </div>
-        <div class="absolute z-40 w-full p-2 text-white lg:w-1/2 left-1/2 top-1/2" style="transform: translate(-50% , -50%);">
+        <div class="absolute z-40 w-full p-2 text-white hero-text lg:w-1/2 left-1/2 top-1/2" style="transform: translate(-50% , -50%);">
             <h1 class="p-3 text-3xl font-extrabold tracking-wider text-center md:text-6xl">Helping Business Through Technology</h1>
             <p class="my-3 font-bold text-center md:text-lg">Employing cutting-edge technologies, our team of seasoned experts orchestrates seamless integrations, ensuring optimal performance and scalability across diverse systems and platforms.</p>
             <div class="flex justify-center mt-4">
@@ -91,6 +91,9 @@ import AOS from 'aos';
     animation-duration: 3000ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear; 
+}
+.hero-text {
+    text-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 @keyframes spin {
     from {

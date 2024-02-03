@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="flex justify-center pb-12 mb-6 pt-36 breadcamp">
-            <p class="flex items-center text-lg text-secondary">
+            <p class="flex items-center text-lg font-semibold text-white">
                 <router-link to="/">Home</router-link>
                 <span style="margin: 0px 8px;" class="material-icons-outlined">navigate_next</span>
-                <span>Services</span>
+                <span class="text-secondary">Services</span>
             </p>
         </div>
         <div v-if="services.length" class="flex-wrap justify-around sm:flex">

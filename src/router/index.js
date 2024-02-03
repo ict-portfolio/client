@@ -66,21 +66,6 @@ const routes = [
         component : () => import('@/views/public/services/ServiceDetails.vue')
       },
       {
-        path : 'contents',
-        name : 'ContentsPage',
-        component : () => import('@/views/public/ContentsPage.vue')
-      },
-      {
-        path : 'contents/:slug',
-        name : 'ContentView',
-        component : () => import('@/views/public/ContentView.vue')
-      },
-      {
-        path : 'categories/:slug',
-        name : 'ContentsByCategory',
-        component : () => import('@/views/public/ContentsByCategory.vue')
-      },
-      {
         path : 'about',
         name : 'AboutPage',
         component : () => import('@/views/public/AboutPage.vue')

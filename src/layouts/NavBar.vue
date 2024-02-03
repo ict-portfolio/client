@@ -23,25 +23,25 @@
                             <PopoverPanel
                                 class="absolute z-50 w-screen max-w-lg mt-3 transform -translate-x-1/2 left-1/2 lg:max-w-2xl">
                                 <div class="z-50 flex justify-between overflow-hidden text-sm rounded shadow-lg bg-coal">
-                                    <ul class="w-[45%] p-4">
+                                    <ul class="w-[45%] list-none p-4">
                                         <li
                                             v-for="solution in solutions" :key="solution.id"
                                             @mouseenter="activeSolution = solution"
                                             :class="activeSolution.id == solution.id ? 'bg-dense' : ''">
-                                            <router-link
+                                            <div
                                                 class="relative flex items-center px-2 py-1 my-1 rounded-md cursor-pointer hover:bg-gray-1"    
                                                 :to="{name : 'RootCategoryPage' , params : {rootCategory : solution.slug}}">
                                                 <img class="w-[24px] h-[24px] mr-2" :src="solution.icon" alt="" />
                                                 <PopoverButton class="text-left">{{ solution.name }}</PopoverButton>
                                                 <span style="position: absolute; right: 3px" class="material-icons-outlined">chevron_right</span>
-                                            </router-link>
+                                            </div>
                                         </li>
                                     </ul>
-                                    <ul class="w-[53%] bg p-4">
+                                    <ul class="w-[53%] list-none bg p-4">
                                         <li
                                             v-for="category in activeSolution.categories"
                                             :key="category.id"
-                                            class="flex items-center px-2 py-1 my-1 rounded-md hover:bg-dense">
+                                            class="flex items-center px-2 py-1 my-1 rounded hover:bg-dense">
                                                 <img class="w-[24px] h-[24px] mr-2" :src="category.icon" alt="" />
                                                 <router-link :to="{name : 'CategoryPage' , params : {rootCategory : activeSolution.slug , category : category.slug}}">
                                                     <PopoverButton class="text-left">
@@ -71,21 +71,21 @@
                             <PopoverPanel
                                 class="absolute z-50 w-screen max-w-lg mt-3 transform -translate-x-1/2 left-1/2 lg:max-w-3xl">
                                 <div class="z-50 flex justify-between overflow-hidden text-sm rounded shadow-lg bg-coal">
-                                    <ul class="w-[45%] p-4">
+                                    <ul class="w-[45%] list-none p-4">
                                         <li v-for="product in products" :key="product.id"
                                             @mouseenter="activeProduct = product"
                                             :class="activeProduct.id == product.id ? 'bg-dense' : ''">
-                                            <router-link
+                                            <div
                                                 class="relative flex items-center px-2 py-1 my-1 rounded-md cursor-pointer hover:bg-gray-1"    
                                                 :to="{name : 'RootCategoryPage' , params : {rootCategory : product.slug}}">
                                                 <img class="w-[24px] h-[24px] mr-2" :src="product.icon" alt="" />
                                                 <PopoverButton class="text-left">{{ product.name }}</PopoverButton>
                                                 <span style="position: absolute; right: 3px" class="material-icons-outlined">chevron_right</span>
-                                            </router-link>
+                                            </div>
                                         </li>
                                     </ul>
-                                    <ul class="w-[53%] bg p-4">
-                                        <li class="flex items-center px-2 py-1 my-1 rounded-md hover:bg-dense"
+                                    <ul class="w-[53%] list-none bg p-4">
+                                        <li class="flex items-center px-2 py-1 my-1 rounded hover:bg-dense"
                                             v-for="category in activeProduct.categories" :key="category.id">
                                             <img class="w-[24px] h-[24px] mr-2" :src="category.icon" alt="" />
                                             <router-link :to="{name : 'CategoryPage' , params : {rootCategory : activeProduct.slug , category : category.slug}}">
@@ -115,11 +115,23 @@
                             leave-from-class="translate-y-0 opacity-100" leave-to-class="translate-y-1 opacity-0">
                             <PopoverPanel
                                 class="absolute z-50 w-screen max-w-sm mt-3 transform -translate-x-1/2 left-1/2 lg:max-w-3xl">
-                                <div class="z-50 p-4 overflow-hidden bg-black rounded-lg shadow-lg">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Rerum, veniam iure ex deserunt delectus architecto sint?
-                                    Quaerat veniam, dicta delectus deserunt voluptatum magni omnis
-                                    numquam, modi vitae fugit ex temporibus?
+                                <div class="z-50 max-w-lg p-1 overflow-hidden bg-black rounded-lg shadow-lg bg">
+                                    <ul class="flex flex-wrap w-full p-1 list-none">
+                                        <li
+                                            v-for="r in res"
+                                            :key="r.name"
+                                            class="relative flex items-center w-1/2 px-2 py-1 my-1 rounded cursor-pointer hover:text-secondary drop-shadow-lg"  >
+                                            <span class="material-icons-outlined">{{ r.icon }}</span>
+                                            <router-link :to="{name : r.page}" class="ml-1">
+                                                {{ r.name }}
+                                            </router-link>
+                                        </li>
+                                        <li
+                                            class="relative flex items-center w-1/2 px-2 py-1 my-1 rounded cursor-pointer hover:text-secondary drop-shadow-lg"  >
+                                            <span class="material-icons-outlined">play_circle</span>
+                                            <a href="https://www.youtube.com" target="_blank" class="ml-1">Videos</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </PopoverPanel>
                         </transition>
@@ -196,6 +208,28 @@ export default {
             resources: [],
             activeSolution: {},
             activeProduct: {},
+            res : [
+                {
+                    name : 'Training',
+                    page : 'IndexPage',
+                    icon : 'model_training'
+                },
+                {
+                    name : 'Blog',
+                    page : 'IndexPage',
+                    icon : 'content_copy'
+                },
+                {
+                    name : 'Technical Paper',
+                    page : 'IndexPage',
+                    icon : 'description'
+                },
+                {
+                    name : 'Webinars',
+                    page : 'IndexPage',
+                    icon : 'videocam'
+                },
+            ]
         };
     },
     methods: {
