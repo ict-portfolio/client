@@ -1,48 +1,43 @@
 <template>
     <div class="min-h-screen p-4">
-        <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp"
-            @click="$router.back()">arrow_back</span>
-        <ImagesModal @selection="selectImage" v-if="viewModal" @cancel="cancelModal"
-            class="fixed z-50 w-1/2 bg-white shadow-lg top-1/2 left-1/2" style="transform: translate(-50% , -50%);" />
-        <form class="p-4 mx-auto shadow-md" @submit.prevent="updateProduct">
-            <h1 class="text-2xl">Edit Product</h1>
-            <BaseInput class="w-full" :error="errors.name" type="text" :label="'Name'" v-model="product.name" />
-            <div class="w-full mx-auto mt-2 mb-8">
-                <label for="icon" class="block w-full mb-1">Product</label>
-                <select v-model="product.category_id"
-                    class="w-full text-gray-700 bg-white appearance-none focus:outline-none select select-primary focus:ring-0"
-                    name="id" id="">
+        <span style="cursor: pointer;margin: auto 0px;" class="material-icons-sharp" @click="$router.back()">arrow_back</span>
+        <ImagesModal @closeModal="isOpen = false" @selectImage="selectImage" :isOpen="isOpen" />
+        <form class="flex flex-wrap justify-around p-4 mx-auto" @submit.prevent="updateProduct">
+            <h1 class="w-full text-2xl">Create Product</h1>
+            <BaseInput class="h-fit" :error="errors.name" type="text" :label="'Name'" v-model="product.name" />
+            <div class="w-[48%]">
+                <label for="icon" class="block w-full">Category</label>
+                <select v-model="product.category_id" class="w-full py-1.5 px-2 text-gray-700 bg-white border rounded appearance-none focus:outline-none border-primary focus:ring-0" name="root_category_id" id="">
                     <option disabled selected>Select Category</option>
-                    <!-- <option>{{ categories }}</option> -->
-                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}
-                    </option>
+                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
                 </select>
-                <p v-if="errors.categories" class="w-full text-danger">{{ errors.categories }}</p>
+                <p v-if="errors.category_id" class="w-full text-danger">{{ errors.category_id[0] }}</p>
             </div>
-            <div class="w-full mx-auto mt-2 mb-8">
+            <BaseInput class="h-fit" :error="errors.price" type="text" :label="'Price'" v-model="product.price" />
+            <BaseInput class="h-fit" :error="errors.discount" type="text" :label="'Discount'" v-model="product.discount" />
+            <div class="w-full px-2 my-5">
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" v-model="product.instock" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-gray-2 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-2 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    <span class="font-medium text-gray-900 ms-3">Product instock</span>
+                </label>
+            </div>
+            <div class="w-full px-2 mt-2 mb-28">
                 <label for="description">Description</label>
-                <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="product.description" theme="snow"
-                    toolbar="full" contentType="html"></quill-editor>
+                <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="product.description" theme="snow" toolbar="full" contentType="html"></quill-editor>
             </div>
-            <BaseInput class="w-full" :error="errors.price" type="number" :label="'Price'" v-model="product.price" />
-            <BaseInput class="w-full" :error="errors.discount" type="number" :label="'Discount'"
-                v-model="product.discount" />
-            <div class="mb-3">
-                <input type="checkbox" v-model="product.instock">
-                <label for="instock" class="ml-2">Instock</label>
-            </div>
-            <div class="flex justify-between mt-2">
-                <p v-if="errors.image_id" class="w-full font-semibold text-danger">{{ errors.image_id[0] }}</p>
-                <p @click="viewModal = true" class="flex items-center px-4 py-2 rounded-full shadow-lg cursor-pointer">
+            <div class="flex justify-between w-full px-2 mt-2">
+                <p @click="isOpen = true"
+                    class="flex items-center px-6 py-2 rounded-full shadow-lg cursor-pointer w-fit">
                     <span style="margin-right: 7px;" class="material-icons-sharp">photo_library</span>
                     Add Photo
                 </p>
-                <button class="bg-secondary px-8 shadow text-white py-1.5 rounded-full">Edit</button>
+                <button class="bg-secondary px-8 shadow text-white py-1.5 rounded">Update</button>
             </div>
-            <div v-if="previewImage.length" class="flex flex-wrap mt-4">
-                <div v-for="image in previewImage" :key="image.id" class="relative w-fit h-fit">
-                    <span @click="removeImage(image.id)" class="absolute text-white cursor-pointer top-2 right-4">X</span>
-                    <img class="w-32 m-2 rounded-md" :src="image.image" alt="">
+            <div class="flex flex-wrap w-full my-4">
+                <div class="w-[180px] rounded-md relative h-[120px] shadow m-2 p-2 border border-[#b6b4b4] overflow-hidden" v-for="image in selectedImages" :key="image.id" >
+                    <span @click="popImage(image.id)" style="cursor: pointer;position: absolute;top: 0px;right: 0px;background-color: white;border-radius: 50%;" class="material-icons-outlined">close</span>
+                    <img :src="image.url" class="rounded-md" alt="">
                 </div>
             </div>
         </form>
@@ -53,7 +48,6 @@
 <script>
 import BaseInput from '@/components/base/BaseInput.vue'
 import ImagesModal from '@/components/admin/ImagesModal.vue';
-import filePath from '@/services/FilePath';
 import ApiService from '@/services/ApiService';
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
@@ -64,8 +58,8 @@ export default {
     },
     data() {
         return {
-            viewModal: false,
-            previewImage: [],
+            isOpen: false,
+            selectedImages : [],
             props: ["id"],
             product: {
                 name: '',
@@ -81,29 +75,24 @@ export default {
         }
     },
     methods: {
-        cancelModal() {
-            this.viewModal = false;
-        },
-        removeImage(id) {
-            this.product.images = this.product.images.filter((image) => image != id)
-            this.previewImage = this.previewImage.filter((image) => image.id != id)
-        },
         selectImage(image) {
-            this.service.image_id = image.id
-            this.previewImage = filePath.imagePath(image.image)
-            this.cancelModal()
+            this.product.images.push(image.id)
+            this.selectedImages.push(image)
+        },
+        popImage(id) {
+            this.product.images = this.product.images.filter((image) => image != id)
+            this.selectedImages = this.selectedImages.filter((image) => image.id != id)
         },
         updateProduct() {
-            ApiService.patch(`admin/products/${this.$props.id}`, this.product).then(() => {
-                this.$emit('reload')
+            ApiService.patch(`admin/products/${this.$route.params.id}`, this.product).then(() => {
+                this.$router.push({name : 'AdminProducts'})
             }).catch((res) => {
                 console.log(res);
             })
         },
         getCategory() {
-            ApiService.get('admin/categories').then((res) => {
+            ApiService.get('categories-by-type/products').then((res) => {
                 this.categories = res.data.data
-                console.log(res.data.data);
             }).catch((err) => {
                 console.log(err);
             })
@@ -113,6 +102,15 @@ export default {
         this.getCategory()
         ApiService.get(`admin/products/${this.$route.params.id}`).then((res) => {
             this.product = res.data.data
+            this.product.images.forEach((img) => {
+                let i = {id : img.image.id , url : img.image.url}
+                this.selectedImages.push(i);
+            })
+            this.product.images = [];
+            this.selectedImages.forEach((i) => {
+                this.product.images.push(i.id)
+            })
+            console.log(this.product);
         }).catch((err) => {
             console.log(err);
         })
