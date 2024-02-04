@@ -10,6 +10,11 @@ import AdminServiceDetails from '@/views/admin/services/AdminServiceDetails.vue'
 import CreateService from '@/views/admin/services/CreateService.vue'
 import EditService from '@/views/admin/services/EditService.vue'
 
+import AdminContents from '@/views/admin/contents/AdminContents.vue'
+import AdminCreateContent from '@/views/admin/contents/AdminCreateContent.vue'
+import AdminEditContent from '@/views/admin/contents/AdminEditContent.vue'
+import AdminDetailContent from '@/views/admin/contents/AdminDetailContent.vue'
+
 import AdminProductsPage from '@/views/admin/products/AdminProductsPage.vue'
 import CreateProduct from '@/views/admin/products/CreateProduct.vue'
 import AdminProductDetails from '@/views/admin/products/AdminProductDetails.vue'
@@ -18,8 +23,6 @@ import EditProduct from '@/views/admin/products/EditProduct.vue'
 import AdminRoadmapPage from '@/views/admin/roadmap/RoadmapView.vue'
 import CreateRoadmap from '@/views/admin/roadmap/CreateRoadmap.vue'
 import EditRoadmap from '@/views/admin/roadmap/EditRoadmap.vue'
-
-import AdminContentsPage from '@/views/admin/resources/contents/AdminContentsPage.vue'
 
 import UserManagement from '@/views/admin/UserManagement.vue'
 import AdminContactsPage from '@/views/admin/AdminContactsPage.vue'
@@ -118,11 +121,6 @@ const routes = [
         component : AdminCategoriesPage
       },
       {
-        path : 'contents',
-        name : 'AdminContentsPage',
-        component : AdminContentsPage
-      },
-      {
         path : 'services',
         name : 'AdminServicePage',
         component : AdminServicePage
@@ -141,6 +139,26 @@ const routes = [
         path : 'services/edit/:id',
         name : 'EditService',
         component : EditService
+      },
+      {
+        path : 'contents',
+        name : 'AdminContents',
+        component : AdminContents
+      },
+      {
+        path : 'contents/:id',
+        name : 'AdminDetailContent',
+        component : AdminDetailContent
+      },
+      {
+        path : 'contents/create',
+        name : 'AdminCreateContent',
+        component : AdminCreateContent
+      },
+      {
+        path : 'contents/edit/:id',
+        name : 'AdminEditContent',
+        component : AdminEditContent
       },
       {
         path : 'contacts',
