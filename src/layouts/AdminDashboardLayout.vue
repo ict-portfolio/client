@@ -5,7 +5,7 @@
                 <h1 class="py-3 text-center">
                     <router-link to="/">FIRST ICT</router-link>
                 </h1>
-                <ul class="p-2 text-sm">
+                <ul class="p-2 text-sm list-none">
                     <li class="py-1.5 overflow-hidden text-gray-1" v-for="side in sideItems" :key="side.id">
                         <p v-if="side.items" :class="activeSide == side.id ? 'text-primary ' : ''" class="hover:bg-secondary  hover:text-white cursor-pointer flex justify-between items-center py-1.5 px-3" @click="activateSide(side.id)">
                             <span class="select-none"><span style="font-size: 18px;margin: auto 7px; vertical-align: middle;z-index: 1;" class="material-icons-outlined">{{ side.icon }}</span>{{ side.cap }}</span>
@@ -16,7 +16,7 @@
                             <span class="select-none"><span style="font-size: 18px;margin: auto 7px; vertical-align: middle;" class="material-icons-outlined">{{ side.icon }}</span>{{ side.cap }}</span>
                         </router-link>
                         <Transition name="side">
-                            <ul style="z-index: 0.1;" v-if="side.items && activeSide == side.id" class="px-4 py-2">
+                            <ul style="z-index: 0.1;" v-if="side.items && activeSide == side.id" class="px-4 py-2 list-none">
                                 <li v-for="item in side.items" :key="item.name">
                                     <router-link :to="{name : item.path}" class="hover:bg-secondary text-gray-1 hover:text-white  block w-full px-2 py-1.5">{{ item.name }}</router-link>
                                 </li>
@@ -29,7 +29,7 @@
         <div class="transition-all ease-in-out bg-white text-gray-1" :class="sidebar ? 'w-5/6' : 'w-full'">
             <nav class="sticky top-0 z-50 flex justify-between p-2 bg-white shadow-md text-gray-1">
                 <span style="cursor: pointer;margin: auto 0px; font-size: 28px;" @click="sidebar = !sidebar" class="material-icons-outlined">menu</span>
-                <ul class="flex">
+                <ul class="flex list-none">
                     <li class="mx-2 text-gray-1">
                         <router-link :to="{name : 'AdminContactsPage'}">
                             <span style="font-size: 28px;color: #374151; cursor: pointer;" class="material-icons-sharp">notifications</span>

@@ -5,7 +5,7 @@
         <h1 class="w-full text-3xl font-bold text-center sm:mb-6 sm:text-5xl">Roadmap</h1>
         <div class="flex-wrap items-start justify-center sm:flex">
             <div class="sm:w-[30%] sm:px-6 py-6">
-                <ul class="flex sm:block">
+                <ul class="flex list-none sm:block">
                     <li :class="active == 'completed' ? 'text-danger text-base sm:text-3xl' : 'sm:text-2xl text-sm'" class="flex flex-col items-center p-4 transition-all duration-100 sm:flex-row font-semi-bold" @click="active = 'completed'">
                         <span :style="[active == 'completed' ? {scale : '200%'} : {scale : '100%'}]" style="color: #E83845;transition: all 0.5s ease;" class="material-icons-outlined">adjust</span>
                         <span class="sm:ml-[1rem] text-center mt-2 sm:mt-0">Completed</span>
@@ -22,7 +22,7 @@
             </div>
             <div class="sm:w-[60%] sm:px-6 py-6 sm:text-[1.5rem] font-semi-bold">
                 <Transition name="list" mode="out-in">
-                    <ul v-if="active == 'upcoming'">
+                    <ul class="list-none " v-if="active == 'upcoming'">
                         <li class="p-3" v-for="coming in upcoming" :key="coming.id">
                             <div @click="showDescription(coming.id)" class="flex items-center">
                                 <span style="margin-right: 1rem;color: #E83845;font-size:2rem;" class="material-icons-outlined">circle</span>
@@ -33,7 +33,7 @@
                             </p>
                         </li>
                     </ul>
-                    <ul v-else-if="active == 'completed'">
+                    <ul class="list-none " v-else-if="active == 'completed'">
                         <li class="p-3" v-for="com in completed" :key="com.id">
                             <div @click="showDescription(com.id)" class="flex items-center">
                                 <span style="margin-right: 1rem;color: #E83845;font-size:2rem;" class="material-icons-outlined">check_circle</span>
@@ -44,7 +44,7 @@
                             </p>
                         </li>
                     </ul>
-                    <ul v-else>
+                    <ul class="list-none " v-else>
                         <li class="p-3" v-for="pro in progress" :key="pro.id">
                             <div @click="showDescription(pro.id)" class="flex items-center">
                                 <span style="margin-right: 1rem;color: #E83845;font-size:2rem;" class="material-icons-outlined">adjust</span>
