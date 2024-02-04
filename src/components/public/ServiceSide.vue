@@ -2,7 +2,7 @@
     <div>
         <div class="py-8 px-2 sm:px-4 mb-12 border border-[#d1d5db] rounded-md">
             <h1 class="text-2xl text-primary">Latest Services</h1>
-            <ul class="my-4">
+            <ul class="my-4 list-none">
                 <li  v-for="service in services" :key="service.id" class="p-1 my-4">
                     <router-link class="flex w-full text-dense hover:text-secondary" to="/routefixtoservicedetail">
                         <img class="w-20 rounded h-fit sm:w-28" v-if="service.image" :src="filePath.imagePath(service.image.image)" alt="">
