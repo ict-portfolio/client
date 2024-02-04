@@ -2,7 +2,7 @@
     <div>
         <div class="py-8 px-4 mb-12 border border-[#d1d5db] rounded-md">
             <h1 class="text-2xl text-primary">Categories</h1>
-            <ul class="mt-6">
+            <ul class="mt-6 list-none">
                 <li class="flex items-center py-1.5  my-2 border-[#d1d5db] border-b" v-for="category in categories" :key="category.id">
                     <span style="color: cornflowerblue;" class="material-icons-outlined">navigate_next</span>
                     <router-link class="w-full hover:text-secondary" :to="{name : 'ContentsByCategory' , params : {slug : category.slug}}">{{ category.name }}</router-link>
@@ -11,7 +11,7 @@
         </div>
         <div class="py-8 px-2 sm:px-4 mb-12 border border-[#d1d5db] rounded-md">
             <h1 class="text-2xl text-primary">Recent Articles</h1>
-            <ul class="my-4">
+            <ul class="my-4 list-none">
                 <li  v-for="content in contents" :key="content.id" class="p-1 my-4">
                     <router-link class="flex w-full text-dense hover:text-secondary" :to="{name : 'ContentView' , params : {slug : content.slug}}">
                         <img class="w-20 rounded h-fit sm:w-28" v-if="content.image" :src="filePath.imagePath(content.image.image)" alt="">
