@@ -25,7 +25,7 @@
             </div>
             <p class="px-4 my-4" v-html="service.features"></p>
         </div> 
-        <div class="mt-5">
+        <div class="sm:w-[80%] mx-auto px-1 mt-5">
             <h1 class="mt-4 text-xl font-semibold text-center">{{service.image_description}}</h1>
             <div class="flex flex-wrap justify-around">
                 <img v-for="img in service.images" :key="img.id" class="my-5 w-[30%] rounded" :src="img.image.url" alt="">
