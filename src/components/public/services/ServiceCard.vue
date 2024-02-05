@@ -1,7 +1,7 @@
 <template>
-    <div class="w-[48%] relative p-3 rounded md:w-[30%] lg:w-[23%] bg-[#ffffff] my-4" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px">
+    <div class="sm:w-[48%] relative p-3 rounded lg:w-[23%] bg-[#ffffff] my-4" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px">
         <figure>
-            <img class="rounded" :src="service.default_image" :alt="service.name" />
+            <img class="rounded w-full h-[200px]" :src="service.default_image" :alt="service.name" />
         </figure>
         <div class="px-0 pt-2">
             <h2 class="mt-1 text-lg font-semibold line-clamp-2">{{ service.name }}</h2>
