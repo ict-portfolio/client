@@ -9,8 +9,10 @@
             </p>
         </div>
         
-        <div v-if="services.length" class="flex flex-wrap gap-1 p-1 sm:gap-2 sm:p-3">
+        <div v-if="services.length" class="flex flex-wrap justify-center gap-1 p-1 sm:gap-4 sm:p-3">
             <ServiceCard data-aos="fade-up" :data-aos-delay="index * 100" :service="service"  v-for="service , index in services" :key="service.id" />
+            <ServiceCard data-aos="fade-up" :data-aos-delay="index * 100" :service="service"  v-for="service , index in services" :key="service.id" />
+
         </div>
         <p v-else class="my-4 text-lg text-center text-danger">" Unable to show services due to maintenance break! "</p>
         <div v-if="services.length" class="flex justify-center my-6">
