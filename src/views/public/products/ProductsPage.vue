@@ -8,13 +8,42 @@
                 <span class="text-secondary">Products</span>
             </p>
         </div>
-        Sorted products
+        <ProductsList :products="products" />
+        <MainPagination class="w-full my-6" v-if="paginationData.current_page"  :paginationProp="paginationData" @next="paginate" @previous="paginate" @random="paginate" />
     </div>
 </template>
 
 <script>
+import ApiService from '@/services/ApiService';
+import MainPagination from '@/components/base/MainPagination.vue'
+import ProductsList from '@/components/public/products/ProductsList.vue';
     export default {
-        
+        components : {
+            MainPagination , ProductsList
+        },
+        data () {
+            return {
+                products : [],
+                paginationData : {}
+            }
+        },
+        mounted() {
+            this.getProducts(1);
+        },
+        methods : {
+            getProducts(page) {
+                ApiService.get(`products?page=${page}&limit=12`).then((res) => {
+                    this.products = res.data.data.products; 
+                    this.paginationData = res.data.data.meta;
+                    window.scrollTo('0px' , '0px');
+                }).catch((res) => {
+                    console.log(res);
+                })
+            },
+            paginate(page){
+                this.getProducts(page)
+            },
+        }
     }
 </script>
 

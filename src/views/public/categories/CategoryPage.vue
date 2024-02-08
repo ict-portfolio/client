@@ -11,23 +11,19 @@
             </p>
         </div>
         <main>
-            <div class="flex flex-wrap gap-2 p-1 sm:p-3" v-if="category?.products?.length">
-                <ProductCard :product="product" v-for="product in category.products" :key="product.id"  />
-            </div>
-            <div class="flex flex-wrap gap-2 p-1 sm:p-3" v-else-if="category?.services?.length">
-                <ServiceCard :service="service" v-for="service in category.services" :key="service.id" />
-            </div>
+            <ProductsList v-if="category?.products?.length" :products="category.products" />
+            <ServicesList v-if="category?.services?.length" :services="category.services" />
         </main>
     </div>
 </template>
 
 <script>
 import ApiService from '@/services/ApiService';
-import ProductCard from '@/components/public/products/ProductCard'
-import ServiceCard from '@/components/public/services/ServiceCard'
+import ProductsList from '@/components/public/products/ProductsList.vue';
+import ServicesList from '@/components/public/services/ServicesList.vue';
     export default {
         components : {
-            ProductCard , ServiceCard
+            ProductsList , ServicesList
         },
         data () {
             return {

@@ -210,14 +210,14 @@ export default {
             activeProduct: {},
             res : [
                 {
-                    name : 'Training',
-                    page : 'IndexPage',
-                    icon : 'model_training'
-                },
-                {
                     name : 'Blog',
                     page : 'IndexPage',
                     icon : 'content_copy'
+                },
+                {
+                    name : 'Training',
+                    page : 'IndexPage',
+                    icon : 'model_training'
                 },
                 {
                     name : 'Technical Paper',
