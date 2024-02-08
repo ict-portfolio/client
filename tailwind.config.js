@@ -14,7 +14,7 @@ module.exports = {
       "gray-2" : "#6b7280",
       "dense" : "#1b4965",
       "primary" : "#605DFF",
-      "secondary" : "#5DA8FF",
+      "secondary" : "#1FA2D4",
       "tertiary" : "#1dd3b0",
       "danger" : "#E83845",
       "coal" : "#262e3f",

@@ -19,7 +19,7 @@
             </div>
 
             <div class="justify-between my-12 overflow-hidden sm:flex">
-                <div data-aos="slide-up" :data-aos-delay="index * 50" v-for="contact,index in contacts" :key="contact.title" class="sm:w-[30%] hover:shadow-lg flex flex-col items-center border rounded-lg border-[#d1d5db] p-4 my-4">
+                <div data-aos="slide-up" :data-aos-delay="index * 50" v-for="contact,index in contacts" :key="contact.title" class="sm:w-[30%] hover:shadow-lg flex flex-col items-center border rounded-lg border-[#eee] bg-[#ffffff] p-4 my-4">
                     <span style="margin: 0px 8px;background-color: cornflowerblue;border-radius: 50%;padding: 12px;color: white;font-size: 28px;" class="material-icons-sharp">{{ contact.icon }}</span>
                     <h1 class="mt-4 mb-2 text-xl font-semibold text-dense">{{ contact.title }}</h1>
                     <p class="font-[Arial] tracking-wide text-center">{{ contact.body }}</p>
