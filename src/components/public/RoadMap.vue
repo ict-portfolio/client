@@ -7,15 +7,15 @@
             <div class="sm:w-[30%] sm:px-6 py-6">
                 <ul class="flex list-none sm:block">
                     <li :class="active == 'completed' ? 'text-danger text-base sm:text-3xl' : 'sm:text-2xl text-sm'" class="flex flex-col items-center p-4 transition-all duration-100 sm:flex-row font-semi-bold" @click="active = 'completed'">
-                        <span :style="[active == 'completed' ? {scale : '200%'} : {scale : '100%'}]" style="color: #E83845;transition: all 0.5s ease;" class="material-icons-outlined">adjust</span>
+                        <span :style="[active == 'completed' ? {scale : '150%'} : {scale : '100%'}]" style="color: #E83845;transition: all 0.5s ease;" class="material-icons-outlined">check_circle</span>
                         <span class="sm:ml-[1rem] text-center mt-2 sm:mt-0">Completed</span>
                     </li>
                     <li :class="active == 'progress' ? 'text-danger text-base sm:text-3xl' : 'sm:text-2xl text-sm'" class="flex flex-col items-center p-4 transition-all duration-100 sm:flex-row font-semi-bold" @click="active = 'progress'">
-                        <span :style="[active == 'progress' ? {scale : '200%'} : {scale : '100%'}]" style="color: #E83845;transition: all 0.5s ease;" class="material-icons-outlined">adjust</span>
+                        <span :style="[active == 'progress' ? {scale : '150%'} : {scale : '100%'}]" style="color: #E83845;transition: all 0.5s ease;" class="material-icons-outlined">adjust</span>
                         <span class="sm:ml-[1rem] text-center mt-2 sm:mt-0">In Progress</span>
                     </li>
                     <li :class="active == 'upcoming' ? 'text-danger text-base sm:text-3xl' : 'sm:text-2xl text-sm'" class="flex flex-col items-center p-4 transition-all duration-100 sm:flex-row font-semi-bold" @click="active = 'upcoming'">
-                        <span :style="[active == 'upcoming' ? {scale : '200%'} : {scale : '100%'}]" style="color: #E83845;transition: all 0.5s ease;" class="material-icons-outlined">adjust</span>
+                        <span :style="[active == 'upcoming' ? {scale : '150%'} : {scale : '100%'}]" style="color: #E83845;transition: all 0.5s ease;" class="material-icons-outlined">circle</span>
                         <span class="sm:ml-[1rem] text-center mt-2 sm:mt-0">Upcoming</span>
                     </li>
                 </ul>
@@ -26,7 +26,7 @@
                         <li class="p-3" v-for="coming in upcoming" :key="coming.id">
                             <div @click="showDescription(coming.id)" class="flex items-center">
                                 <span style="margin-right: 1rem;color: #E83845;font-size:2rem;" class="material-icons-outlined">circle</span>
-                                <span :class="showDes == coming.id ? 'text-secondary' : ''">{{ coming.title }} {{ coming.status }}</span>
+                                <span :class="showDes == coming.id ? 'text-secondary' : ''">{{ coming.title }}</span>
                             </div>
                             <p class="px-2 py-2 text-sm transition-all sm:px-12 sm:text-base" v-if="showDes == coming.id">
                                 {{ coming.description }}
@@ -37,7 +37,7 @@
                         <li class="p-3" v-for="com in completed" :key="com.id">
                             <div @click="showDescription(com.id)" class="flex items-center">
                                 <span style="margin-right: 1rem;color: #E83845;font-size:2rem;" class="material-icons-outlined">check_circle</span>
-                                <span :class="showDes == com.id ? 'text-secondary' : ''">{{ com.title }} {{ com.status }}</span>
+                                <span :class="showDes == com.id ? 'text-secondary' : ''">{{ com.title }}</span>
                             </div>
                             <p class="px-2 py-2 text-sm transition-all sm:px-12 sm:text-base" v-if="showDes == com.id">
                                 {{ com.description }}
@@ -48,7 +48,7 @@
                         <li class="p-3" v-for="pro in progress" :key="pro.id">
                             <div @click="showDescription(pro.id)" class="flex items-center">
                                 <span style="margin-right: 1rem;color: #E83845;font-size:2rem;" class="material-icons-outlined">adjust</span>
-                                <span :class="showDes == pro.id ? 'text-secondary' : ''">{{ pro.title }} {{ pro.status }}</span>
+                                <span :class="showDes == pro.id ? 'text-secondary' : ''">{{ pro.title }}</span>
                             </div>
                             <p class="px-2 py-2 text-sm transition-all sm:px-12 sm:text-base" v-if="showDes == pro.id">
                                 {{ pro.description }}

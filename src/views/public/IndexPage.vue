@@ -24,7 +24,12 @@
 
         <HPC2 v-if="loadOthers" />
 
-        <HPContents v-if="loadOthers" />
+        <!-- <HPContents v-if="loadOthers" /> -->
+        <!-- <div class="max-w-screen-md mx-auto">
+            <ProductCarousel class="sm:w-[2/3] lg:w-[1/2]" />
+        </div> -->
+
+        <HPProducts v-if="loadOthers" />
 
         <RoadMap v-if="loadOthers" />
 
@@ -38,15 +43,16 @@ import MainSwiper from '../../components/public/MainSwiper.vue'
 import HPC1 from '../../components/public/HPC1.vue'
 import HPServices from '@/components/public/HPServices.vue';
 import HPC2 from '../../components/public/HPC2.vue';
-import HPContents from '@/components/public/HPContents.vue';
+// import HPContents from '@/components/public/HPContents.vue';
+import HPProducts from '@/components/public/HPProducts.vue';
 import HPC3 from '../../components/public/HPC3.vue';
 import RoadMap from '@/components/public/RoadMap.vue';
-
+// import ProductCarousel from '@/components/public/products/ProductCarousel.vue';
 import AOS from 'aos';
 
     export default {
         components : {
-            MainSwiper , HPC1 , HPServices , HPC2 , HPContents , HPC3 , RoadMap
+            MainSwiper , HPC1 , HPServices , HPC2  , HPC3 , RoadMap , HPProducts
         },
         data() {
             return {
