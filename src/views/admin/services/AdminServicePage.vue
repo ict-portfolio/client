@@ -75,8 +75,7 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
         },
         mounted () {
             ApiService.get('admin/services').then((res) => {
-                this.services = res.data.data.services
-                console.log(res.data.data.services);
+                this.services = res.data.data
             }).catch((res) => {
                 console.log(res);
             })
