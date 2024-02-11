@@ -6,7 +6,7 @@
   <figure>
       <img
         class="w-full rounded aspect-[16/9]"
-        src="https://www.stuff.tv/wp-content/uploads/sites/2/2021/04/Stuff-Best-Laptop-Lead.png?resize=1080,720"
+        :src="product.default_image ? product.default_image : 'https://www.stuff.tv/wp-content/uploads/sites/2/2021/04/Stuff-Best-Laptop-Lead.png?resize=1080,720'"
         alt=""
       />
     </figure>
@@ -15,8 +15,8 @@
       v-if="product.discount > 0"
       >{{ product.discount }}% Off</span
     >
-    <div class="px-0 pt-2">
-      <h1 class="mt-1 text-lg font-semibold line-clamp-2">{{ product.name }}</h1>
+    <div>
+      <h1 class="mt-1 text-lg font-semibold line-clamp-1">{{ product.name }}</h1>
       <p class="my-2 font-sans font-semibold">
         <span v-if="product.discount > 0">
           <span class="mr-2 line-through text-neutral" >{{ `$ ${product.price}` }}</span>
