@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="h-screen">
+        <h1 class="p-4 text-2xl">Roadmap</h1>
         <vue-good-table
             :columns="columns"
             :rows="roadmap"
