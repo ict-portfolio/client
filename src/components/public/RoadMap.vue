@@ -24,7 +24,7 @@
                 <Transition name="list" mode="out-in">
                     <ul class="list-none " v-if="active == 'upcoming'">
                         <li class="p-3" v-for="coming in upcoming" :key="coming.id">
-                            <div @click="showDescription(coming.id)" class="flex items-center">
+                            <div @click="showDescription(coming.id)" class="flex items-center hover:text-secondary">
                                 <span style="margin-right: 1rem;color: #E83845;font-size:2rem;" class="material-icons-outlined">circle</span>
                                 <span :class="showDes == coming.id ? 'text-secondary' : ''">{{ coming.title }}</span>
                             </div>
@@ -35,7 +35,7 @@
                     </ul>
                     <ul class="list-none " v-else-if="active == 'completed'">
                         <li class="p-3" v-for="com in completed" :key="com.id">
-                            <div @click="showDescription(com.id)" class="flex items-center">
+                            <div @click="showDescription(com.id)" class="flex items-center hover:text-secondary">
                                 <span style="margin-right: 1rem;color: #E83845;font-size:2rem;" class="material-icons-outlined">check_circle</span>
                                 <span :class="showDes == com.id ? 'text-secondary' : ''">{{ com.title }}</span>
                             </div>
@@ -46,7 +46,7 @@
                     </ul>
                     <ul class="list-none " v-else>
                         <li class="p-3" v-for="pro in progress" :key="pro.id">
-                            <div @click="showDescription(pro.id)" class="flex items-center">
+                            <div @click="showDescription(pro.id)" class="flex items-center hover:text-secondary">
                                 <span style="margin-right: 1rem;color: #E83845;font-size:2rem;" class="material-icons-outlined">adjust</span>
                                 <span :class="showDes == pro.id ? 'text-secondary' : ''">{{ pro.title }}</span>
                             </div>

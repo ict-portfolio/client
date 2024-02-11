@@ -28,7 +28,7 @@
         <div class="sm:w-[80%] mx-auto px-1 mt-5">
             <h1 class="mt-4 text-xl font-semibold text-center">{{service.image_description}}</h1>
             <div class="flex flex-wrap justify-around">
-                <img v-for="img in service.images" :key="img.id" class="my-5 w-[30%] rounded" :src="img.image.url" alt="">
+                <img @click="showPopupFun(index)" v-for="(img , index) in service.images" :key="img.id" class="my-5 md:w-[23%] sm:w-[48%] w-full rounded" :src="img.image.url" alt="">
             </div>
         </div>
         <div class="mx-auto sm:w-[80%] py-5 px-1">
@@ -38,16 +38,30 @@
             </div>
                 <p class="my-4" v-html="service.terms"></p>
         </div> 
+        <ImagePopup :index="index" @changeIndex="changeImg" :images="service.images" :show="showPopup" @close="showPopup = false" />
     </div>
 </template>
 
 <script>
 import ApiService from '@/services/ApiService'
+import ImagePopup from '@/components/public/services/ImagePopup.vue'
     export default {
+        components : {ImagePopup},
         data() {
             return {
                 slug : this.$route.params.slug,
-                service : {}
+                service : {},
+                showPopup : false,
+                index : -1
+            }
+        },
+        methods : {
+            showPopupFun(index) {
+                this.showPopup = true;
+                this.index = index;
+            },
+            changeImg(i) {
+                this.index = i;
             }
         },
         mounted() {

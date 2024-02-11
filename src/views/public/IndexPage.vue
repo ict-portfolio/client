@@ -31,7 +31,7 @@
 
         <HPProducts v-if="loadOthers" />
 
-        <RoadMap v-if="loadOthers" />
+        <!-- <RoadMap v-if="loadOthers" /> -->
 
         <HPC3 v-if="loadOthers" />
 
@@ -46,13 +46,13 @@ import HPC2 from '../../components/public/HPC2.vue';
 // import HPContents from '@/components/public/HPContents.vue';
 import HPProducts from '@/components/public/HPProducts.vue';
 import HPC3 from '../../components/public/HPC3.vue';
-import RoadMap from '@/components/public/RoadMap.vue';
+// import RoadMap from '@/components/public/RoadMap.vue';
 // import ProductCarousel from '@/components/public/products/ProductCarousel.vue';
 import AOS from 'aos';
 
     export default {
         components : {
-            MainSwiper , HPC1 , HPServices , HPC2  , HPC3 , RoadMap , HPProducts
+            MainSwiper , HPC1 , HPServices , HPC2  , HPC3  , HPProducts
         },
         data() {
             return {

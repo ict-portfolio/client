@@ -27,7 +27,7 @@
             leaveTo="opacity-0 translate-y-[-3rem]"
           >
             <DialogPanel
-              class="w-screen p-0 absolute top-0 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl min-h-[30vh]"
+              class="w-screen p-0 absolute top-0 overflow-hidden text-left align-middle transition-all transform bg-[#eee] shadow-xl min-h-[20vh]"
             >
                 <button class="absolute text-xl outline-none sm:top-6 sm:right-6 top-2 right-2 ring-0" @click="closeModal">
                   <span class="material-icons-outlined">close</span>

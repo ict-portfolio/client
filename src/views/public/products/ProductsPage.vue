@@ -32,7 +32,7 @@ import ProductsList from '@/components/public/products/ProductsList.vue';
         },
         methods : {
             getProducts(page) {
-                ApiService.get(`products?page=${page}&limit=12`).then((res) => {
+                ApiService.get(`products?page=${page}&limit=4`).then((res) => {
                     this.products = res.data.data.products; 
                     this.paginationData = res.data.data.meta;
                     window.scrollTo('0px' , '0px');

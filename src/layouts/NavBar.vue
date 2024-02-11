@@ -343,7 +343,7 @@ export default {
   },
   data() {
     return {
-      showSearchBox : true,
+      showSearchBox : false,
       moblieView: false,
       solutions: [],
       products: [],
