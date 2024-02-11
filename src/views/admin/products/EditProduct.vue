@@ -23,6 +23,10 @@
                 </label>
             </div>
             <div class="w-full px-2 mt-2 mb-28">
+                <label for="description">Specification</label>
+                <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="product.specification" theme="snow" toolbar="full" contentType="html"></quill-editor>
+            </div>
+            <div class="w-full px-2 mt-2 mb-28">
                 <label for="description">Description</label>
                 <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="product.description" theme="snow" toolbar="full" contentType="html"></quill-editor>
             </div>
@@ -65,6 +69,7 @@ export default {
                 name: '',
                 category_id: null,
                 description: '',
+                specification : '',
                 price: null,
                 discount: null,
                 instock: true,

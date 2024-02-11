@@ -15,8 +15,11 @@
             <h1 class="text-2xl">{{ product.name }}</h1>
             <h3 class="my-2 text-xl text-primary">Price - {{ product.price }}</h3>
             <h5 class="mb-4 text-xl">Current Discount - {{ product.discount }}%</h5>
+            <h6 class="mt-1 text-xl">Specifiaction</h6>
+            <p v-html="product.specification" class="mb-4"></p>
             <h6 class="mt-1 text-xl">Description</h6>
             <p v-html="product.description" class="mb-4"></p>
+
             <div class="flex mt-6">
                 <router-link :to="{name : 'EditProduct' , params : {id : product.id}}" class="flex items-center px-3 py-3 mr-4 text-white rounded-full bg-secondary">
                     <span class="material-icons-outlined">edit</span>

@@ -23,6 +23,10 @@
                 </label>
             </div>
             <div class="w-full px-2 mt-2 mb-28">
+                <label for="description">Specification</label>
+                <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="product.specification" theme="snow" toolbar="full" contentType="html"></quill-editor>
+            </div>
+            <div class="w-full px-2 mt-2 mb-28">
                 <label for="description">Description</label>
                 <quill-editor class="w-full shadow-sm shadow-primary" v-model:content="product.description" theme="snow" toolbar="full" contentType="html"></quill-editor>
             </div>
@@ -68,7 +72,8 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
                     price : null,
                     discount : null,
                     instock : true,
-                    images : []
+                    images : [],
+                    specification : ''
                 },
                 errors : {}
             }
