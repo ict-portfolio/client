@@ -152,5 +152,7 @@ import NavBar from './NavBar.vue';
 .footer {
     background-image: url('@/assets/buildings2.jpg');
     background-size: cover;
+    text-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    color: white;
 }
 </style>
