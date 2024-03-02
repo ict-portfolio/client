@@ -5,8 +5,17 @@
 </template>
 
 <script>
+import {useAuthStore} from '@/stores/auth'
   export default {
-    
+    data() {
+      return {
+        authStore : useAuthStore()
+      }
+    },
+    async mounted() {
+      await this.authStore.getUser();
+      this.authStore.filterRole();
+    }
   }
 </script>
 
@@ -34,10 +43,7 @@
     background-size: cover;
     background-position: center;
     text-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    font-weight: 600;
+    font-weight: 700;
     color: white;
 }
-/* .breadcamp {
-  background-color: #232B3C;
-} */
 </style>

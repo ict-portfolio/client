@@ -33,7 +33,7 @@
                   <span class="material-icons-outlined">close</span>
                 </button>
                 <h1 class="mt-6 text-lg font-bold text-center sm:text-3xl text-gray-1">What are You Looking for?</h1>
-                <form class="flex justify-center py-4">
+                <form @submit.prevent="goGoGo" class="flex justify-center py-4">
                     <input
                         v-model="keyword"
                         placeholder="Search products and services in First ICT"
@@ -73,13 +73,17 @@ export default {
   },
   data () {
     return {
-        keyword : '',
+        keyword : this.$route.query.query,
     }
   },
   methods : {
     closeModal () {
         this.$emit('close')
     },
+    goGoGo() {
+      this.closeModal();
+      this.$router.push({name : "SearchResult" , query : {query : this.keyword}})
+    }
   }
 };
 </script>

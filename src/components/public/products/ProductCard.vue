@@ -17,12 +17,12 @@
     >
     <div>
       <h1 class="mt-1 text-lg font-semibold line-clamp-1">{{ product.name }}</h1>
-      <p class="my-2 font-sans font-semibold">
+      <p class="relative my-2 font-sans font-semibold">
         <span v-if="product.discount > 0">
-          <span class="mr-2 line-through text-neutral" >{{ `$ ${product.price}` }}</span>
-          <span class="text-lg text-primary">${{ product.price - (product.price * product.discount/100) }}</span>
+          <span class="mr-2 line-through text-gray-1 text-neutral" >{{ `Ks ${product.price}` }}</span>
+          <span class="text-lg text-primary">Ks{{ product.price - (product.price * product.discount/100) }}</span>
         </span>
-        <span class="text-primary" v-else>$ {{ product.price }}</span>
+        <span class="text-primary" v-else>Ks {{ product.price }}</span>
       </p>
       <p class="text-sm">
         <span v-if="product.instock" class="font-semibold text-green">Instock</span>
