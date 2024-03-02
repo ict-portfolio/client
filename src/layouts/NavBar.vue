@@ -254,9 +254,13 @@
         </div>
       </div>
 
-      <div>
+      <div class="flex items-center gap-6">
         <button @click="showSearchBox = !showSearchBox" class="flex items-center">
-          <span class="material-icons-outlined">search</span>
+          <span class="material-icons-round">search</span>
+        </button>
+        <button class="px-3 py-1 text-2xl uppercase rounded-full bg-primary" @click="verifyLogin" v-if="authStore.user && authStore.user.id">{{ authStore.user.name[0] }}</button>
+        <button v-else @click="showLogin = true" class="flex items-center">
+          <span class="material-icons-round">person</span>
         </button>
       </div>
     </div>
@@ -313,6 +317,9 @@
         </div>
       </Dialog>
     </TransitionRoot>
+
+    <MainModal :show="showLogin" @close="showLogin = false" />
+
   </div>
 </template>
 
@@ -329,6 +336,8 @@ import {
   DialogPanel,
 } from "@headlessui/vue";
 import SearchBox from "@/components/public/SearchBox.vue";
+import {useAuthStore} from '@/stores/auth'
+import MainModal from '@/components/auth/MainModal.vue'
 export default {
   components: {
     Popover,
@@ -340,11 +349,14 @@ export default {
     Dialog,
     DialogPanel,
     SearchBox,
+    MainModal
   },
   data() {
     return {
+      authStore : useAuthStore(),
       showSearchBox : false,
       moblieView: false,
+      showLogin : false,
       solutions: [],
       products: [],
       resources: [],
@@ -393,6 +405,21 @@ export default {
         .catch((res) => {
           console.log(res);
         });
+    },
+    async verifyLogin() {
+      let token = localStorage.getItem('token');
+      if (token) {
+        if (this.authStore.user && this.authStore.user.email) {
+          this.authStore.filterRole();
+          if (this.authStore.isAdmin) {
+            this.$router.push({name : 'AdminDashboardPage'})
+          } else {
+            alert('customer');
+          }
+        }
+      } else {
+        this.$router.push({name : 'LoginPage'})
+      }
     }
   },
   mounted() {

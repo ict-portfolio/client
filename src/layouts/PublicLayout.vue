@@ -46,7 +46,14 @@
         </Transition> -->
 
         <main class="z-10 w-screen">
-            <router-view></router-view>
+            <router-view v-slot="{Component}">
+                <!-- <Transition
+                    enter-active-class="animate__animated animate__fadeInRight"
+                    leave-active-class="animate__animated animate__fadeOutLeft"
+                    mode="out-in"> -->
+                    <component :is="Component" />
+                <!-- </Transition> -->
+            </router-view>
         </main>
 
         <img src="@/assets/footer.png" style="height: 360px;width: 100%;" alt="">
@@ -154,5 +161,19 @@ import NavBar from './NavBar.vue';
     background-size: cover;
     text-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
     color: white;
+}
+
+.fade-enter-from {
+    opacity: 0.5;
+    position: absolute;
+    right: -50px;
+}
+ .fade-leave-to {
+    opacity: 0.5;
+    position: absolute;
+    left: -50px;
+}
+.fade-enter-active , .fade-leave-active {
+  transition: all 0.2s ease-out;
 }
 </style>

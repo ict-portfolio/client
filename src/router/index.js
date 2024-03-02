@@ -39,6 +39,11 @@ const routes = [
         component : () => import('@/views/public/IndexPage.vue')
       },
       {
+        path : 'result',
+        name : 'SearchResult',
+        component : () => import('@/views/public/SearchResult.vue')
+      },
+      {
         path : 'categories/:rootCategory',
         name : 'RootCategoryPage',
         component : () => import('@/views/public/categories/RootCategoryPage.vue')
@@ -226,8 +231,8 @@ router.beforeEach(async (to , from , next) => {
     let authStore = useAuthStore();
     await authStore.getUser();
     if (authStore.authenticated && authStore.user.email) {
-      let authorized = authStore.user.roles.find((role) => role.name == 'admin')
-      if (authorized && authorized.id) {
+      authStore.filterRole();
+      if (authStore.isAdmin) {
         next();
       } else {
         authStore.destroyAuth()

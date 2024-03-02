@@ -7,6 +7,7 @@ export const useAuthStore = defineStore('auth' , {
         return {
             user : {},
             authenticated : !!TokenService.getToken(),
+            isAdmin : false,
         }
     },
 
@@ -18,9 +19,18 @@ export const useAuthStore = defineStore('auth' , {
                 console.log(res);
             })
         },
+        filterRole () {
+            let authorized = this.user.roles?.find((role) => role.name == 'admin')
+            if (authorized && authorized.id) {
+              this.isAdmin = true;
+            } else {
+            this.isAdmin = false;
+            }
+        },
         setAuth(data)  {
                 this.user = data;
                 this.authenticated = true
+                this.filterRole(this.user.roles);
         },
         destroyAuth(){
             this.user = {};
